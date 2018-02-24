@@ -10,10 +10,9 @@ import UIKit
 import CoreData
 
 func logItApp(from previousState: String, to currentState: String, method: String){
-    //if previousState != currentState{
     print("APP         \(previousState)    \(currentState)    \(method)")
-    //}
 }
+
 func logItView(from previousState: String, to currentState: String, method: String){
     print("VIEW        \(previousState)    \(currentState)    \(method)")
 }
@@ -41,30 +40,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, willFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]? = nil) -> Bool {
         print("""
-APPLICATION STATES     – Not Running
-                       – Inactive
-                       – Active
-                       – Background
-                       – Suspended
+                APPLICATION STATES     – Not Running
+                                       – Inactive
+                                       – Active
+                                       – Background
+                                       – Suspended
 
-VIEW CONTROLLER'S      – Appearing
-VIEW'S STATES          – Appeared
-                       – Disappearing
-                       – Disappeared
+                VIEW CONTROLLER'S      – Appearing
+                VIEW'S STATES          – Appeared
+                                       – Disappearing
+                                       – Disappeared
 
-Состояние Appearing    – уточнённое состояние Appeared
-Состояние Disappearing – уточнённое состояние Disappeared
+                Состояние Appearing    – уточнённое состояние Appeared
+                Состояние Disappearing – уточнённое состояние Disappeared
 
-Таким образом, когда View находится в состоянии Appearing (Disappearing), то он
-находится в состоянии Appeared (Disappeared), что соответствует [1].
+                Таким образом, когда View находится в состоянии Appearing (Disappearing), то он
+                находится в состоянии Appeared (Disappeared), что соответствует [1].
 
-СОГЛАШЕНИЕ: Процесс запуска приложения (launching) соответствует состоянию
-            приложения Not Running
+                СОГЛАШЕНИЕ: Процесс запуска приложения (launching) соответствует состоянию
+                            приложения Not Running
 
-[1] Apple: UIViewController
-    https://developer.apple.com/documentation/uikit/uiviewcontroller
+                [1] Apple: UIViewController
+                    https://developer.apple.com/documentation/uikit/uiviewcontroller
 
-""")
+                """)
         print("OBJECT      FROM STATE      TO STATE        METHOD\n")
         logItApp(from: State.NotRunning.rawValue, to: State.NotRunning.rawValue, method: #function)
         return true

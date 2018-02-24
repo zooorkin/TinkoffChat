@@ -30,20 +30,26 @@ class ViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         logItView(from: StateOfView.disappeared.rawValue, to: StateOfView.appearing.rawValue, method: #function)
     }
+    
     override func viewDidAppear(_ animated: Bool) {
         logItView(from: StateOfView.appearing.rawValue, to: StateOfView.appeared.rawValue, method: #function)
     }
+    
     override func viewWillLayoutSubviews() {
         logItView(from: StateOfView.appearing.rawValue, to: StateOfView.appearing.rawValue, method: #function)
     }
+    
     override func viewDidLayoutSubviews() {
         logItView(from: StateOfView.appearing.rawValue, to: StateOfView.appearing.rawValue, method: #function)
     }
+    
     override func viewWillDisappear(_ animated: Bool) {
         logItView(from: StateOfView.appeared.rawValue, to: StateOfView.disappearing.rawValue, method: #function)
     }
+    
     override func viewDidDisappear(_ animated: Bool) {
         logItView(from: StateOfView.disappearing.rawValue, to: StateOfView.disappeared.rawValue, method: #function)
     }
+    
 }
 
