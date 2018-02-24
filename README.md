@@ -1,4 +1,7 @@
+<img align="left" width="60" height="60" src="https://github.com/zooorkin/TinkoffChat/blob/master/TinkoffChat/Assets.xcassets/AppIcon.appiconset/Icon-App-40x40@3x.png?raw=true">
+
 # TinkoffChat
+
 Приложение TinkoffChat реализует следующие возможности:
 * Сообщает о смене состояний приложения
 * Сообщает о смене состояния Views, принадлежащих ViewController
