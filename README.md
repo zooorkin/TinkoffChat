@@ -1,0 +1,58 @@
+# TinkoffChat
+Приложение TinkoffChat реализует следующие возможности:
+* Сообщает о смене состояний приложения
+* Сообщает о смене состояния Views, принадлежащих ViewController
+
+## Состояния приложения
+* Не запущено (Not Running)
+* Неактивно (Inactive)
+* Активно (Active)
+* В фоне (Background)
+* Приостоновлено (Suspended)
+
+СОГЛАШЕНИЕ: Процесс запуска приложения (launching) соответствует состоянию
+            приложения Not Running
+            
+Методы протокола UIApplicationDelegate:
+```
+application(_:willFinishLaunchingWithOptions:)
+application(_:didFinishLaunchingWithOptions:)
+applicationWillResignActive(_:)
+applicationDidEnterBackground(_:)
+applicationWillEnterForeground(_:)
+applicationDidBecomeActive(_:)
+applicationWillTerminate(_:)
+```
+<p align="left">
+  <img width="300" src="https://developer.apple.com/library/content/documentation/iPhone/Conceptual/iPhoneOSProgrammingGuide/Art/high_level_flow_2x.png">
+</p>
+
+## Состояния Views
+* Appearing
+* Appeared
+* Disappearing
+* Disappeared
+
+Состояние Appearing (Disappearing) – уточнённое состояние Appeared (Disappeared).
+Таким образом, когда View находится в состоянии Appearing (Disappearing), то он
+находится в состоянии Appeared (Disappeared), что соответствует [1].
+
+Методы класса UIViewController:
+```
+viewWillAppear(_:)
+viewDidAppear(_:)
+viewWillLayoutSubviews()
+viewDidLayoutSubviews()
+viewWillDisappear(_:)
+viewWillDisappear(_:)
+```
+<p align="left">
+  <img width="400" src="https://docs-assets.developer.apple.com/published/f06f30fa63/UIViewController_Class_Reference_2x_ddcaa00c-87d8-4c85-961e-ccfb9fa4aac2.png">
+</p>
+
+## Авторы
+* **Зорькин Андрей**
+
+## Ссылки
+[1] Apple: UIViewController
+    https://developer.apple.com/documentation/uikit/uiviewcontroller
