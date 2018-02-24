@@ -18,16 +18,6 @@ func logItView(from previousState: String, to currentState: String, method: Stri
     print("VIEW        \(previousState)    \(currentState)    \(method)")
 }
 
-func printLine(){
-    print("-------------------------------------------------------------------------------------------")
-}
-
-func printHeader(text: String){
-    printLine()
-    print(text.uppercased())
-    printLine()
-}
-
 enum State: String {
     case NotRunning = "Not Running "
     case Inactive =   "Inactive    "
@@ -75,7 +65,6 @@ VIEW'S STATES          – Appeared
     https://developer.apple.com/documentation/uikit/uiviewcontroller
 
 """)
-        printHeader(text: "Application's movements")
         print("OBJECT      FROM STATE      TO STATE        METHOD\n")
         logItApp(from: State.NotRunning.rawValue, to: State.NotRunning.rawValue, method: #function)
         return true
