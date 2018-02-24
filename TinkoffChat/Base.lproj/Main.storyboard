@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" systemVersion="17A277" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina5_5" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -9,16 +13,57 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="TinkoffChat" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ЗДЕСЬ" textAlignment="center" lineBreakMode="clip" baselineAdjustment="alignBaselines" minimumFontSize="72" translatesAutoresizingMaskIntoConstraints="NO" id="sx0-Wq-fQr">
+                                <rect key="frame" x="8" y="176" width="398" height="101.66666666666669"/>
+                                <fontDescription key="fontDescription" type="system" weight="black" pointSize="85"/>
+                                <color key="textColor" red="1" green="0.16406258070561841" blue="0.41903017013621235" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="БУДЕТ" textAlignment="center" lineBreakMode="clip" baselineAdjustment="alignBaselines" minimumFontSize="11" translatesAutoresizingMaskIntoConstraints="NO" id="YBK-19-XGn">
+                                <rect key="frame" x="8" y="277.66666666666669" width="398" height="109"/>
+                                <fontDescription key="fontDescription" type="system" weight="black" pointSize="91"/>
+                                <color key="textColor" red="1" green="0.4830553737308686" blue="0.40266347174572559" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ВЕРШИТЬСЯ" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="11" translatesAutoresizingMaskIntoConstraints="NO" id="lf0-kD-3bm">
+                                <rect key="frame" x="8" y="386.66666666666669" width="398" height="55"/>
+                                <fontDescription key="fontDescription" type="system" weight="black" pointSize="46"/>
+                                <color key="textColor" red="1" green="0.61902069889516464" blue="0.4257553657911608" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="МАГИЯ" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="11" translatesAutoresizingMaskIntoConstraints="NO" id="qbu-sJ-pdh">
+                                <rect key="frame" x="8" y="441.66666666666669" width="398" height="98.000000000000057"/>
+                                <fontDescription key="fontDescription" type="system" weight="black" pointSize="82"/>
+                                <color key="textColor" red="1" green="0.70648123310414812" blue="0.40489568572234091" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="YBK-19-XGn" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="8" id="BoJ-SM-Z0B"/>
+                            <constraint firstItem="qbu-sJ-pdh" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="8" id="MjA-nG-Jdw"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="lf0-kD-3bm" secondAttribute="trailing" constant="8" id="NKQ-ca-cOn"/>
+                            <constraint firstItem="lf0-kD-3bm" firstAttribute="top" secondItem="YBK-19-XGn" secondAttribute="bottom" id="NUh-J0-Yf6"/>
+                            <constraint firstItem="YBK-19-XGn" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="-36" id="Vqp-QG-xU7"/>
+                            <constraint firstItem="sx0-Wq-fQr" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="8" id="Wnj-xv-ccC"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="YBK-19-XGn" secondAttribute="trailing" constant="8" id="YBQ-vw-mr0"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="qbu-sJ-pdh" secondAttribute="trailing" constant="8" id="Zrc-W3-qga"/>
+                            <constraint firstItem="lf0-kD-3bm" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="8" id="gDf-Gh-HTN"/>
+                            <constraint firstItem="qbu-sJ-pdh" firstAttribute="top" secondItem="lf0-kD-3bm" secondAttribute="bottom" id="lI6-U0-l39"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="sx0-Wq-fQr" secondAttribute="trailing" constant="8" id="rmX-lb-0Rd"/>
+                            <constraint firstItem="YBK-19-XGn" firstAttribute="top" secondItem="sx0-Wq-fQr" secondAttribute="bottom" id="zL7-FD-QNb"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="32.799999999999997" y="32.833583208395808"/>
         </scene>
     </scenes>
 </document>
