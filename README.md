@@ -20,10 +20,13 @@
 ```
 application(_:willFinishLaunchingWithOptions:)
 application(_:didFinishLaunchingWithOptions:)
+
 applicationWillResignActive(_:)
+applicationDidBecomeActive(_:)
+
 applicationDidEnterBackground(_:)
 applicationWillEnterForeground(_:)
-applicationDidBecomeActive(_:)
+
 applicationWillTerminate(_:)
 ```
 <p align="left">
@@ -44,10 +47,12 @@ applicationWillTerminate(_:)
 ```
 viewWillAppear(_:)
 viewDidAppear(_:)
+
+viewWillDisappear(_:)
+viewWillDisappear(_:)
+
 viewWillLayoutSubviews()
 viewDidLayoutSubviews()
-viewWillDisappear(_:)
-viewWillDisappear(_:)
 ```
 <p align="left">
   <img width="400" src="https://docs-assets.developer.apple.com/published/f06f30fa63/UIViewController_Class_Reference_2x_ddcaa00c-87d8-4c85-961e-ccfb9fa4aac2.png">
