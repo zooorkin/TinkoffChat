@@ -7,11 +7,11 @@
 * Сообщает о смене состояния Views, принадлежащих ViewController
 
 ## Состояния приложения
-* Не запущено (Not Running)
-* Неактивно (Inactive)
-* Активно (Active)
-* В фоне (Background)
-* Приостоновлено (Suspended)
+* Not Running
+* Inactive
+* Active
+* Background
+* Suspended
 
 СОГЛАШЕНИЕ: Процесс запуска приложения (launching) соответствует состоянию
             приложения Not Running
@@ -45,9 +45,11 @@ applicationWillTerminate(_:)
 
 Методы класса UIViewController:
 ```
+loadView()
+viewDidLoad()
+
 viewWillAppear(_:)
 viewDidAppear(_:)
-
 viewWillDisappear(_:)
 viewWillDisappear(_:)
 
