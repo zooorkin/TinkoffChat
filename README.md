@@ -12,9 +12,6 @@
 * Active
 * Background
 * Suspended
-
-СОГЛАШЕНИЕ: Процесс запуска приложения (launching) соответствует состоянию
-            приложения Not Running
             
 Методы протокола UIApplicationDelegate:
 ```
