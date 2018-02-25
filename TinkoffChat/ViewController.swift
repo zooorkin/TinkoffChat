@@ -8,17 +8,20 @@
 
 import UIKit
 
-enum StateOfView: String{
-    case disappeared  = "Disappeared "
-    case appeared     = "Appeared    "
-    case disappearing = "Disappearing"
-    case appearing    = "Appearing   "
-}
-
 class ViewController: UIViewController {
+    
+    let AppDelegate = UIApplication.shared.delegate as? AppDelegate
 
+    override func loadView() {
+        super.loadView()
+        AppDelegate?.time.print()
+        printViewsState(from: .none, to: .none, method: #function)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        AppDelegate?.time.print()
+        printViewsState(from: .none, to: .none, method: #function)
         // Do any additional setup after loading the view, typically from a nib.
     }
 
@@ -28,27 +31,33 @@ class ViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        logItView(from: StateOfView.disappeared.rawValue, to: StateOfView.appearing.rawValue, method: #function)
+        AppDelegate?.time.print()
+        printViewsState(from: .disappeared, to: .appearing, method: #function)
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        logItView(from: StateOfView.appearing.rawValue, to: StateOfView.appeared.rawValue, method: #function)
+        AppDelegate?.time.print()
+        printViewsState(from: .appearing, to: .appeared, method: #function)
     }
     
     override func viewWillLayoutSubviews() {
-        logItView(from: StateOfView.appearing.rawValue, to: StateOfView.appearing.rawValue, method: #function)
+        AppDelegate?.time.print()
+        printViewsState(from: .appearing, to: .appearing, method: #function)
     }
     
     override func viewDidLayoutSubviews() {
-        logItView(from: StateOfView.appearing.rawValue, to: StateOfView.appearing.rawValue, method: #function)
+        AppDelegate?.time.print()
+        printViewsState(from: .appearing, to: .appearing, method: #function)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        logItView(from: StateOfView.appeared.rawValue, to: StateOfView.disappearing.rawValue, method: #function)
+        AppDelegate?.time.print()
+        printViewsState(from: .appeared, to: .disappearing, method: #function)
     }
     
     override func viewDidDisappear(_ animated: Bool) {
-        logItView(from: StateOfView.disappearing.rawValue, to: StateOfView.disappeared.rawValue, method: #function)
+        AppDelegate?.time.print()
+        printViewsState(from: .disappearing, to: .disappeared, method: #function)
     }
     
 }

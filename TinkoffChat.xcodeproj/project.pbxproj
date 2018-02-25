@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		88144CE0204329EA0035CB07 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88144CDF204329EA0035CB07 /* Log.swift */; };
 		88DBB02F2041BB0C005EDA8B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DBB02E2041BB0C005EDA8B /* AppDelegate.swift */; };
 		88DBB0312041BB0C005EDA8B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DBB0302041BB0C005EDA8B /* ViewController.swift */; };
 		88DBB0342041BB0C005EDA8B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 88DBB0322041BB0C005EDA8B /* Main.storyboard */; };
@@ -16,6 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		88144CDF204329EA0035CB07 /* Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
 		88DBB02B2041BB0C005EDA8B /* TinkoffChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TinkoffChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		88DBB02E2041BB0C005EDA8B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		88DBB0302041BB0C005EDA8B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -58,6 +60,7 @@
 			children = (
 				88DBB02E2041BB0C005EDA8B /* AppDelegate.swift */,
 				88DBB0302041BB0C005EDA8B /* ViewController.swift */,
+				88144CDF204329EA0035CB07 /* Log.swift */,
 				88DBB0322041BB0C005EDA8B /* Main.storyboard */,
 				88DBB0382041BB0C005EDA8B /* Assets.xcassets */,
 				88DBB03A2041BB0C005EDA8B /* LaunchScreen.storyboard */,
@@ -140,6 +143,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				88DBB0312041BB0C005EDA8B /* ViewController.swift in Sources */,
+				88144CE0204329EA0035CB07 /* Log.swift in Sources */,
 				88DBB02F2041BB0C005EDA8B /* AppDelegate.swift in Sources */,
 				88DBB0372041BB0C005EDA8B /* TinkoffChat.xcdatamodeld in Sources */,
 			);
