@@ -31,31 +31,37 @@ class ViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         AppDelegate?.time.print()
         printViewsState(from: .disappeared, to: .appearing, method: #function)
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         AppDelegate?.time.print()
         printViewsState(from: .appearing, to: .appeared, method: #function)
     }
     
     override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
         AppDelegate?.time.print()
         printViewsState(from: .appearing, to: .appearing, method: #function)
     }
     
     override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
         AppDelegate?.time.print()
         printViewsState(from: .appearing, to: .appearing, method: #function)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
         AppDelegate?.time.print()
         printViewsState(from: .appeared, to: .disappearing, method: #function)
     }
     
     override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
         AppDelegate?.time.print()
         printViewsState(from: .disappearing, to: .disappeared, method: #function)
     }
