@@ -9,23 +9,6 @@
 import Foundation
 import UIKit
 
-class LogTime{
-    
-    var time: Double = 0
-    
-    init(){
-        time = NSDate().timeIntervalSince1970;
-    }
-    
-    func print(){
-        // Переполнится через ~ 24 суток со времени запуска
-        // (2^32/2)/(1000*60*60*24)
-        let ms = Int(1_000*(NSDate().timeIntervalSince1970 - time))
-        // Количество миллисекунд будет укладываться в 6 символов ~ 16 минут
-        Swift.print("\(String(format: "%06d", ms))" + "ms  ", terminator:"")
-    }
-}
-
 enum AppState: String {
     case NotRunning = "Not Running "
     case Inactive =   "Inactive    "
@@ -42,29 +25,62 @@ enum ViewsState: String{
     case none         = "–           "
 }
 
-func printAppState(from previousState: AppState,
-                   now currentState: UIApplicationState,
-                   to nextState: AppState,
-                   method: String){
-    let currentStateString: String
-    switch currentState {
-    case .active: currentStateString = AppState.Active.rawValue
-    case .inactive: currentStateString = AppState.Inactive.rawValue
-    case .background: currentStateString = AppState.Background.rawValue
+class Log{
+    
+    var time: Double = 0
+    var hideLogs: Bool = false
+
+    init(hideLogs: Bool) {
+        time = NSDate().timeIntervalSince1970;
+        self.hideLogs = hideLogs
+        printAppDelegateInfromation()
+        printAppDelegateHeader()
     }
-    print("APP     \(previousState.rawValue)  \(currentStateString)  \(nextState.rawValue)  \(method)")
-}
-
-func printViewsState(from previousState: ViewsState, to currentState: ViewsState, method: String){
-    print("VIEW    \(previousState.rawValue)  \(ViewsState.none.rawValue)  \(currentState.rawValue)  \(method)")
-}
-
-func printAppDelegateHeader(){
-    print("TIME      OBJECT  FROM STATE    CURR STATE    TO STATE      METHOD\n")
-}
-
-func printAppDelegateInfromation(){
-    print("""
+    
+    func print(_ text: String){
+        if !hideLogs{
+        Swift.print(text)
+        }
+    }
+    func print2(_ text: String){
+        if !hideLogs{
+        Swift.print(text, terminator: "")
+        }
+    }
+    
+    func printTime(){
+        // Переполнится через ~ 24 суток со времени запуска
+        // (2^32/2)/(1000*60*60*24)
+        let ms = Int(1_000*(NSDate().timeIntervalSince1970 - time))
+        // Количество миллисекунд будет укладываться в 6 символов ~ 16 минут
+        print2("\(String(format: "%06d", ms))" + "ms  ")
+    }
+    func appState(from previousState: AppState,
+                       now currentState: UIApplicationState,
+                       to nextState: AppState,
+                       method: String){
+        let currentStateString: String
+        switch currentState {
+            
+        case .active: currentStateString = AppState.Active.rawValue
+        case .inactive: currentStateString = AppState.Inactive.rawValue
+        case .background: currentStateString = AppState.Background.rawValue
+        }
+        printTime()
+        print("APP     \(previousState.rawValue)  \(currentStateString)  \(nextState.rawValue)  \(method)")
+    }
+    
+    func viewsState(from previousState: ViewsState, to currentState: ViewsState, method: String){
+        printTime()
+        print("VIEW    \(previousState.rawValue)  \(ViewsState.none.rawValue)  \(currentState.rawValue)  \(method)")
+    }
+    
+    func printAppDelegateHeader(){
+        print("TIME      OBJECT  FROM STATE    CURR STATE    TO STATE      METHOD\n")
+    }
+    
+    func printAppDelegateInfromation(){
+        print("""
                 APPLICATION STATES     – Not Running
                                        – Inactive
                                        – Active
@@ -89,4 +105,6 @@ func printAppDelegateInfromation(){
                     https://developer.apple.com/documentation/uikit/uiviewcontroller
 
                 """)
+    }
+
 }

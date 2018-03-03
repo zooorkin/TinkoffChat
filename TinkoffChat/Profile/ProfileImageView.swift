@@ -8,7 +8,7 @@
 
 import UIKit
 
-@IBDesignable class ProfileImageView: UIImageView {
+@IBDesignable class ProfileView: UIView {
     
     override open func layoutSubviews() {
         super.layoutSubviews()
