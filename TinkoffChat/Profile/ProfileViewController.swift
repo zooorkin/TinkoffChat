@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ProfileViewController: UIViewController {
+class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var profileName: UILabel!
@@ -22,6 +22,8 @@ class ProfileViewController: UIViewController {
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+        /* На момент инициализации экземпляра ProfileViewController кнопка "Редактировать"
+        ещё не была инициализирована */
         printEditButtonFrame(method: #function)
     }
     
@@ -57,16 +59,51 @@ class ProfileViewController: UIViewController {
     
     @IBAction func changeProfileImage(_ sender: Any) {
         print("Выберите изображение профиля")
+        let alert = UIAlertController()
+        let select = UIAlertAction(title: "Установить из галереи", style: .default){ _ in
+            if UIImagePickerController.isSourceTypeAvailable(.photoLibrary){
+                let imagePickerController = UIImagePickerController()
+                imagePickerController.sourceType = .photoLibrary
+                imagePickerController.allowsEditing = false
+                imagePickerController.delegate = self
+                self.present(imagePickerController, animated: true, completion: nil)
+            }
+        }
+        let shot = UIAlertAction(title: "Сделать фото", style: .default){ _ in
+            if UIImagePickerController.isSourceTypeAvailable(.camera){
+                let imagePickerController = UIImagePickerController()
+                imagePickerController.sourceType = .camera
+                imagePickerController.allowsEditing = false
+                imagePickerController.delegate = self
+                self.present(imagePickerController, animated: true, completion: nil)
+            }
+        }
+        let destroy = UIAlertAction(title: "Удалить фотографию", style: .destructive){ _ in
+            self.profileImage.image = UIImage(named: "placeholder-user")
+            self.profileImage.contentMode = .scaleAspectFit
+        }
+        let cancel = UIAlertAction(title: "Отмена", style: .cancel, handler: nil)
+        alert.addAction(select)
+        alert.addAction(shot)
+        alert.addAction(destroy)
+        alert.addAction(cancel)
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            profileImage.contentMode = .scaleAspectFill
+            profileImage.image = pickedImage
+        }
+        dismiss(animated: true, completion: nil)
     }
     
     var isFirst = true
     
     func printEditButtonFrame(method: String){
-        
         if isFirst{
             print("Строение frame: (x, y, width, height)")
         }
-        
         if let strongEditButton = editButton{
             print("Кнопка \"Редактировать\", cвойство frame: \(strongEditButton.frame) во время выполнения метода \(method)")
         }else{

@@ -12,7 +12,7 @@
 		884AF92D2049E38200A4A045 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884AF92C2049E38200A4A045 /* ProfileViewController.swift */; };
 		884AF9322049EC2700A4A045 /* ChangeProfileImageButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884AF9312049EC2700A4A045 /* ChangeProfileImageButton.swift */; };
 		884AF9342049F71000A4A045 /* EditButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884AF9332049F71000A4A045 /* EditButton.swift */; };
-		884AF9362049FBB400A4A045 /* ProfileImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884AF9352049FBB400A4A045 /* ProfileImageView.swift */; };
+		884AF9362049FBB400A4A045 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884AF9352049FBB400A4A045 /* ProfileView.swift */; };
 		884AF9382049FC9C00A4A045 /* DesignConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884AF9372049FC9C00A4A045 /* DesignConstants.swift */; };
 		88DBB02F2041BB0C005EDA8B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DBB02E2041BB0C005EDA8B /* AppDelegate.swift */; };
 		88DBB0312041BB0C005EDA8B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DBB0302041BB0C005EDA8B /* ViewController.swift */; };
@@ -28,7 +28,7 @@
 		884AF92C2049E38200A4A045 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		884AF9312049EC2700A4A045 /* ChangeProfileImageButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeProfileImageButton.swift; sourceTree = "<group>"; };
 		884AF9332049F71000A4A045 /* EditButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditButton.swift; sourceTree = "<group>"; };
-		884AF9352049FBB400A4A045 /* ProfileImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImageView.swift; sourceTree = "<group>"; };
+		884AF9352049FBB400A4A045 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		884AF9372049FC9C00A4A045 /* DesignConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignConstants.swift; sourceTree = "<group>"; };
 		88DBB02B2041BB0C005EDA8B /* TinkoffChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TinkoffChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		88DBB02E2041BB0C005EDA8B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -57,19 +57,10 @@
 				884AF9292049E32D00A4A045 /* Profile.storyboard */,
 				884AF92C2049E38200A4A045 /* ProfileViewController.swift */,
 				884AF9312049EC2700A4A045 /* ChangeProfileImageButton.swift */,
-				884AF9352049FBB400A4A045 /* ProfileImageView.swift */,
+				884AF9352049FBB400A4A045 /* ProfileView.swift */,
 				884AF9332049F71000A4A045 /* EditButton.swift */,
-				884AF9372049FC9C00A4A045 /* DesignConstants.swift */,
 			);
 			path = Profile;
-			sourceTree = "<group>";
-		};
-		884AF92F2049E45000A4A045 /* Log */ = {
-			isa = PBXGroup;
-			children = (
-				88144CDF204329EA0035CB07 /* Log.swift */,
-			);
-			path = Log;
 			sourceTree = "<group>";
 		};
 		884AF9302049E47600A4A045 /* ViewController */ = {
@@ -101,9 +92,10 @@
 			isa = PBXGroup;
 			children = (
 				88DBB02E2041BB0C005EDA8B /* AppDelegate.swift */,
+				88144CDF204329EA0035CB07 /* Log.swift */,
+				884AF9372049FC9C00A4A045 /* DesignConstants.swift */,
 				884AF92E2049E42600A4A045 /* Profile */,
 				884AF9302049E47600A4A045 /* ViewController */,
-				884AF92F2049E45000A4A045 /* Log */,
 				88DBB0382041BB0C005EDA8B /* Assets.xcassets */,
 				88DBB03A2041BB0C005EDA8B /* LaunchScreen.storyboard */,
 				88DBB03D2041BB0C005EDA8B /* Info.plist */,
@@ -187,7 +179,7 @@
 			files = (
 				88DBB0312041BB0C005EDA8B /* ViewController.swift in Sources */,
 				884AF9382049FC9C00A4A045 /* DesignConstants.swift in Sources */,
-				884AF9362049FBB400A4A045 /* ProfileImageView.swift in Sources */,
+				884AF9362049FBB400A4A045 /* ProfileView.swift in Sources */,
 				88144CE0204329EA0035CB07 /* Log.swift in Sources */,
 				884AF9342049F71000A4A045 /* EditButton.swift in Sources */,
 				884AF92D2049E38200A4A045 /* ProfileViewController.swift in Sources */,
