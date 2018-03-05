@@ -89,7 +89,7 @@
                     <connections>
                         <outlet property="editButton" destination="GjM-5l-udo" id="gij-AZ-Ey2"/>
                         <outlet property="profileDescription" destination="fSn-EG-aep" id="Tmt-4S-n0a"/>
-                        <outlet property="profileImage" destination="UNA-9R-Yue" id="BqM-O7-tLM"/>
+                        <outlet property="profileImageView" destination="UNA-9R-Yue" id="5qd-RW-ahj"/>
                         <outlet property="profileName" destination="O5z-6n-ryl" id="hBE-5Y-dF3"/>
                     </connections>
                 </viewController>

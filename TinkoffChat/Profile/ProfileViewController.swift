@@ -10,10 +10,29 @@ import UIKit
 
 class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
-    @IBOutlet weak var profileImage: UIImageView!
+    @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var profileName: UILabel!
     @IBOutlet weak var profileDescription: UILabel!
     @IBOutlet weak var editButton: UIButton!
+    
+    private let defaultProfileImage = UIImage(named: "placeholder-user")
+    var profileImage: UIImage?{
+        get{
+            if let strongProfileImage = profileImageView.image, strongProfileImage.isEqual(defaultProfileImage){
+                return nil
+            }
+            return profileImageView.image
+        }
+        set(newImage){
+            if let strongNewImage = newImage{
+                profileImageView.contentMode = .scaleAspectFill
+                profileImageView.image = strongNewImage
+            } else {
+                profileImageView.image = defaultProfileImage
+                profileImageView.contentMode = .scaleAspectFit
+            }
+        }
+    }
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
@@ -59,7 +78,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     
     @IBAction func changeProfileImage(_ sender: Any) {
         print("Выберите изображение профиля")
-        let alert = UIAlertController()
+        let alertController = UIAlertController()
         let select = UIAlertAction(title: "Установить из галереи", style: .default){ _ in
             if UIImagePickerController.isSourceTypeAvailable(.photoLibrary){
                 let imagePickerController = UIImagePickerController()
@@ -69,6 +88,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
                 self.present(imagePickerController, animated: true, completion: nil)
             }
         }
+        alertController.addAction(select)
         let shot = UIAlertAction(title: "Сделать фото", style: .default){ _ in
             if UIImagePickerController.isSourceTypeAvailable(.camera){
                 let imagePickerController = UIImagePickerController()
@@ -78,22 +98,24 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
                 self.present(imagePickerController, animated: true, completion: nil)
             }
         }
-        let destroy = UIAlertAction(title: "Удалить фотографию", style: .destructive){ _ in
-            self.profileImage.image = UIImage(named: "placeholder-user")
-            self.profileImage.contentMode = .scaleAspectFit
+        
+        alertController.addAction(shot)
+        if profileImage != nil{
+            let destroy = UIAlertAction(title: "Удалить фотографию", style: .destructive){ _ in
+                // ВНИМАНИЕ! profileImage – вычисляемое свойство класса
+                self.profileImage = nil
+            }
+            alertController.addAction(destroy)
         }
         let cancel = UIAlertAction(title: "Отмена", style: .cancel, handler: nil)
-        alert.addAction(select)
-        alert.addAction(shot)
-        alert.addAction(destroy)
-        alert.addAction(cancel)
-        self.present(alert, animated: true, completion: nil)
+        alertController.addAction(cancel)
+        self.present(alertController, animated: true, completion: nil)
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
-            profileImage.contentMode = .scaleAspectFill
-            profileImage.image = pickedImage
+            // ВНИМАНИЕ! profileImage – вычисляемое свойство класса
+            profileImage = pickedImage
         }
         dismiss(animated: true, completion: nil)
     }
