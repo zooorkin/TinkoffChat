@@ -8,12 +8,15 @@
 
 import UIKit
 
-class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+@IBDesignable class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
+    @IBOutlet weak var profileView: ProfileView!
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var profileName: UILabel!
     @IBOutlet weak var profileDescription: UILabel!
     @IBOutlet weak var editButton: UIButton!
+    
+    var log = false
     
     private let defaultProfileImage = UIImage(named: "placeholder-user")
     var profileImage: UIImage?{
@@ -70,6 +73,12 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
          */
         printEditButtonFrame(method: #function)
     }
+    
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        profileView.layer.cornerRadius = DesignConstants.profileImageRadius
+        profileView.layer.masksToBounds = true
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -123,6 +132,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     var isFirst = true
     
     func printEditButtonFrame(method: String){
+        if log{
         if isFirst{
             print("Строение frame: (x, y, width, height)")
         }
@@ -131,9 +141,14 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         }else{
             print("Кнопка \"Редактировать\" ещё не инициализирована во время выполнения \(method)")
         }
+        }
         isFirst = false
     }
-
+    
+    @IBAction func close(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
+    
     /*
     // MARK: - Navigation
 

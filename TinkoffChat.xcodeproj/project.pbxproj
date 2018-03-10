@@ -8,12 +8,28 @@
 
 /* Begin PBXBuildFile section */
 		88144CE0204329EA0035CB07 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88144CDF204329EA0035CB07 /* Log.swift */; };
+		881AD48E20515690002503BF /* CircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881AD48D20515690002503BF /* CircleView.swift */; };
+		881AD4902051677B002503BF /* RandomDataFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881AD48F2051677B002503BF /* RandomDataFunctions.swift */; };
 		884AF92B2049E32D00A4A045 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 884AF9292049E32D00A4A045 /* Profile.storyboard */; };
 		884AF92D2049E38200A4A045 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884AF92C2049E38200A4A045 /* ProfileViewController.swift */; };
 		884AF9322049EC2700A4A045 /* ChangeProfileImageButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884AF9312049EC2700A4A045 /* ChangeProfileImageButton.swift */; };
 		884AF9342049F71000A4A045 /* EditButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884AF9332049F71000A4A045 /* EditButton.swift */; };
 		884AF9362049FBB400A4A045 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884AF9352049FBB400A4A045 /* ProfileView.swift */; };
 		884AF9382049FC9C00A4A045 /* DesignConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884AF9372049FC9C00A4A045 /* DesignConstants.swift */; };
+		8869151920517E1E0045D3F0 /* ConversationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8869151820517E1E0045D3F0 /* ConversationViewController.swift */; };
+		8869151C20517E3A0045D3F0 /* Conversation.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8869151B20517E3A0045D3F0 /* Conversation.storyboard */; };
+		8869151E20517ED40045D3F0 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8869151D20517ED40045D3F0 /* Message.swift */; };
+		88691520205182580045D3F0 /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8869151F205182580045D3F0 /* MessageCell.swift */; };
+		88A3EBE92054668800CC5FD7 /* ConversationCellConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A3EBE82054668800CC5FD7 /* ConversationCellConfiguration.swift */; };
+		88A3EBEB205466B000CC5FD7 /* MessageCellConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A3EBEA205466B000CC5FD7 /* MessageCellConfiguration.swift */; };
+		88A3EBED20548A5600CC5FD7 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A3EBEC20548A5600CC5FD7 /* Data.swift */; };
+		88B96C032053307900C4961C /* DateFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B96C022053307900C4961C /* DateFunctions.swift */; };
+		88B96C0520534D2700C4961C /* MessageController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 88B96C0420534D2700C4961C /* MessageController.storyboard */; };
+		88B96C0920534DB000C4961C /* MessageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B96C0820534DB000C4961C /* MessageController.swift */; };
+		88BF082F20512AA900B08C69 /* ConversationsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88BF082E20512AA900B08C69 /* ConversationsListViewController.swift */; };
+		88BF083220512AE000B08C69 /* ConversationsList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 88BF083120512AE000B08C69 /* ConversationsList.storyboard */; };
+		88BF08342051318E00B08C69 /* ConversationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88BF08332051318E00B08C69 /* ConversationCell.swift */; };
+		88BF08382051322C00B08C69 /* RoundImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88BF08372051322C00B08C69 /* RoundImage.swift */; };
 		88DBB02F2041BB0C005EDA8B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DBB02E2041BB0C005EDA8B /* AppDelegate.swift */; };
 		88DBB0312041BB0C005EDA8B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DBB0302041BB0C005EDA8B /* ViewController.swift */; };
 		88DBB0342041BB0C005EDA8B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 88DBB0322041BB0C005EDA8B /* Main.storyboard */; };
@@ -24,12 +40,28 @@
 
 /* Begin PBXFileReference section */
 		88144CDF204329EA0035CB07 /* Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
+		881AD48D20515690002503BF /* CircleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleView.swift; sourceTree = "<group>"; };
+		881AD48F2051677B002503BF /* RandomDataFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomDataFunctions.swift; sourceTree = "<group>"; };
 		884AF92A2049E32D00A4A045 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Profile.storyboard; sourceTree = "<group>"; };
 		884AF92C2049E38200A4A045 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		884AF9312049EC2700A4A045 /* ChangeProfileImageButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeProfileImageButton.swift; sourceTree = "<group>"; };
 		884AF9332049F71000A4A045 /* EditButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditButton.swift; sourceTree = "<group>"; };
 		884AF9352049FBB400A4A045 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		884AF9372049FC9C00A4A045 /* DesignConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignConstants.swift; sourceTree = "<group>"; };
+		8869151820517E1E0045D3F0 /* ConversationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationViewController.swift; sourceTree = "<group>"; };
+		8869151B20517E3A0045D3F0 /* Conversation.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Conversation.storyboard; sourceTree = "<group>"; };
+		8869151D20517ED40045D3F0 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		8869151F205182580045D3F0 /* MessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
+		88A3EBE82054668800CC5FD7 /* ConversationCellConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationCellConfiguration.swift; sourceTree = "<group>"; };
+		88A3EBEA205466B000CC5FD7 /* MessageCellConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCellConfiguration.swift; sourceTree = "<group>"; };
+		88A3EBEC20548A5600CC5FD7 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
+		88B96C022053307900C4961C /* DateFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFunctions.swift; sourceTree = "<group>"; };
+		88B96C0420534D2700C4961C /* MessageController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MessageController.storyboard; sourceTree = "<group>"; };
+		88B96C0820534DB000C4961C /* MessageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageController.swift; sourceTree = "<group>"; };
+		88BF082E20512AA900B08C69 /* ConversationsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ConversationsListViewController.swift; path = TinkoffChat/ConversationsList/ConversationsListViewController.swift; sourceTree = SOURCE_ROOT; };
+		88BF083120512AE000B08C69 /* ConversationsList.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ConversationsList.storyboard; sourceTree = "<group>"; };
+		88BF08332051318E00B08C69 /* ConversationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationCell.swift; sourceTree = "<group>"; };
+		88BF08372051322C00B08C69 /* RoundImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundImage.swift; sourceTree = "<group>"; };
 		88DBB02B2041BB0C005EDA8B /* TinkoffChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TinkoffChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		88DBB02E2041BB0C005EDA8B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		88DBB0302041BB0C005EDA8B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -54,11 +86,10 @@
 		884AF92E2049E42600A4A045 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
-				884AF9292049E32D00A4A045 /* Profile.storyboard */,
 				884AF92C2049E38200A4A045 /* ProfileViewController.swift */,
 				884AF9312049EC2700A4A045 /* ChangeProfileImageButton.swift */,
 				884AF9352049FBB400A4A045 /* ProfileView.swift */,
-				884AF9332049F71000A4A045 /* EditButton.swift */,
+				884AF9292049E32D00A4A045 /* Profile.storyboard */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -70,6 +101,58 @@
 				88DBB0322041BB0C005EDA8B /* Main.storyboard */,
 			);
 			path = ViewController;
+			sourceTree = "<group>";
+		};
+		8869151A20517E2B0045D3F0 /* Conversation */ = {
+			isa = PBXGroup;
+			children = (
+				8869151820517E1E0045D3F0 /* ConversationViewController.swift */,
+				8869151F205182580045D3F0 /* MessageCell.swift */,
+				88A3EBEA205466B000CC5FD7 /* MessageCellConfiguration.swift */,
+				8869151D20517ED40045D3F0 /* Message.swift */,
+				8869151B20517E3A0045D3F0 /* Conversation.storyboard */,
+			);
+			path = Conversation;
+			sourceTree = "<group>";
+		};
+		88691523205199130045D3F0 /* CustomUIElements */ = {
+			isa = PBXGroup;
+			children = (
+				88BF08372051322C00B08C69 /* RoundImage.swift */,
+				881AD48D20515690002503BF /* CircleView.swift */,
+				884AF9332049F71000A4A045 /* EditButton.swift */,
+			);
+			path = CustomUIElements;
+			sourceTree = "<group>";
+		};
+		8892FBE020548DBA00D851E3 /* Utilites */ = {
+			isa = PBXGroup;
+			children = (
+				88144CDF204329EA0035CB07 /* Log.swift */,
+				88B96C022053307900C4961C /* DateFunctions.swift */,
+				881AD48F2051677B002503BF /* RandomDataFunctions.swift */,
+			);
+			path = Utilites;
+			sourceTree = "<group>";
+		};
+		88B96C0A205352D100C4961C /* Message */ = {
+			isa = PBXGroup;
+			children = (
+				88B96C0820534DB000C4961C /* MessageController.swift */,
+				88B96C0420534D2700C4961C /* MessageController.storyboard */,
+			);
+			path = Message;
+			sourceTree = "<group>";
+		};
+		88BF083020512ACB00B08C69 /* ConversationsList */ = {
+			isa = PBXGroup;
+			children = (
+				88BF082E20512AA900B08C69 /* ConversationsListViewController.swift */,
+				88BF08332051318E00B08C69 /* ConversationCell.swift */,
+				88A3EBE82054668800CC5FD7 /* ConversationCellConfiguration.swift */,
+				88BF083120512AE000B08C69 /* ConversationsList.storyboard */,
+			);
+			path = ConversationsList;
 			sourceTree = "<group>";
 		};
 		88DBB0222041BB0C005EDA8B = {
@@ -92,8 +175,13 @@
 			isa = PBXGroup;
 			children = (
 				88DBB02E2041BB0C005EDA8B /* AppDelegate.swift */,
-				88144CDF204329EA0035CB07 /* Log.swift */,
 				884AF9372049FC9C00A4A045 /* DesignConstants.swift */,
+				88A3EBEC20548A5600CC5FD7 /* Data.swift */,
+				8892FBE020548DBA00D851E3 /* Utilites */,
+				88691523205199130045D3F0 /* CustomUIElements */,
+				88BF083020512ACB00B08C69 /* ConversationsList */,
+				8869151A20517E2B0045D3F0 /* Conversation */,
+				88B96C0A205352D100C4961C /* Message */,
 				884AF92E2049E42600A4A045 /* Profile */,
 				884AF9302049E47600A4A045 /* ViewController */,
 				88DBB0382041BB0C005EDA8B /* Assets.xcassets */,
@@ -163,8 +251,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				88BF083220512AE000B08C69 /* ConversationsList.storyboard in Resources */,
+				88B96C0520534D2700C4961C /* MessageController.storyboard in Resources */,
 				88DBB03C2041BB0C005EDA8B /* LaunchScreen.storyboard in Resources */,
 				88DBB0392041BB0C005EDA8B /* Assets.xcassets in Resources */,
+				8869151C20517E3A0045D3F0 /* Conversation.storyboard in Resources */,
 				884AF92B2049E32D00A4A045 /* Profile.storyboard in Resources */,
 				88DBB0342041BB0C005EDA8B /* Main.storyboard in Resources */,
 			);
@@ -178,13 +269,26 @@
 			buildActionMask = 2147483647;
 			files = (
 				88DBB0312041BB0C005EDA8B /* ViewController.swift in Sources */,
+				88BF08342051318E00B08C69 /* ConversationCell.swift in Sources */,
+				8869151920517E1E0045D3F0 /* ConversationViewController.swift in Sources */,
 				884AF9382049FC9C00A4A045 /* DesignConstants.swift in Sources */,
 				884AF9362049FBB400A4A045 /* ProfileView.swift in Sources */,
+				88691520205182580045D3F0 /* MessageCell.swift in Sources */,
 				88144CE0204329EA0035CB07 /* Log.swift in Sources */,
+				88B96C032053307900C4961C /* DateFunctions.swift in Sources */,
+				881AD4902051677B002503BF /* RandomDataFunctions.swift in Sources */,
+				88B96C0920534DB000C4961C /* MessageController.swift in Sources */,
 				884AF9342049F71000A4A045 /* EditButton.swift in Sources */,
 				884AF92D2049E38200A4A045 /* ProfileViewController.swift in Sources */,
+				88A3EBEB205466B000CC5FD7 /* MessageCellConfiguration.swift in Sources */,
 				884AF9322049EC2700A4A045 /* ChangeProfileImageButton.swift in Sources */,
+				88A3EBE92054668800CC5FD7 /* ConversationCellConfiguration.swift in Sources */,
+				88A3EBED20548A5600CC5FD7 /* Data.swift in Sources */,
+				88BF082F20512AA900B08C69 /* ConversationsListViewController.swift in Sources */,
 				88DBB02F2041BB0C005EDA8B /* AppDelegate.swift in Sources */,
+				881AD48E20515690002503BF /* CircleView.swift in Sources */,
+				8869151E20517ED40045D3F0 /* Message.swift in Sources */,
+				88BF08382051322C00B08C69 /* RoundImage.swift in Sources */,
 				88DBB0372041BB0C005EDA8B /* TinkoffChat.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

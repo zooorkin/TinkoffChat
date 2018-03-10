@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Message Controller-->
+        <scene sceneID="KZy-dV-Kvd">
+            <objects>
+                <viewController storyboardIdentifier="MessageController" id="RlF-3Z-aTl" customClass="MessageController" customModule="TinkoffChat" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ibR-gU-0EX">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3g2-Y1-DD3">
+                                <rect key="frame" x="16" y="36" width="343" height="142.5"/>
+                                <string key="text">Here's to the crazy ones. The misfits. The rebels. The troublemakers. The round pegs in the square holes. The ones who see things differently. They're not fond of rules. And they have no respect for the status quo. You can quote them, disagree with them, glorify or vilify them. About the only thing…</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="3g2-Y1-DD3" firstAttribute="leading" secondItem="Ce8-3e-eBv" secondAttribute="leading" constant="16" id="B0E-KH-XE0"/>
+                            <constraint firstItem="3g2-Y1-DD3" firstAttribute="top" secondItem="Ce8-3e-eBv" secondAttribute="top" constant="16" id="gyM-D1-dPb"/>
+                            <constraint firstItem="Ce8-3e-eBv" firstAttribute="trailing" secondItem="3g2-Y1-DD3" secondAttribute="trailing" constant="16" id="hUA-W0-L14"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Ce8-3e-eBv"/>
+                    </view>
+                    <connections>
+                        <outlet property="messageLabel" destination="3g2-Y1-DD3" id="H9T-DB-LPJ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dM5-nU-sED" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-101.59999999999999" y="-19.340329835082461"/>
+        </scene>
+    </scenes>
+</document>

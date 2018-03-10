@@ -8,9 +8,10 @@
 
 import UIKit
 
-@IBDesignable open class EditButton: UIButton {
+@IBDesignable class EditButton: UIButton {
     
-    override open func layoutSubviews() {
+    
+    override func layoutSubviews() {
         super.layoutSubviews()
         backgroundColor = .white
         layer.borderWidth = DesignConstants.bordedButtonBorderWidth

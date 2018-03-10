@@ -10,7 +10,7 @@
     },
     {
       "idiom" : "universal",
-      "filename" : "slr-camera-2-xxl.png",
+      "filename" : "tail51.png",
       "scale" : "3x"
     }
   ],
@@ -19,6 +19,6 @@
     "author" : "xcode"
   },
   "properties" : {
-    "template-rendering-intent" : "original"
+    "template-rendering-intent" : "template"
   }
 }
