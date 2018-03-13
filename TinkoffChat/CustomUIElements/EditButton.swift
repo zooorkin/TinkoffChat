@@ -13,9 +13,9 @@ import UIKit
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        backgroundColor = .white
-        layer.borderWidth = DesignConstants.bordedButtonBorderWidth
-        layer.borderColor = self.titleLabel?.textColor.cgColor ?? UIColor.black.cgColor
+        backgroundColor = DesignConstants.lightYellow
+        //layer.borderWidth = DesignConstants.bordedButtonBorderWidth
+        //layer.borderColor = self.titleLabel?.textColor.cgColor ?? UIColor.black.cgColor
         layer.cornerRadius = DesignConstants.bordedButtonRadius
         clipsToBounds = true
     }

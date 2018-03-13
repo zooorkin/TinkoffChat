@@ -10,15 +10,13 @@ import UIKit
 
 class ConversationCell: UITableViewCell, ConversationCellConfiguration {
     
-    @IBOutlet weak var onlineCircleView: CircleView!
     @IBOutlet weak var profileImage: RoundImage!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var messageLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var backgroundRectangle: UIView!
     
     private var dateValue: Date?
-    private var onlineValue: Bool = false
-    private var hasUnreadMessagesValue: Bool = false
     
     var name: String? { get{ return nameLabel.text } set{ nameLabel.text = newValue } }
     var message: String? { get{ return messageLabel.text }
@@ -45,45 +43,35 @@ class ConversationCell: UITableViewCell, ConversationCellConfiguration {
             }
         }
     }
-    var online: Bool {
-        get{
-            return onlineValue
-        }
-        set{
-            onlineValue = newValue
-            if onlineValue == true{
-                onlineCircleView.isHidden = false
-            }else{
-                onlineCircleView.isHidden = true
-            }
-        }
-    }
-    var hasUnreadMessages: Bool {
-        get{ return hasUnreadMessagesValue }
-        set{ hasUnreadMessagesValue = newValue }
-    }
+    
+    public var online: Bool = false
+    public var hasUnreadMessages: Bool = false
+
     override func setHighlighted(_ highlighted: Bool, animated: Bool) {
-        if highlighted{
-            backgroundColor = UIColor.groupTableViewBackground
+        if hasUnreadMessages{
+            messageLabel.font = UIFont.systemFont(ofSize: 17, weight: .bold)
         }else{
-            if hasUnreadMessages{
-                backgroundColor = DesignConstants.lightPink
+            messageLabel.font = UIFont.systemFont(ofSize: 17, weight: .regular)
+        }
+        if highlighted{
+            backgroundRectangle.backgroundColor = DesignConstants.mediumYellow
+            messageLabel.textColor = DesignConstants.darkTextYellow
+            dateLabel.textColor = DesignConstants.darkTextYellow
+        }else{
+            if online{
+                backgroundRectangle.backgroundColor = DesignConstants.lightYellow
+                messageLabel.textColor = DesignConstants.darkTextYellow
+                dateLabel.textColor = DesignConstants.darkTextYellow
             }else{
-                backgroundColor = UIColor.clear
+                backgroundRectangle.backgroundColor = UIColor.groupTableViewBackground
+                messageLabel.textColor = UIColor.darkGray
+                dateLabel.textColor = UIColor.darkGray
             }
         }
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
-        if selected{
-            backgroundColor = UIColor.groupTableViewBackground
-        }else{
-            if hasUnreadMessages{
-                backgroundColor = DesignConstants.lightPink
-            }else{
-                backgroundColor = UIColor.clear
-            }
-        }
+            setHighlighted(selected, animated: animated)
     }
     
     override func awakeFromNib() {

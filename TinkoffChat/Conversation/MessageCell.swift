@@ -16,34 +16,28 @@ class MessageCell: UITableViewCell, MessageCellConfiguration {
     @IBOutlet weak var timeLabel: UILabel!
     
     private var isUnreadValue: Bool = false
-    private var isIncomingValue: Bool = true
     private var timeOfMessage: Date = Date()
     
     public var message: String? {
         get{ return messageLabel.text }
         set{ messageLabel.text = newValue }
     }
-    public var isIncoming: Bool{
-        get{
-            return isUnreadValue
-        }
-        set{
-            isIncomingValue = newValue
-            if isIncomingValue {
-                messageView.backgroundColor = DesignConstants.blue
-            }else{
-                messageView.backgroundColor = DesignConstants.pink
-            }
-        }
-    }
+    public var isIncoming: Bool = true
     public var isUnread: Bool{
         get{ return isUnreadValue }
         set{
-            if newValue == false{
-                backgroundColor = UIColor.clear
+            isUnreadValue = newValue
+            
+            if isUnreadValue{
+                messageLabel.font = UIFont.systemFont(ofSize: 17, weight: .bold)
             }else{
-                backgroundColor = DesignConstants.lightPink
-            }
+                messageLabel.font = UIFont.systemFont(ofSize: 17, weight: .regular)
+            }            
+//            if newValue == false{
+//                backgroundColor = UIColor.clear
+//            }else{
+//                backgroundColor = DesignConstants.lightYellow
+//            }
         }
     }
     public var time: Date{
@@ -69,37 +63,31 @@ class MessageCell: UITableViewCell, MessageCellConfiguration {
 
     override func setHighlighted(_ highlighted: Bool, animated: Bool) {
         if highlighted{
-            if isIncomingValue {
-                messageView.backgroundColor = DesignConstants.darkBlue
+            if isIncoming {
+                messageLabel.textColor = UIColor.darkText
+                messageView.backgroundColor = UIColor.lightGray
+                timeLabel.textColor = UIColor.lightGray
             }else{
-                messageView.backgroundColor = DesignConstants.darkPink
+                messageLabel.textColor = DesignConstants.darkDarkTextYellow
+                messageView.backgroundColor = DesignConstants.mediumYellow
+                timeLabel.textColor = DesignConstants.lightTextYellow
             }
-        }
-        else{
-            if isIncomingValue {
-                messageView.backgroundColor = DesignConstants.blue
+        }else{
+            if isIncoming {
+                messageLabel.textColor = UIColor.darkText
+                messageView.backgroundColor = UIColor.groupTableViewBackground
+                timeLabel.textColor = UIColor.lightGray
             }else{
-                messageView.backgroundColor = DesignConstants.pink
+                messageLabel.textColor = DesignConstants.darkDarkTextYellow
+                messageView.backgroundColor = DesignConstants.lightYellow
+                timeLabel.textColor = DesignConstants.lightTextYellow
             }
         }
         tail.tintColor = messageView.backgroundColor
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
-        if selected{
-            if isIncomingValue {
-                messageView.backgroundColor = DesignConstants.darkBlue
-            }else{
-                messageView.backgroundColor = DesignConstants.darkPink
-            }
-        }
-        else{
-            if isIncomingValue {
-                messageView.backgroundColor = DesignConstants.blue
-            }else{
-                messageView.backgroundColor = DesignConstants.pink
-            }
-        }
+        setHighlighted(selected, animated: animated)
         tail.tintColor = messageView.backgroundColor
     }
 }

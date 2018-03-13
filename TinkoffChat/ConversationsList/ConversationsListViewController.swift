@@ -18,7 +18,7 @@ func getOnlineAndHistory(friends: [Friend])->[(header: String, friends: [Friend]
 
 // MARK: - ConversationsList
 
-class ConversationsListViewController: UITableViewController,UISearchResultsUpdating {
+class ConversationsListViewController: UITableViewController/*,UISearchResultsUpdating */{
     
     // MARK: -
     
@@ -32,13 +32,14 @@ class ConversationsListViewController: UITableViewController,UISearchResultsUpda
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let search = UISearchController(searchResultsController: nil)
-        search.searchResultsUpdater = self as UISearchResultsUpdating
-        if #available(iOS 11.0, *) {
-            self.navigationItem.searchController = search
-        } else {
-            // Fallback on earlier versions
-        }
+//        if #available(iOS 11.0, *) {
+//            let search = UISearchController(searchResultsController: nil)
+//            search.searchResultsUpdater = self as UISearchResultsUpdating
+//            self.navigationItem.searchController = search
+//
+//        } else {
+//            // Fallback on earlier versions
+//        }
         self.tableView.dataSource = self
         self.tableView.delegate = self
         self.tableView.rowHeight = 96
@@ -119,11 +120,11 @@ class ConversationsListViewController: UITableViewController,UISearchResultsUpda
     }
     
     // MARK: - UISearchResultsUpdating
-    
+    /*
     func updateSearchResults(for searchController: UISearchController) {
         
     }
-    
+    */
     // MARK: - Actions
     
 

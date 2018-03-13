@@ -24,18 +24,18 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="sectionIndexBackgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <view key="tableHeaderView" contentMode="scaleToFill" id="CKS-GD-gX2">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="12"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="4"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </view>
                                 <view key="tableFooterView" contentMode="scaleToFill" id="6Vj-Ma-xw2">
-                                    <rect key="frame" x="0.0" y="201" width="375" height="12"/>
+                                    <rect key="frame" x="0.0" y="193" width="375" height="4"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </view>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="InputMessage" id="Z2S-of-w21" customClass="MessageCell" customModule="TinkoffChat" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="40" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="32" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Z2S-of-w21" id="pof-4g-U0y">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -54,11 +54,10 @@
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Входящее сообщение" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LBW-ri-Trk">
                                                             <rect key="frame" x="16" y="8" width="177" height="20"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
-                                                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="46" id="3TZ-xU-Lum"/>
                                                         <constraint firstAttribute="bottom" secondItem="LBW-ri-Trk" secondAttribute="bottom" constant="8" id="6wJ-4Q-uIi"/>
@@ -94,7 +93,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="OutputMessage" id="Fhx-d3-zhM" customClass="MessageCell" customModule="TinkoffChat" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="84" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="76" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Fhx-d3-zhM" id="Qlc-bQ-I7D">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -114,11 +113,11 @@
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Исходящее сообщение" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bhi-zL-LzI">
                                                             <rect key="frame" x="16" y="8" width="188" height="20"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <color key="textColor" red="0.37254901960784315" green="0.29803921568627451" blue="0.12156862745098039" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
-                                                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <color key="backgroundColor" red="1" green="0.94666666669999999" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstItem="bhi-zL-LzI" firstAttribute="leading" secondItem="0Z5-z2-Qzj" secondAttribute="leading" constant="16" id="3Zz-QH-sYg"/>
                                                         <constraint firstAttribute="bottom" secondItem="bhi-zL-LzI" secondAttribute="bottom" constant="8" id="BYQ-2h-o5M"/>
@@ -130,7 +129,7 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="9:43" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mlh-v3-YtY">
                                                     <rect key="frame" x="100" y="17.5" width="27" height="15"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <color key="textColor" red="0.83921568627450982" green="0.792156862745098" blue="0.6705882352941176" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -154,7 +153,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="NoMessages" rowHeight="73" id="oOV-Qg-CSD">
-                                        <rect key="frame" x="0.0" y="128" width="375" height="73"/>
+                                        <rect key="frame" x="0.0" y="120" width="375" height="73"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="oOV-Qg-CSD" id="Lxe-ca-IH4">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="73"/>
