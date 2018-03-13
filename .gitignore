@@ -3,3 +3,4 @@ DerivedData/
 xcuserdata/
 *.xccheckout
 *.xcscmblueprint
+.DS_Store
