@@ -9,8 +9,7 @@
 /* Begin PBXBuildFile section */
 		88144CE0204329EA0035CB07 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88144CDF204329EA0035CB07 /* Log.swift */; };
 		884AF92B2049E32D00A4A045 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 884AF9292049E32D00A4A045 /* Profile.storyboard */; };
-		884AF92D2049E38200A4A045 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884AF92C2049E38200A4A045 /* ProfileViewController.swift */; };
-		884AF9322049EC2700A4A045 /* ChangeProfileImageButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884AF9312049EC2700A4A045 /* ChangeProfileImageButton.swift */; };
+		884AF92D2049E38200A4A045 /* ChangeProfileImageButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884AF92C2049E38200A4A045 /* ChangeProfileImageButton.swift */; };
 		884AF9342049F71000A4A045 /* EditButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884AF9332049F71000A4A045 /* EditButton.swift */; };
 		884AF9362049FBB400A4A045 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884AF9352049FBB400A4A045 /* ProfileView.swift */; };
 		884AF9382049FC9C00A4A045 /* DesignConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884AF9372049FC9C00A4A045 /* DesignConstants.swift */; };
@@ -25,8 +24,7 @@
 /* Begin PBXFileReference section */
 		88144CDF204329EA0035CB07 /* Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
 		884AF92A2049E32D00A4A045 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Profile.storyboard; sourceTree = "<group>"; };
-		884AF92C2049E38200A4A045 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
-		884AF9312049EC2700A4A045 /* ChangeProfileImageButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ChangeProfileImageButton.swift; path = ../../../../hw1/TinkoffChat/TinkoffChat/Profile/ChangeProfileImageButton.swift; sourceTree = "<group>"; };
+		884AF92C2049E38200A4A045 /* ChangeProfileImageButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeProfileImageButton.swift; sourceTree = "<group>"; };
 		884AF9332049F71000A4A045 /* EditButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditButton.swift; sourceTree = "<group>"; };
 		884AF9352049FBB400A4A045 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		884AF9372049FC9C00A4A045 /* DesignConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignConstants.swift; sourceTree = "<group>"; };
@@ -55,8 +53,7 @@
 			isa = PBXGroup;
 			children = (
 				884AF9292049E32D00A4A045 /* Profile.storyboard */,
-				884AF92C2049E38200A4A045 /* ProfileViewController.swift */,
-				884AF9312049EC2700A4A045 /* ChangeProfileImageButton.swift */,
+				884AF92C2049E38200A4A045 /* ChangeProfileImageButton.swift */,
 				884AF9352049FBB400A4A045 /* ProfileView.swift */,
 				884AF9332049F71000A4A045 /* EditButton.swift */,
 			);
@@ -182,8 +179,7 @@
 				884AF9362049FBB400A4A045 /* ProfileView.swift in Sources */,
 				88144CE0204329EA0035CB07 /* Log.swift in Sources */,
 				884AF9342049F71000A4A045 /* EditButton.swift in Sources */,
-				884AF92D2049E38200A4A045 /* ProfileViewController.swift in Sources */,
-				884AF9322049EC2700A4A045 /* ChangeProfileImageButton.swift in Sources */,
+				884AF92D2049E38200A4A045 /* ChangeProfileImageButton.swift in Sources */,
 				88DBB02F2041BB0C005EDA8B /* AppDelegate.swift in Sources */,
 				88DBB0372041BB0C005EDA8B /* TinkoffChat.xcdatamodeld in Sources */,
 			);
