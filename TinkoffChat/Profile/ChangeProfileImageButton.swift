@@ -16,7 +16,9 @@ import UIKit
         clipsToBounds = true
         let x = frame.size.width/2
         if let strongImageView = imageView{
-        strongImageView.frame = CGRect(origin: CGPoint(x: x/2, y: x/2) , size: CGSize(width: x, height: x))
+            let point = CGPoint(x: x/2, y: x/2)
+            let size = CGSize(width: x, height: x)
+            strongImageView.frame = CGRect(origin: point, size: size)
         }
     }
 }

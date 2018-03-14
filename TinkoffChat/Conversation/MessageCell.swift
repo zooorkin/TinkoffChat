@@ -24,20 +24,16 @@ class MessageCell: UITableViewCell, MessageCellConfiguration {
     }
     public var isIncoming: Bool = true
     public var isUnread: Bool{
-        get{ return isUnreadValue }
+        get{
+            return isUnreadValue
+        }
         set{
             isUnreadValue = newValue
-            
             if isUnreadValue{
                 messageLabel.font = UIFont.systemFont(ofSize: 17, weight: .bold)
             }else{
                 messageLabel.font = UIFont.systemFont(ofSize: 17, weight: .regular)
-            }            
-//            if newValue == false{
-//                backgroundColor = UIColor.clear
-//            }else{
-//                backgroundColor = DesignConstants.lightYellow
-//            }
+            }
         }
     }
     public var time: Date{
@@ -62,32 +58,24 @@ class MessageCell: UITableViewCell, MessageCellConfiguration {
     }
 
     override func setHighlighted(_ highlighted: Bool, animated: Bool) {
-        if highlighted{
-            if isIncoming {
-                messageLabel.textColor = UIColor.darkText
-                messageView.backgroundColor = UIColor.lightGray
-                timeLabel.textColor = UIColor.lightGray
-            }else{
-                messageLabel.textColor = DesignConstants.darkDarkTextYellow
-                messageView.backgroundColor = DesignConstants.mediumYellow
-                timeLabel.textColor = DesignConstants.lightTextYellow
-            }
+        // Этот блок нужно перенести, потому что вычисляется всего один раз
+        if isIncoming{
+            messageLabel.textColor = UIColor.darkText
+            timeLabel.textColor = UIColor.lightGray
         }else{
-            if isIncoming {
-                messageLabel.textColor = UIColor.darkText
-                messageView.backgroundColor = UIColor.groupTableViewBackground
-                timeLabel.textColor = UIColor.lightGray
-            }else{
-                messageLabel.textColor = DesignConstants.darkDarkTextYellow
-                messageView.backgroundColor = DesignConstants.lightYellow
-                timeLabel.textColor = DesignConstants.lightTextYellow
-            }
+            messageLabel.textColor = DesignConstants.darkDarkTextYellow
+            timeLabel.textColor = DesignConstants.lightTextYellow
         }
+        if highlighted{
+            messageView.backgroundColor = isIncoming ? UIColor.lightGray : DesignConstants.mediumYellow
+        }else{
+            messageView.backgroundColor = isIncoming ? UIColor.groupTableViewBackground : DesignConstants.lightYellow
+        }
+        // Теперь необходимо покрасить хвостик цветом сообщения
         tail.tintColor = messageView.backgroundColor
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         setHighlighted(selected, animated: animated)
-        tail.tintColor = messageView.backgroundColor
     }
 }

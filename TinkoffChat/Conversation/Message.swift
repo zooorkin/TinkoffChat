@@ -10,8 +10,8 @@ import UIKit
 
 @IBDesignable class Message: UIView {
         
-        override func layoutSubviews() {
-                self.layer.cornerRadius = CGFloat(18)
-                self.clipsToBounds = true
-            }
+    override func layoutSubviews() {
+            self.layer.cornerRadius = CGFloat(18)
+            self.clipsToBounds = true
+    }
 }

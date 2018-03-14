@@ -39,7 +39,7 @@ func getDate2() -> Date{
         isFirst = false
         return date
     }
-    // Инт леб - 6 часов в секундах
+    // Мат. ожидание = 6 часов
     date = date.addingTimeInterval(-Double(arc4random_uniform(12*60*60)))
     return date
 }
@@ -49,26 +49,17 @@ func getMessage() -> String?{
 }
 
 func getBool() -> Bool{
-    let x = arc4random_uniform(2)
-    if x == 1{
-        return true
-    }else{
-        return false
-    }
+    return arc4random_uniform(2) > 0
 }
+
 func returnFriends() -> [Friend]{
-    
     var friends: [Friend] = []
     let bools = [true, false]
-    
     // Генерация всевозможных состояний
     for isOnline in bools{
         for isMessage in bools{
             for isUnread in bools{
-                var message: String?
-                if isMessage{
-                    message = getMessage()
-                }
+                let message = isMessage ? getMessage() : nil
                 let friend = Friend(name: "",
                                     lastMessage: message,
                                     date: getDate2(),

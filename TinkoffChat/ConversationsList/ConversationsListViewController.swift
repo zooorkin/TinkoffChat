@@ -32,18 +32,9 @@ class ConversationsListViewController: UITableViewController/*,UISearchResultsUp
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        if #available(iOS 11.0, *) {
-//            let search = UISearchController(searchResultsController: nil)
-//            search.searchResultsUpdater = self as UISearchResultsUpdating
-//            self.navigationItem.searchController = search
-//
-//        } else {
-//            // Fallback on earlier versions
-//        }
         self.tableView.dataSource = self
         self.tableView.delegate = self
         self.tableView.rowHeight = 96
-        
         let storyboard = UIStoryboard(name: "Profile", bundle: nil)
         myProfileViewController = storyboard.instantiateViewController(withIdentifier: "ProfileViewControllerN")
 
@@ -66,10 +57,6 @@ class ConversationsListViewController: UITableViewController/*,UISearchResultsUp
             tableView.reloadRows(at: [index], with: .fade)
         }
     }
-    
-//    override func viewDidAppear(_ animated: Bool) {
-//        super.viewDidAppear(animated)
-//    }
 
     // MARK: - Table view data source
 
@@ -114,6 +101,7 @@ class ConversationsListViewController: UITableViewController/*,UISearchResultsUp
         let ConversationController = ConversationStoryboard.instantiateViewController(withIdentifier: "ConversationViewController") as! ConversationViewController
         ConversationController.title = friends[indexPath.section].friends[indexPath.row].name
         ConversationController.messages = test
+        // Первое слово в строке
         // String(friends[indexPath.section].friends[indexPath.row].name.split(separator: " ")[0])
         navigationController?.pushViewController(ConversationController, animated: true)
         
@@ -126,11 +114,10 @@ class ConversationsListViewController: UITableViewController/*,UISearchResultsUp
     }
     */
     // MARK: - Actions
-    
 
     @IBAction func openMyProfile(_ sender: Any) {
-        if myProfileViewController != nil{
-        navigationController?.present(myProfileViewController!, animated: true, completion: nil)
+        if let strongMyProfileViewController = myProfileViewController{
+        navigationController?.present(strongMyProfileViewController, animated: true, completion: nil)
         }
     }
     

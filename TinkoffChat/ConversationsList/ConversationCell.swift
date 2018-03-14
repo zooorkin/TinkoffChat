@@ -18,7 +18,7 @@ class ConversationCell: UITableViewCell, ConversationCellConfiguration {
     
     private var dateValue: Date?
     
-    var name: String? { get{ return nameLabel.text } set{ nameLabel.text = newValue } }
+    var name:    String? { get{ return nameLabel.text } set{ nameLabel.text = newValue } }
     var message: String? { get{ return messageLabel.text }
         set{
             if newValue != nil{
@@ -46,8 +46,9 @@ class ConversationCell: UITableViewCell, ConversationCellConfiguration {
     
     public var online: Bool = false
     public var hasUnreadMessages: Bool = false
-
+    
     override func setHighlighted(_ highlighted: Bool, animated: Bool) {
+        // Этот блок нужно перенести, потому что вычисляется всего один раз
         if hasUnreadMessages{
             messageLabel.font = UIFont.systemFont(ofSize: 17, weight: .bold)
         }else{
@@ -58,6 +59,12 @@ class ConversationCell: UITableViewCell, ConversationCellConfiguration {
             messageLabel.textColor = DesignConstants.darkTextYellow
             dateLabel.textColor = DesignConstants.darkTextYellow
         }else{
+            // К сожалению, требует большего количества операций (трижды проверяется условие online, против одного)
+            /*
+            backgroundRectangle.backgroundColor = online ? DesignConstants.lightYellow : UIColor.groupTableViewBackground
+            messageLabel.textColor = online ? DesignConstants.darkTextYellow : UIColor.darkGray
+            dateLabel.textColor = online ? DesignConstants.darkTextYellow : UIColor.darkGray */
+
             if online{
                 backgroundRectangle.backgroundColor = DesignConstants.lightYellow
                 messageLabel.textColor = DesignConstants.darkTextYellow

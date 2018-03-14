@@ -12,5 +12,5 @@ protocol MessageCellConfiguration {
     var message: String? {get set}
     var isIncoming: Bool {get set}
     var isUnread: Bool {get set}
-    var time: Date{get set}
+    var time: Date {get set}
 }
