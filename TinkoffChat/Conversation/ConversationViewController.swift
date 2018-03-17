@@ -34,6 +34,7 @@ class ConversationViewController: UIViewController, UITableViewDelegate, UITable
             // Fallback on earlier versions
         }
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if let index = tableView.indexPathForSelectedRow{

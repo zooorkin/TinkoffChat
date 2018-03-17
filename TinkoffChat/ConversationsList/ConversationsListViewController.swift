@@ -18,7 +18,7 @@ func getOnlineAndHistory(friends: [Friend])->[(header: String, friends: [Friend]
 
 // MARK: - ConversationsList
 
-class ConversationsListViewController: UITableViewController/*,UISearchResultsUpdating */{
+class ConversationsListViewController: UITableViewController, ThemesViewControllerDelegate/*,UISearchResultsUpdating */{
     
     // MARK: -
     
@@ -27,7 +27,7 @@ class ConversationsListViewController: UITableViewController/*,UISearchResultsUp
     //let data = getOnlineAndHistory(examples: examples)
     
     var myProfileViewController: UIViewController?
-    
+    var themesViewController: UIViewController?
     // MARK: -
     
     override func viewDidLoad() {
@@ -119,6 +119,30 @@ class ConversationsListViewController: UITableViewController/*,UISearchResultsUp
         if let strongMyProfileViewController = myProfileViewController{
         navigationController?.present(strongMyProfileViewController, animated: true, completion: nil)
         }
+    }
+    
+    @IBAction func openThemesViewController(_ sender: Any) {
+        let storyboard = UIStoryboard(name: "ThemesViewController", bundle: nil)
+        let navigatorWithThemesVC = storyboard.instantiateViewController(withIdentifier: "ThemesN")
+        if navigatorWithThemesVC.childViewControllers.count > 0{
+            if let themesVC = navigatorWithThemesVC.childViewControllers[0] as? ThemesViewController{
+                    themesVC.delegate = self
+                    themesVC.model = Themes()
+            }
+        }
+        navigationController?.present(navigatorWithThemesVC, animated: true){
+            self.themesViewController = nil
+        }
+    }
+    
+    func logThemeChanging(selectedTheme: UIColor){
+        print("ЦВЕТ ИЗМЕНЁН НА: ", terminator: "")
+        print(selectedTheme)
+    }
+    
+    func themesViewController(_ controller: UIViewController!, didSelectTheme selectedTheme: UIColor!) {
+        self.view.backgroundColor = selectedTheme
+        logThemeChanging(selectedTheme: selectedTheme)
     }
     
     // MARK: - Navigation

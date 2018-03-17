@@ -143,6 +143,11 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Tinkoff Chat" id="yp7-4m-C3B">
                         <barButtonItem key="backBarButtonItem" title="Назад" id="jly-YP-VmK"/>
+                        <barButtonItem key="leftBarButtonItem" title="Themes" id="avi-TK-Vow">
+                            <connections>
+                                <action selector="openThemesViewController:" destination="6iJ-qX-gIL" id="yrz-0K-sQA"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Я" id="3qw-mg-P8N">
                             <connections>
                                 <action selector="openMyProfile:" destination="6iJ-qX-gIL" id="3yb-wL-ffW"/>

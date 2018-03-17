@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="IgX-qm-xYb">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Themes View Controller-->
+        <scene sceneID="c37-i5-yHh">
+            <objects>
+                <viewController storyboardIdentifier="Themes" id="Fco-fp-WCa" customClass="ThemesViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="h2y-oe-7L8">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j13-EB-1Pg" customClass="EditButton" customModule="TinkoffChat" customModuleProvider="target">
+                                <rect key="frame" x="59.5" y="268" width="256" height="33"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="256" id="75p-9S-WT4"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <state key="normal" title="Тема 1">
+                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                </state>
+                                <connections>
+                                    <action selector="changeTheme:" destination="Fco-fp-WCa" eventType="touchUpInside" id="T8m-Ju-S6w"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qSF-Tp-fYf" customClass="EditButton" customModule="TinkoffChat" customModuleProvider="target">
+                                <rect key="frame" x="59.5" y="366" width="256" height="33"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <state key="normal" title="Тема 3">
+                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                </state>
+                                <connections>
+                                    <action selector="changeTheme:" destination="Fco-fp-WCa" eventType="touchUpInside" id="Jgg-2s-YE9"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AkJ-f8-HCx" customClass="EditButton" customModule="TinkoffChat" customModuleProvider="target">
+                                <rect key="frame" x="59.5" y="317" width="256" height="33"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <state key="normal" title="Тема 2">
+                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                </state>
+                                <connections>
+                                    <action selector="changeTheme:" destination="Fco-fp-WCa" eventType="touchUpInside" id="wx7-gB-b4S"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="j13-EB-1Pg" firstAttribute="centerX" secondItem="h2y-oe-7L8" secondAttribute="centerX" id="3Qm-Rc-cYB"/>
+                            <constraint firstItem="qSF-Tp-fYf" firstAttribute="centerX" secondItem="h2y-oe-7L8" secondAttribute="centerX" id="9qY-DW-KT5"/>
+                            <constraint firstItem="qSF-Tp-fYf" firstAttribute="width" secondItem="j13-EB-1Pg" secondAttribute="width" id="FKf-53-EE0"/>
+                            <constraint firstItem="AkJ-f8-HCx" firstAttribute="centerX" secondItem="h2y-oe-7L8" secondAttribute="centerX" id="FTj-Ko-oaJ"/>
+                            <constraint firstItem="AkJ-f8-HCx" firstAttribute="width" secondItem="j13-EB-1Pg" secondAttribute="width" id="Qb4-4M-Jui"/>
+                            <constraint firstItem="AkJ-f8-HCx" firstAttribute="top" secondItem="j13-EB-1Pg" secondAttribute="bottom" constant="16" id="QwW-1d-fH6"/>
+                            <constraint firstItem="qSF-Tp-fYf" firstAttribute="height" secondItem="j13-EB-1Pg" secondAttribute="height" id="T7A-SV-ZaZ"/>
+                            <constraint firstItem="qSF-Tp-fYf" firstAttribute="top" secondItem="AkJ-f8-HCx" secondAttribute="bottom" constant="16" id="Upo-KO-9Zy"/>
+                            <constraint firstItem="AkJ-f8-HCx" firstAttribute="centerY" secondItem="h2y-oe-7L8" secondAttribute="centerY" id="dGC-2q-bjR"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Xqb-q1-XYD"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="gZM-zX-jLw">
+                        <barButtonItem key="rightBarButtonItem" systemItem="stop" id="7Ld-td-HMP">
+                            <connections>
+                                <action selector="cancel:" destination="Fco-fp-WCa" id="8eI-uu-rHa"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="G03-U2-hgg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="47.200000000000003" y="189.3553223388306"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Iu2-8b-KWt">
+            <objects>
+                <navigationController storyboardIdentifier="ThemesN" automaticallyAdjustsScrollViewInsets="NO" id="IgX-qm-xYb" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="iwd-Pw-uy0">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" red="0.37254901959999998" green="0.29803921570000003" blue="0.1215686275" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="barTintColor" red="1" green="0.83921568629999999" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Fco-fp-WCa" kind="relationship" relationship="rootViewController" id="mlQ-Vs-Pvz"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pdp-UL-1CQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-798" y="189"/>
+        </scene>
+    </scenes>
+</document>

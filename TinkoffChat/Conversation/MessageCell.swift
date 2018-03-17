@@ -15,9 +15,6 @@ class MessageCell: UITableViewCell, MessageCellConfiguration {
     @IBOutlet weak var tail: UIImageView!
     @IBOutlet weak var timeLabel: UILabel!
     
-    private var isUnreadValue: Bool = false
-    private var timeOfMessage: Date = Date()
-    
     public var message: String? {
         get{ return messageLabel.text }
         set{ messageLabel.text = newValue }
@@ -42,6 +39,9 @@ class MessageCell: UITableViewCell, MessageCellConfiguration {
             timeLabel.text = getTimeString(from: timeOfMessage)
         }
     }
+   
+    private var isUnreadValue: Bool = false
+    private var timeOfMessage: Date = Date()
     
     override func layoutSubviews() {
         super.layoutSubviews()
