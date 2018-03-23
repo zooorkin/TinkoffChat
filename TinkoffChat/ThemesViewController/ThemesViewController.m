@@ -45,8 +45,6 @@
 }
 
 -(void)setDelegate:(id<ThemesViewControllerDelegate>)delegate{
-    [_delegate release];
-    [delegate retain];
     _delegate = delegate;
 }
 

@@ -13,11 +13,21 @@
 @synthesize theme2 = _theme2;
 @synthesize theme3 = _theme3;
 -(id)init{
-    //printf("Themes INITIALIZED\n");
     [super init];
-    _theme1 = [UIColor redColor];
-    _theme2 = [UIColor greenColor];
-    _theme3 = [UIColor blueColor];
+    _theme1 = [UIColor clearColor];
+    _theme2 = [UIColor clearColor];
+    _theme3 = [UIColor clearColor];
+    return self;
+}
+
+-(id)initWith: (UIColor *)theme1 theme2: (UIColor *)theme2 theme3: (UIColor *)theme3{
+    [super init];
+    [theme1 retain];
+    _theme1 = theme1;
+    [theme2 retain];
+    _theme2 = theme2;
+    [theme3 retain];
+    _theme3 = theme3;
     return self;
 }
 
@@ -47,7 +57,9 @@
 }
 
 -(void)dealloc{
-    //printf("Themes DEALLOCED\n");
+    [_theme1 release];
+    [_theme2 release];
+    [_theme3 release];
     [super dealloc];
 }
 

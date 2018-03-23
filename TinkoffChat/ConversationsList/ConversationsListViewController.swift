@@ -119,8 +119,12 @@ class ConversationsListViewController: UITableViewController, ThemesViewControll
         let navigatorWithThemesVC = storyboard.instantiateViewController(withIdentifier: "ThemesN")
         if navigatorWithThemesVC.childViewControllers.count > 0{
             if let themesVC = navigatorWithThemesVC.childViewControllers[0] as? ThemesViewController{
-                    themesVC.delegate = self
-                    themesVC.model = Themes()
+                themesVC.delegate = self
+                let theme1 = UIColor.white
+                let theme2 = DesignConstants.mediumYellow
+                let theme3 = DesignConstants.pink
+                let themes = Themes.init(theme1, theme2: theme2, theme3: theme3)
+                themesVC.model = themes
             }
         }
         navigationController?.present(navigatorWithThemesVC, animated: true){
@@ -134,7 +138,8 @@ class ConversationsListViewController: UITableViewController, ThemesViewControll
     }
     
     func themesViewController(_ controller: UIViewController!, didSelectTheme selectedTheme: UIColor!) {
-        self.view.backgroundColor = selectedTheme
+        let bar = self.navigationController?.navigationBar
+        bar?.barTintColor = selectedTheme
         logThemeChanging(selectedTheme: selectedTheme)
     }
     

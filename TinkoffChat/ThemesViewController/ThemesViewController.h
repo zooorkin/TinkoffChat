@@ -18,8 +18,8 @@
     id<ThemesViewControllerDelegate> _delegate;
     Themes *_model;
 }
-@property (nonatomic, weak) id<ThemesViewControllerDelegate> delegate;
-@property (nonatomic, retain) Themes *model;
+@property (weak) id<ThemesViewControllerDelegate> delegate;
+@property (retain) Themes *model;
 -(id<ThemesViewControllerDelegate>)delegate;
 -(void)setDelegate:(id<ThemesViewControllerDelegate>)delegate;
 -(Themes *)model;

@@ -16,6 +16,7 @@
     UIColor *_theme3;
 }
 -(id)init;
+-(id)initWith: (UIColor *)theme1 theme2: (UIColor *)theme2 theme3: (UIColor *)theme3;
 @property (nonatomic, weak) UIColor *theme1;
 @property (nonatomic, weak) UIColor *theme2;
 @property (nonatomic, weak) UIColor *theme3;
