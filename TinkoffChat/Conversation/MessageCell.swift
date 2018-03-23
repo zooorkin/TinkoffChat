@@ -36,7 +36,7 @@ class MessageCell: UITableViewCell, MessageCellConfiguration {
     public var time: Date{
         get{ return timeOfMessage }
         set{ timeOfMessage = newValue
-            timeLabel.text = getTimeString(from: timeOfMessage)
+            timeLabel.text = Date.getTimeString(from: timeOfMessage)
         }
     }
    

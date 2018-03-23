@@ -8,21 +8,13 @@
 
 import UIKit
 
-func getOnlineAndHistory(friends: [Friend])->[(header: String, friends: [Friend])]{
-    let online = friends.filter{ $0.online}
-    let history = friends.filter{ !$0.online}
-    let sortedOnline = online.sorted{ $0.date! > $1.date! }
-    let sortedHistory = history.sorted{ $0.date! > $1.date! }
-    return [(header: "Online", friends: sortedOnline), (header: "History", friends: sortedHistory)]
-}
-
 // MARK: - ConversationsList
 
 class ConversationsListViewController: UITableViewController, ThemesViewControllerDelegate/*,UISearchResultsUpdating */{
     
     // MARK: -
     
-    let friends = getOnlineAndHistory(friends: returnFriends())
+    var friends: [(header: String, friends: [Friend])]!
     
     //let data = getOnlineAndHistory(examples: examples)
     
@@ -32,12 +24,10 @@ class ConversationsListViewController: UITableViewController, ThemesViewControll
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        friends = getOnlineAndHistory(friends: Friend.returnFriends())
         self.tableView.dataSource = self
         self.tableView.delegate = self
         self.tableView.rowHeight = 96
-        let storyboard = UIStoryboard(name: "Profile", bundle: nil)
-        myProfileViewController = storyboard.instantiateViewController(withIdentifier: "ProfileViewControllerN")
-
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -116,9 +106,12 @@ class ConversationsListViewController: UITableViewController, ThemesViewControll
     // MARK: - Actions
 
     @IBAction func openMyProfile(_ sender: Any) {
-        if let strongMyProfileViewController = myProfileViewController{
-        navigationController?.present(strongMyProfileViewController, animated: true, completion: nil)
+        
+        if myProfileViewController == nil{
+            let storyboard = UIStoryboard(name: "Profile", bundle: nil)
+            myProfileViewController = storyboard.instantiateViewController(withIdentifier: "ProfileViewControllerN")
         }
+        navigationController?.present(myProfileViewController!, animated: true, completion: nil)
     }
     
     @IBAction func openThemesViewController(_ sender: Any) {
@@ -145,7 +138,15 @@ class ConversationsListViewController: UITableViewController, ThemesViewControll
         logThemeChanging(selectedTheme: selectedTheme)
     }
     
-    // MARK: - Navigation
+    // MARK: - Data manipulation functions
+    
+    private func getOnlineAndHistory(friends: [Friend])->[(header: String, friends: [Friend])]{
+        let online = friends.filter{ $0.online}
+        let history = friends.filter{ !$0.online}
+        let sortedOnline = online.sorted{ $0.date! > $1.date! }
+        let sortedHistory = history.sorted{ $0.date! > $1.date! }
+        return [(header: "Online", friends: sortedOnline), (header: "History", friends: sortedHistory)]
+    }
     
     /*
     // In a storyboard-based application, you will often want to do a little preparation before navigation

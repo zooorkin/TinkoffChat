@@ -37,7 +37,7 @@ class ConversationCell: UITableViewCell, ConversationCellConfiguration {
         set{
             dateValue = newValue
             if let strongDateValue = dateValue{
-                dateLabel.text = getTimeStringOrDate(from: strongDateValue)
+                dateLabel.text = Date.getTimeStringOrDate(from: strongDateValue)
             }else{
                 dateLabel.text = ""
             }
