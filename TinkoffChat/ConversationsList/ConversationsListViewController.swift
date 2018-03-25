@@ -18,8 +18,8 @@ class ConversationsListViewController: UITableViewController, ThemesViewControll
     
     //let data = getOnlineAndHistory(examples: examples)
     
-    var myProfileViewController: UIViewController?
-    var themesViewController: UIViewController?
+//    var myProfileViewController: UIViewController?
+//    var themesViewController: UIViewController?
     // MARK: -
     
     override func viewDidLoad() {
@@ -106,15 +106,14 @@ class ConversationsListViewController: UITableViewController, ThemesViewControll
     // MARK: - Actions
 
     @IBAction func openMyProfile(_ sender: Any) {
-        
-        if myProfileViewController == nil{
-            let storyboard = UIStoryboard(name: "Profile", bundle: nil)
-            myProfileViewController = storyboard.instantiateViewController(withIdentifier: "ProfileViewControllerN")
-        }
+        var myProfileViewController: UIViewController?
+        let storyboard = UIStoryboard(name: "Profile", bundle: nil)
+        myProfileViewController = storyboard.instantiateViewController(withIdentifier: "ProfileViewControllerN")
         navigationController?.present(myProfileViewController!, animated: true, completion: nil)
     }
     
     @IBAction func openThemesViewController(_ sender: Any) {
+        
         let storyboard = UIStoryboard(name: "ThemesViewController", bundle: nil)
         let navigatorWithThemesVC = storyboard.instantiateViewController(withIdentifier: "ThemesN")
         if navigatorWithThemesVC.childViewControllers.count > 0{
@@ -127,9 +126,7 @@ class ConversationsListViewController: UITableViewController, ThemesViewControll
                 themesVC.model = themes
             }
         }
-        navigationController?.present(navigatorWithThemesVC, animated: true){
-            self.themesViewController = nil
-        }
+        navigationController?.present(navigatorWithThemesVC, animated: true)
     }
     
     func logThemeChanging(selectedTheme: UIColor){
