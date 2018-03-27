@@ -16,10 +16,6 @@ class ConversationsListViewController: UITableViewController, ThemesViewControll
     
     var friends: [(header: String, friends: [Friend])]!
     
-    //let data = getOnlineAndHistory(examples: examples)
-    
-//    var myProfileViewController: UIViewController?
-//    var themesViewController: UIViewController?
     // MARK: -
     
     override func viewDidLoad() {
@@ -121,7 +117,7 @@ class ConversationsListViewController: UITableViewController, ThemesViewControll
                 themesVC.delegate = self
                 let theme1 = UIColor.white
                 let theme2 = DesignConstants.mediumYellow
-                let theme3 = DesignConstants.pink
+                let theme3 = DesignConstants.salatGreen
                 let themes = Themes.init(theme1, theme2: theme2, theme3: theme3)
                 themesVC.model = themes
             }
@@ -135,8 +131,12 @@ class ConversationsListViewController: UITableViewController, ThemesViewControll
     }
     
     func themesViewController(_ controller: UIViewController!, didSelectTheme selectedTheme: UIColor!) {
-        let bar = self.navigationController?.navigationBar
-        bar?.barTintColor = selectedTheme
+        let barAppearance = UINavigationBar.appearance()
+        barAppearance.barTintColor = selectedTheme
+        //let cellAppeatrance = ConversationCell.appearance()
+        //tableView.reloadData()
+        // ...
+        //view.backgroundColor = selectedTheme
         logThemeChanging(selectedTheme: selectedTheme)
     }
     

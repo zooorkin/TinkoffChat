@@ -18,6 +18,10 @@
     id<ThemesViewControllerDelegate> _delegate;
     Themes *_model;
 }
+@property (retain, nonatomic) IBOutlet UIButton *button1;
+@property (retain, nonatomic) IBOutlet UIButton *button2;
+@property (retain, nonatomic) IBOutlet UIButton *button3;
+
 @property (weak) id<ThemesViewControllerDelegate> delegate;
 @property (retain) Themes *model;
 -(id<ThemesViewControllerDelegate>)delegate;

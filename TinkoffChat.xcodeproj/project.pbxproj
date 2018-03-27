@@ -99,8 +99,8 @@
 				8835FA2C205D9BED002CFA21 /* Themes.m */,
 				8835FA28205D9A47002CFA21 /* ThemesViewController.h */,
 				8835FA29205D9A47002CFA21 /* ThemesViewController.m */,
-				8835FA31205DA86A002CFA21 /* ThemesViewController.storyboard */,
 				8835FA27205D9A47002CFA21 /* TinkoffChat-Bridging-Header.h */,
+				8835FA31205DA86A002CFA21 /* ThemesViewController.storyboard */,
 			);
 			path = ThemesViewController;
 			sourceTree = "<group>";

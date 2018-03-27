@@ -9,9 +9,6 @@
 #import "Themes.h"
 
 @implementation Themes
-@synthesize theme1 = _theme1;
-@synthesize theme2 = _theme2;
-@synthesize theme3 = _theme3;
 -(id)init{
     [super init];
     _theme1 = [UIColor clearColor];

@@ -9,12 +9,12 @@
 #import "ThemesViewController.h"
 
 @implementation ThemesViewController
-@synthesize delegate = _delegate;
-@synthesize model = _model;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    //printf("ThemesViewController VIEWDIDLOAD\n");
+    [[self button1] setBackgroundColor: [[self model] theme1]];
+    [[self button2] setBackgroundColor: [[self model] theme2]];
+    [[self button3] setBackgroundColor: [[self model] theme3]];
     // Do any additional setup after loading the view.
 }
 
@@ -28,12 +28,18 @@
     switch ([sender tag]) {
         case 0:
             [[self delegate] themesViewController:self didSelectTheme:[[self model] theme1]];
+            [[self view] setBackgroundColor: [[self model] theme1]];
+            [[[self navigationController] navigationBar] setBarTintColor: [[self model] theme1]];
             break;
         case 1:
             [[self delegate] themesViewController:self didSelectTheme:[[self model] theme2]];
+            [[self view] setBackgroundColor: [[self model] theme2]];
+            [[[self navigationController] navigationBar] setBarTintColor: [[self model] theme2]];
             break;
         case 2:
             [[self delegate] themesViewController:self didSelectTheme:[[self model] theme3]];
+            [[self view] setBackgroundColor: [[self model] theme3]];
+            [[[self navigationController] navigationBar] setBarTintColor: [[self model] theme3]];
             break;
         default: break;
     }
@@ -63,8 +69,10 @@
 }
 
 -(void)dealloc{
-    //printf("ThemesViewController DEALLOCED\n");
     [[self model] release];
+    [_button1 release];
+    [_button2 release];
+    [_button3 release];
     [super dealloc];
 }
 

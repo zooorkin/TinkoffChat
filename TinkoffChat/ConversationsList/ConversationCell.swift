@@ -16,6 +16,8 @@ class ConversationCell: UITableViewCell, ConversationCellConfiguration {
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var backgroundRectangle: UIView!
     
+    var colorScheme: ColorScheme = whiteScheme
+    
     private var dateValue: Date?
     
     var name:    String? { get{ return nameLabel.text } set{ nameLabel.text = newValue } }
@@ -55,20 +57,14 @@ class ConversationCell: UITableViewCell, ConversationCellConfiguration {
             messageLabel.font = UIFont.systemFont(ofSize: 17, weight: .regular)
         }
         if highlighted{
-            backgroundRectangle.backgroundColor = DesignConstants.mediumYellow
-            messageLabel.textColor = DesignConstants.darkTextYellow
-            dateLabel.textColor = DesignConstants.darkTextYellow
+            backgroundRectangle.backgroundColor = colorScheme.backgroundHighlited
+            messageLabel.textColor = colorScheme.textColor
+            dateLabel.textColor = colorScheme.textColor
         }else{
-            // К сожалению, требует большего количества операций (трижды проверяется условие online, против одного)
-            /*
-            backgroundRectangle.backgroundColor = online ? DesignConstants.lightYellow : UIColor.groupTableViewBackground
-            messageLabel.textColor = online ? DesignConstants.darkTextYellow : UIColor.darkGray
-            dateLabel.textColor = online ? DesignConstants.darkTextYellow : UIColor.darkGray */
-
             if online{
-                backgroundRectangle.backgroundColor = DesignConstants.lightYellow
-                messageLabel.textColor = DesignConstants.darkTextYellow
-                dateLabel.textColor = DesignConstants.darkTextYellow
+                backgroundRectangle.backgroundColor = colorScheme.backgroundOnlineCell
+                messageLabel.textColor = colorScheme.textColor
+                dateLabel.textColor = colorScheme.textColor
             }else{
                 backgroundRectangle.backgroundColor = UIColor.groupTableViewBackground
                 messageLabel.textColor = UIColor.darkGray

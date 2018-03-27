@@ -8,6 +8,13 @@
 
 import UIKit
 
+struct ColorScheme{
+    var barColor: UIColor
+    var textColor: UIColor
+    var backgroundHighlited: UIColor
+    var backgroundOnlineCell: UIColor
+}
+
 struct DesignConstants{
     static let profileImageRadius = CGFloat(40)
     static let bordedButtonRadius = CGFloat(16)
@@ -29,6 +36,8 @@ struct DesignConstants{
     static let darkTextYellow = UIColor(red:0.60, green:0.46, blue:0.16, alpha:1.0)
     static let darkDarkTextYellow = UIColor(red:0.37, green:0.30, blue:0.12, alpha:1.0)
     static let lightTextYellow = UIColor(red:0.84, green:0.79, blue:0.67, alpha:1.0)
+    
+    static let salatGreen = UIColor(red:0.88, green:0.96, blue:0.30, alpha:1.0)
     
     static func isDark(_ color: UIColor) -> Bool {
         if let strongComponents = color.cgColor.components{
@@ -54,3 +63,16 @@ struct DesignConstants{
         return isDark(color) ? false : true
     }
 }
+
+let yellowScheme = ColorScheme(barColor: DesignConstants.mediumYellow,
+                               textColor: DesignConstants.darkTextYellow,
+                               backgroundHighlited: DesignConstants.mediumYellow,
+                               backgroundOnlineCell: DesignConstants.lightYellow)
+let whiteScheme = ColorScheme(barColor: UIColor.white,
+                              textColor: UIColor.darkGray,
+                              backgroundHighlited: UIColor.lightGray,
+                              backgroundOnlineCell: UIColor.groupTableViewBackground)
+let pinkScheme = ColorScheme(barColor: DesignConstants.lightPink,
+                               textColor: UIColor.gray,
+                               backgroundHighlited: DesignConstants.lightPink,
+                               backgroundOnlineCell: DesignConstants.lightPink)
