@@ -13,7 +13,6 @@
 		8835FA2A205D9A47002CFA21 /* ThemesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8835FA29205D9A47002CFA21 /* ThemesViewController.m */; };
 		8835FA2D205D9BED002CFA21 /* Themes.m in Sources */ = {isa = PBXBuildFile; fileRef = 8835FA2C205D9BED002CFA21 /* Themes.m */; };
 		8835FA32205DA86A002CFA21 /* ThemesViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8835FA31205DA86A002CFA21 /* ThemesViewController.storyboard */; };
-		884AF92B2049E32D00A4A045 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 884AF9292049E32D00A4A045 /* Profile.storyboard */; };
 		884AF92D2049E38200A4A045 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884AF92C2049E38200A4A045 /* ProfileViewController.swift */; };
 		884AF9322049EC2700A4A045 /* ChangeProfileImageButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884AF9312049EC2700A4A045 /* ChangeProfileImageButton.swift */; };
 		884AF9342049F71000A4A045 /* EditButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884AF9332049F71000A4A045 /* EditButton.swift */; };
@@ -39,6 +38,8 @@
 		88DBB0372041BB0C005EDA8B /* TinkoffChat.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 88DBB0352041BB0C005EDA8B /* TinkoffChat.xcdatamodeld */; };
 		88DBB0392041BB0C005EDA8B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 88DBB0382041BB0C005EDA8B /* Assets.xcassets */; };
 		88DBB03C2041BB0C005EDA8B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 88DBB03A2041BB0C005EDA8B /* LaunchScreen.storyboard */; };
+		88EE44C6206EA46600633563 /* ProfileViewController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88EE44C5206EA46600633563 /* ProfileViewController2.swift */; };
+		88EE44C7206EC85900633563 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 884AF9292049E32D00A4A045 /* Profile.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -79,6 +80,7 @@
 		88DBB0382041BB0C005EDA8B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		88DBB03B2041BB0C005EDA8B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		88DBB03D2041BB0C005EDA8B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		88EE44C5206EA46600633563 /* ProfileViewController2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController2.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,7 +110,8 @@
 		884AF92E2049E42600A4A045 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
-				884AF92C2049E38200A4A045 /* ProfileViewController.swift */,
+				88EE44C8206ED90F00633563 /* Для удаления */,
+				88EE44C5206EA46600633563 /* ProfileViewController2.swift */,
 				884AF9312049EC2700A4A045 /* ChangeProfileImageButton.swift */,
 				884AF9352049FBB400A4A045 /* ProfileView.swift */,
 				884AF9292049E32D00A4A045 /* Profile.storyboard */,
@@ -215,6 +218,14 @@
 			path = TinkoffChat;
 			sourceTree = "<group>";
 		};
+		88EE44C8206ED90F00633563 /* Для удаления */ = {
+			isa = PBXGroup;
+			children = (
+				884AF92C2049E38200A4A045 /* ProfileViewController.swift */,
+			);
+			path = "Для удаления";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -277,11 +288,11 @@
 			files = (
 				88BF083220512AE000B08C69 /* ConversationsList.storyboard in Resources */,
 				88B96C0520534D2700C4961C /* MessageController.storyboard in Resources */,
+				88EE44C7206EC85900633563 /* Profile.storyboard in Resources */,
 				88DBB03C2041BB0C005EDA8B /* LaunchScreen.storyboard in Resources */,
 				8835FA32205DA86A002CFA21 /* ThemesViewController.storyboard in Resources */,
 				88DBB0392041BB0C005EDA8B /* Assets.xcassets in Resources */,
 				8869151C20517E3A0045D3F0 /* Conversation.storyboard in Resources */,
-				884AF92B2049E32D00A4A045 /* Profile.storyboard in Resources */,
 				88DBB0342041BB0C005EDA8B /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -298,6 +309,7 @@
 				8869151920517E1E0045D3F0 /* ConversationViewController.swift in Sources */,
 				884AF9382049FC9C00A4A045 /* DesignConstants.swift in Sources */,
 				884AF9362049FBB400A4A045 /* ProfileView.swift in Sources */,
+				88EE44C6206EA46600633563 /* ProfileViewController2.swift in Sources */,
 				88691520205182580045D3F0 /* MessageCell.swift in Sources */,
 				88144CE0204329EA0035CB07 /* Log.swift in Sources */,
 				8835FA2A205D9A47002CFA21 /* ThemesViewController.m in Sources */,
