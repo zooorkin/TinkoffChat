@@ -10,20 +10,31 @@ import UIKit
 
 // MARK: - ConversationsList
 
-class ConversationsListViewController: UITableViewController, ThemesViewControllerDelegate/*,UISearchResultsUpdating */{
+class ConversationsListViewController: UITableViewController, ThemesViewControllerDelegate, CommunicatorDelegate{
     
     // MARK: -
     
-    var friends: [(header: String, friends: [Friend])]!
-    
+    weak var conversation: ConversationViewController?
+    var communicator = TinkoffCommunicator(userName: "zooorkin")
+    var friendsData = [String: Friend]()
+    var friendsRepresentation = [Friend]()
+
+    func updateFriendsRepresentation(){
+        var friends = [Friend]()
+        for eachFriend in friendsData{
+            friends += [eachFriend.value]
+        }
+        friendsRepresentation = friends.sorted{$0.date! > $1.date!}
+        
+    }
     // MARK: -
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        friends = getOnlineAndHistory(friends: Friend.returnFriends())
         self.tableView.dataSource = self
         self.tableView.delegate = self
         self.tableView.rowHeight = 96
+        self.communicator.delegate = self
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -43,53 +54,64 @@ class ConversationsListViewController: UITableViewController, ThemesViewControll
             tableView.reloadRows(at: [index], with: .fade)
         }
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        conversation = nil
+    }
 
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return friends.count
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return friends[section].friends.count
+        if friendsRepresentation.isEmpty {
+            return 1
+        }else {
+            return friendsRepresentation.count + 1
+        }
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let id = "ConversationCell"
-        var cell = tableView.dequeueReusableCell(withIdentifier: id) as? ConversationCell
-        if cell == nil{
-            let nib = UINib(nibName: id, bundle: nil)
-            tableView.register(nib, forCellReuseIdentifier: id)
-            cell = tableView.dequeueReusableCell(withIdentifier: id) as? ConversationCell
+        if friendsRepresentation.isEmpty{
+            return tableView.dequeueReusableCell(withIdentifier: "NoDialogs", for: indexPath)
         }
-        if let cellToConfigure = cell{
-            let currentFriend = friends[indexPath.section].friends[indexPath.row]
-            cellToConfigure.name = currentFriend.name
-            cellToConfigure.message = currentFriend.lastMessage
-            cellToConfigure.date = currentFriend.date
-            cellToConfigure.online = currentFriend.online
-            cellToConfigure.hasUnreadMessages = currentFriend.hasUnreadMessages
-            return cell!
-        }else{
+        if indexPath.row == friendsRepresentation.count{
+            guard let iCell = tableView.dequeueReusableCell(withIdentifier: "DialogsCountCell", for: indexPath) as? InformationCell else{
+                fatalError()
+            }
+            iCell.information = "Количество диалогов: \(friendsRepresentation.count)"
+            return iCell
+        }
+        let id = "ConversationCell"
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: id) as? ConversationCell else{
             fatalError()
         }
-
-    }
-    
-    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return friends[section].header
+        let currentFriend = friendsRepresentation[indexPath.row]
+        cell.name = currentFriend.name
+        cell.message = currentFriend.lastMessage
+        cell.date = currentFriend.date
+        cell.online = currentFriend.online
+        cell.hasUnreadMessages = currentFriend.hasUnreadMessages
+        return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let ConversationStoryboard = UIStoryboard(name: "Conversation", bundle: nil)
-        let ConversationController = ConversationStoryboard.instantiateViewController(withIdentifier: "ConversationViewController") as! ConversationViewController
-        ConversationController.title = friends[indexPath.section].friends[indexPath.row].name
-        ConversationController.messages = test
+        if indexPath.row == friendsRepresentation.count{
+            tableView.deselectRow(at: indexPath, animated: true)
+            return
+        }
+        let conversationStoryboard = UIStoryboard(name: "Conversation", bundle: nil)
+        let conversationController = conversationStoryboard.instantiateViewController(withIdentifier: "ConversationViewController") as! ConversationViewController
+        self.conversation = conversationController
+        conversationController.title = friendsRepresentation[indexPath.row].name
+        conversationController.messages = []
+        conversationController.withUserID = friendsRepresentation[indexPath.row].id
+        conversationController.communicator = self.communicator
         // Первое слово в строке
         // String(friends[indexPath.section].friends[indexPath.row].name.split(separator: " ")[0])
-        navigationController?.pushViewController(ConversationController, animated: true)
+        navigationController?.pushViewController(conversationController, animated: true)
         
     }
     
@@ -148,6 +170,39 @@ class ConversationsListViewController: UITableViewController, ThemesViewControll
         let sortedOnline = online.sorted{ $0.date! > $1.date! }
         let sortedHistory = history.sorted{ $0.date! > $1.date! }
         return [(header: "Online", friends: sortedOnline), (header: "History", friends: sortedHistory)]
+    }
+    
+    func didFoundUser(userID: String, userName: String?) {
+        let friend = Friend(id: userID, name: userName ?? "Неизвестный", lastMessage: nil, date: nil, online: true, hasUnreadMessages: false)
+        friendsData[userID] = friend
+        updateFriendsRepresentation()
+        DispatchQueue.main.async {
+            self.tableView.reloadSections(IndexSet(integer: 0), with: .automatic)
+        }
+    }
+    
+    func didLostUser(userID: String) {
+        friendsData[userID] = nil
+        updateFriendsRepresentation()
+        DispatchQueue.main.async {
+            self.tableView.reloadSections(IndexSet(integer: 0), with: .automatic)
+        }
+    }
+    
+    func failedToStartBrowsingForUsers(error: Error) {
+        
+    }
+    
+    func failedToStartAdvertising(error: Error) {
+        
+    }
+    
+    func didReceiveMessage(text: String, fromUser: String, toUser: String) {
+        if let strongConversation = conversation {
+            if fromUser == conversation?.withUserID{
+                strongConversation.didReceiveMessage(text: text)
+            }
+        }
     }
     
     /*

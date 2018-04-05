@@ -8,9 +8,12 @@
 
 import UIKit
 
-class ConversationViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-    
-    var messages: [(String, Bool)] = []
+
+class ConversationViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, CommunicatorDelegate2 {
+
+    var withUserID: String = ""
+    var messages: [(String, Bool, Date)] = []
+    weak var communicator: TinkoffCommunicator?
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -44,8 +47,10 @@ class ConversationViewController: UIViewController, UITableViewDelegate, UITable
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        let indexPath = IndexPath(row: messages.count - 1, section: 0)
-        self.tableView.scrollToRow(at: indexPath, at: .bottom, animated: false)
+        if !messages.isEmpty {
+            let indexPath = IndexPath(row: messages.count - 1, section: 0)
+            self.tableView.scrollToRow(at: indexPath, at: .bottom, animated: false)
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -64,8 +69,9 @@ class ConversationViewController: UIViewController, UITableViewDelegate, UITable
         // #warning Incomplete implementation, return the number of rows
         if messages.isEmpty{
             return 1
+        }else{
+            return messages.count
         }
-        return messages.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -78,15 +84,11 @@ class ConversationViewController: UIViewController, UITableViewDelegate, UITable
         }else{
             cell = tableView.dequeueReusableCell(withIdentifier: "OutputMessage", for: indexPath) as! MessageCell
         }
-        cell.message = messages[indexPath.row].0
-        cell.isIncoming = messages[indexPath.row].1
-
-        if (indexPath.row > 4){
-            cell.isUnread = true
-        }else{
-            cell.isUnread = false
-        }
-        cell.time = Date()
+        let message = messages[indexPath.row]
+        cell.message = message.0
+        cell.isIncoming = message.1
+        //cell.isUnread = ?
+        cell.time = message.2
         // Configure the cell...
 
         return cell
@@ -98,7 +100,38 @@ class ConversationViewController: UIViewController, UITableViewDelegate, UITable
         MessageController.message = messages[indexPath.row].0
         navigationController?.pushViewController(MessageController, animated: true)
     }
+    
+    func didReceiveMessage(text: String) {
+        messages += [(text, true, Date())]
+        DispatchQueue.main.sync {
+            if self.messages.count == 1 {
+                let index = IndexPath(row: self.messages.count-1, section: 0)
+                self.tableView.reloadRows(at: [index], with: .right)
+                self.tableView.scrollToRow(at: index, at: .bottom, animated: true)
+            }else{
+                let index = IndexPath(row: self.messages.count-1, section: 0)
+                self.tableView.insertRows(at: [index], with: .left)
+                self.tableView.scrollToRow(at: index, at: .bottom, animated: true)
+            }
+        }
+    }
 
+    @IBAction func send(_ sender: UIButton) {
+        let text = sender.titleLabel?.text ?? "???"
+        messages += [(text, false, Date())]
+        //DispatchQueue.main.async {
+            if self.messages.count == 1 {
+                let index = IndexPath(row: self.messages.count-1, section: 0)
+                self.tableView.reloadRows(at: [index], with: .left)
+                self.tableView.scrollToRow(at: index, at: .bottom, animated: true)
+            }else{
+                let index = IndexPath(row: self.messages.count-1, section: 0)
+                self.tableView.insertRows(at: [index], with: .right)
+                self.tableView.scrollToRow(at: index, at: .bottom, animated: true)
+            }
+        //}
+        communicator?.sendMessage(string: text, to: withUserID, completionHandler: nil)
+    }
     /*
     // MARK: - Navigation
 

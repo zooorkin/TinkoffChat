@@ -20,7 +20,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="6H6-An-sCT">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="617"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="605"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="sectionIndexBackgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <view key="tableHeaderView" contentMode="scaleToFill" id="CKS-GD-gX2">
@@ -177,33 +177,63 @@
                                 </prototypes>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mxN-MJ-qUA">
-                                <rect key="frame" x="0.0" y="617" width="375" height="50"/>
+                                <rect key="frame" x="0.0" y="605" width="375" height="62"/>
                                 <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Input your message" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uHM-cP-0Ok">
-                                        <rect key="frame" x="16" y="8" width="285" height="34"/>
-                                        <nil key="textColor"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZKD-AP-5oA">
-                                        <rect key="frame" x="317" y="8" width="42" height="34"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                        <state key="normal" title="Send"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZKD-AP-5oA" customClass="EditButton" customModule="TinkoffChat" customModuleProvider="target">
+                                        <rect key="frame" x="279.5" y="8" width="79.5" height="46"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                                        <state key="normal" title="🌸"/>
+                                        <connections>
+                                            <action selector="send:" destination="ggG-3B-501" eventType="touchUpInside" id="4iL-8f-Vou"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sp2-gA-giq" customClass="EditButton" customModule="TinkoffChat" customModuleProvider="target">
+                                        <rect key="frame" x="16" y="8" width="80" height="46"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                                        <state key="normal" title="🌻"/>
+                                        <connections>
+                                            <action selector="send:" destination="ggG-3B-501" eventType="touchUpInside" id="lUj-wG-JA5"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2dx-Du-LPW" customClass="EditButton" customModule="TinkoffChat" customModuleProvider="target">
+                                        <rect key="frame" x="104" y="8" width="79.5" height="46"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                                        <state key="normal" title="🌲"/>
+                                        <connections>
+                                            <action selector="send:" destination="ggG-3B-501" eventType="touchUpInside" id="2eT-84-lG6"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qz2-Xr-PZy" customClass="EditButton" customModule="TinkoffChat" customModuleProvider="target">
+                                        <rect key="frame" x="191.5" y="8" width="80" height="46"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                                        <state key="normal" title="❤️"/>
+                                        <connections>
+                                            <action selector="send:" destination="ggG-3B-501" eventType="touchUpInside" id="YuL-yD-cAa"/>
+                                        </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" red="0.97636479139328003" green="0.97653168439865112" blue="0.97635418176651001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstItem="uHM-cP-0Ok" firstAttribute="leading" secondItem="mxN-MJ-qUA" secondAttribute="leading" constant="16" id="3SH-mT-hef"/>
-                                    <constraint firstAttribute="bottom" secondItem="uHM-cP-0Ok" secondAttribute="bottom" constant="8" id="TiS-nk-bQb"/>
+                                    <constraint firstItem="Qz2-Xr-PZy" firstAttribute="leading" secondItem="2dx-Du-LPW" secondAttribute="trailing" constant="8" id="4Oo-fe-EKy"/>
+                                    <constraint firstItem="sp2-gA-giq" firstAttribute="width" secondItem="ZKD-AP-5oA" secondAttribute="width" id="9xI-cZ-uQi"/>
+                                    <constraint firstAttribute="bottom" secondItem="Qz2-Xr-PZy" secondAttribute="bottom" constant="8" id="Ezq-y4-WSh"/>
+                                    <constraint firstAttribute="bottom" secondItem="sp2-gA-giq" secondAttribute="bottom" constant="8" id="Hs8-jD-YnH"/>
+                                    <constraint firstItem="2dx-Du-LPW" firstAttribute="leading" secondItem="sp2-gA-giq" secondAttribute="trailing" constant="8" id="LcJ-3c-h2f"/>
+                                    <constraint firstItem="2dx-Du-LPW" firstAttribute="top" secondItem="mxN-MJ-qUA" secondAttribute="top" constant="8" id="V1v-1m-8lE"/>
                                     <constraint firstItem="ZKD-AP-5oA" firstAttribute="top" secondItem="mxN-MJ-qUA" secondAttribute="top" constant="8" id="XqH-lu-jEN"/>
+                                    <constraint firstAttribute="bottom" secondItem="2dx-Du-LPW" secondAttribute="bottom" constant="8" id="aCk-hv-6aH"/>
+                                    <constraint firstItem="sp2-gA-giq" firstAttribute="top" secondItem="mxN-MJ-qUA" secondAttribute="top" constant="8" id="bQp-O2-0BD"/>
                                     <constraint firstAttribute="bottom" secondItem="ZKD-AP-5oA" secondAttribute="bottom" constant="8" id="dR0-8j-0h9"/>
-                                    <constraint firstItem="ZKD-AP-5oA" firstAttribute="leading" secondItem="uHM-cP-0Ok" secondAttribute="trailing" constant="16" id="mnk-wy-T7a"/>
-                                    <constraint firstItem="uHM-cP-0Ok" firstAttribute="top" secondItem="mxN-MJ-qUA" secondAttribute="top" constant="8" id="nvd-QL-GCA"/>
+                                    <constraint firstItem="2dx-Du-LPW" firstAttribute="width" secondItem="ZKD-AP-5oA" secondAttribute="width" id="gfd-Qt-HuX"/>
+                                    <constraint firstItem="Qz2-Xr-PZy" firstAttribute="width" secondItem="ZKD-AP-5oA" secondAttribute="width" id="pUU-Id-VDa"/>
                                     <constraint firstAttribute="trailing" secondItem="ZKD-AP-5oA" secondAttribute="trailing" constant="16" id="syw-DQ-efN"/>
+                                    <constraint firstItem="sp2-gA-giq" firstAttribute="leading" secondItem="mxN-MJ-qUA" secondAttribute="leading" constant="16" id="tAZ-sj-GwT"/>
+                                    <constraint firstItem="Qz2-Xr-PZy" firstAttribute="top" secondItem="mxN-MJ-qUA" secondAttribute="top" constant="8" id="tuu-0f-kBP"/>
+                                    <constraint firstItem="ZKD-AP-5oA" firstAttribute="leading" secondItem="Qz2-Xr-PZy" secondAttribute="trailing" constant="8" id="wva-SX-den"/>
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" red="0.97636479139328003" green="0.97653168439865112" blue="0.97635418176651001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="mxN-MJ-qUA" firstAttribute="bottom" secondItem="xsX-Ob-0zl" secondAttribute="bottom" id="BXS-iZ-GqN"/>
                             <constraint firstAttribute="trailing" secondItem="6H6-An-sCT" secondAttribute="trailing" id="D0v-nA-BjQ"/>

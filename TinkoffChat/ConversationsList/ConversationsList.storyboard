@@ -90,7 +90,7 @@
                                     <outlet property="profileImage" destination="YqQ-0r-m0N" id="CqI-lC-NBH"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="NoMessages" rowHeight="73" id="aQJ-X1-4vA">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="NoDialogs" rowHeight="73" id="aQJ-X1-4vA">
                                 <rect key="frame" x="0.0" y="140" width="375" height="73"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="aQJ-X1-4vA" id="5Ek-xM-iLI">
@@ -112,7 +112,7 @@
                                     </constraints>
                                 </tableViewCellContentView>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Count" rowHeight="73" id="ODy-Wi-8EG">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="DialogsCountCell" rowHeight="73" id="ODy-Wi-8EG" customClass="InformationCell" customModule="TinkoffChat" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="213" width="375" height="73"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ODy-Wi-8EG" id="jee-oR-YvT">
@@ -133,6 +133,9 @@
                                         <constraint firstAttribute="bottomMargin" secondItem="nuq-Kh-wzZ" secondAttribute="bottom" constant="16" id="ycC-Kx-lu3"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="informationText" destination="nuq-Kh-wzZ" id="rNb-3r-OIX"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <sections/>
