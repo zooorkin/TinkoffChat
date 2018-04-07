@@ -12,13 +12,14 @@ import UIKit
 class ConversationViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, CommunicatorDelegate2 {
 
     var withUserID: String = ""
-    var messages: [(String, Bool, Date)] = []
+    var messages: [(message: String, isIncoming: Bool, date: Date)] = []
     weak var communicator: TinkoffCommunicator?
     
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.tabBarController?.tabBar.isHidden = true
         self.tableView.dataSource = self
         self.tableView.delegate = self
         self.tableView.rowHeight = UITableViewAutomaticDimension
@@ -85,8 +86,8 @@ class ConversationViewController: UIViewController, UITableViewDelegate, UITable
             cell = tableView.dequeueReusableCell(withIdentifier: "OutputMessage", for: indexPath) as! MessageCell
         }
         let message = messages[indexPath.row]
-        cell.message = message.0
-        cell.isIncoming = message.1
+        cell.message = message.message
+        cell.isIncoming = message.isIncoming
         //cell.isUnread = ?
         cell.time = message.2
         // Configure the cell...
@@ -95,9 +96,13 @@ class ConversationViewController: UIViewController, UITableViewDelegate, UITable
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if messages.count == 0{
+            tableView.deselectRow(at: indexPath, animated: true)
+            return
+        }
         let MessageStoryboard = UIStoryboard(name: "MessageController", bundle: nil)
         let MessageController = MessageStoryboard.instantiateViewController(withIdentifier: "MessageController") as! MessageController
-        MessageController.message = messages[indexPath.row].0
+        MessageController.message = messages[indexPath.row].message
         navigationController?.pushViewController(MessageController, animated: true)
     }
     

@@ -11,6 +11,7 @@ import UIKit
 class ProfileViewController2: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextViewDelegate {
     
     @IBOutlet var editButton: UIBarButtonItem!
+    /*
     @IBOutlet var profileImageView: RoundImage!
     @IBOutlet var profileName: EditTextView!
     @IBOutlet var profileDescription: EditTextView!
@@ -46,22 +47,24 @@ class ProfileViewController2: UITableViewController, UIImagePickerControllerDele
     private let fileName = "name.txt"
     private let fileDescription = "description.txt"
     private let fileImage = "image.png"
-    
+    */
     override func viewDidLoad() {
         super.viewDidLoad()
+        /*
         profileName.delegate = self
         profileDescription.delegate = self
         userName.text = ""
         aboutMe.text = ""
         loadUserData()
         activityIndicator.isHidden = true
+ */
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
+    /*
     private func loadUserData(){
         let fileManager = FileManager()
         let homeDirectory = NSHomeDirectory()
@@ -82,10 +85,14 @@ class ProfileViewController2: UITableViewController, UIImagePickerControllerDele
             print("READ CAUGHT!!!")
         }
     }
-
+*/
     var editting = false
     
     @IBAction func edit(_ sender: Any) {
+        isEdittingMode = !isEdittingMode
+        let index = IndexSet(integer: 0)
+        tableView.reloadSections(index, with: .automatic)
+        /*
         editting = !editting
         if editting{
             profileName.isEditable = true
@@ -116,8 +123,9 @@ class ProfileViewController2: UITableViewController, UIImagePickerControllerDele
             profileName.isEdit = false
             profileDescription.isEdit = false
         }
+ */
     }
-    
+    /*
     @IBAction func changeProfileImage(_ sender: Any) {
         print("Выберите изображение профиля")
         let alertController = UIAlertController()
@@ -246,19 +254,18 @@ class ProfileViewController2: UITableViewController, UIImagePickerControllerDele
             }
         }
     }
+    */
     
+    /*
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.row == 4 && editting{
             return 256
         }else{
             return UITableViewAutomaticDimension
         }
-    }
+    }*/
     
-    @IBAction func close(_ sender: Any) {
-        dismiss(animated: true, completion: nil)
-    }
-    
+    /*
     private var informationNotChanged = false
     
     func textViewDidBeginEditing(_ textView: UITextView) {
@@ -269,5 +276,68 @@ class ProfileViewController2: UITableViewController, UIImagePickerControllerDele
         }
         informationNotChanged = true
     }
+ */
+    // MARK: - Table view data source
     
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    var isEdittingMode = false
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if isEdittingMode{
+            return 6
+        }else{
+            return 3
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if !isEdittingMode{
+            switch indexPath.row {
+            case 0:
+                let cell = tableView.dequeueReusableCell(withIdentifier: "ProfilePhotoCell", for: indexPath) as? ProfilePhotoCell
+                return cell!
+            case 1:
+                let cell = tableView.dequeueReusableCell(withIdentifier: "ProfileNameCell", for: indexPath) as? ProfileNameCell
+                return cell!
+            case 2:
+                let cell = tableView.dequeueReusableCell(withIdentifier: "ProfileDescriptionCell", for: indexPath) as? ProfileDescriptionCell
+                return cell!
+            default:
+                fatalError()
+            }
+        }else{
+            switch indexPath.row {
+            case 0:
+                let cell = tableView.dequeueReusableCell(withIdentifier: "ProfileEdittingPhotoCell", for: indexPath) as? ProfileEdittingPhotoCell
+                return cell!
+            case 1:
+                let cell = tableView.dequeueReusableCell(withIdentifier: "ProfileHeaderCell", for: indexPath) as? ProfileHeaderCell
+                return cell!
+            case 2:
+                let cell = tableView.dequeueReusableCell(withIdentifier: "ProfileEdittingNameCell", for: indexPath) as? ProfileEdittingNameCell
+                return cell!
+            case 3:
+                let cell = tableView.dequeueReusableCell(withIdentifier: "ProfileHeaderCell", for: indexPath) as? ProfileHeaderCell
+                return cell!
+            case 4:
+                let cell = tableView.dequeueReusableCell(withIdentifier: "ProfileEdittingDescriptionCell", for: indexPath) as? ProfileEdittingDescriptionCell
+                return cell!
+            case 5:
+                let cell = tableView.dequeueReusableCell(withIdentifier: "ProfileSaveCell", for: indexPath) as? ProfileSaveCell
+                return cell!
+            default:
+                fatalError()
+            }
+        }
+    }
+    
+    @IBAction func close(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
+    //    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        tableView.deselectRow(at: indexPath, animated: true)
+//    }
 }

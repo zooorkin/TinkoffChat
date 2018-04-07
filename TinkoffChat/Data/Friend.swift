@@ -12,6 +12,7 @@ struct Friend {
     var id: String
     var name: String
     var lastMessage: String?
+    var isIncomming: Bool?
     var date: Date?
     var online: Bool
     var hasUnreadMessages: Bool

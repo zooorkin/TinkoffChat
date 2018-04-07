@@ -15,8 +15,8 @@ class TinkoffCommunicator: NSObject, Communicator, MCNearbyServiceAdvertiserDele
     private let myPeerId: MCPeerID
     private let advertiser: MCNearbyServiceAdvertiser
     private let browser: MCNearbyServiceBrowser
-    private var sessions: [String: MCSession]
-    private var peers: [String: (MCPeerID,[String: String]?)] = [:]
+    private var sessionsByDisplayName: [String: MCSession]
+    private var peersByDesplayName: [String: (peerID: MCPeerID, info: [String: String]?)] = [:]
     
     var delegate: CommunicatorDelegate?
     var online: Bool
@@ -25,11 +25,11 @@ class TinkoffCommunicator: NSObject, Communicator, MCNearbyServiceAdvertiserDele
         // 1
         self.myPeerId = MCPeerID(displayName: userName)
         self.advertiser = MCNearbyServiceAdvertiser(peer: myPeerId,
-                                                           discoveryInfo: ["userName": userName],
-                                                           serviceType: "tinkoff-chat")
+                                                    discoveryInfo: ["userName": userName],
+                                                    serviceType: "tinkoff-chat")
         self.browser = MCNearbyServiceBrowser(peer: myPeerId,
                                                      serviceType: "tinkoff-chat")
-        self.sessions = [:]
+        self.sessionsByDisplayName = [:]
         self.online = true
         super.init()
         // 2
@@ -46,10 +46,10 @@ class TinkoffCommunicator: NSObject, Communicator, MCNearbyServiceAdvertiserDele
     }
     
     func sendMessage(string: String, to userID: String, completionHandler: ((Bool, Error?) -> ())?) {
-        if let strongSession = sessions[userID]{
-            if let peer = peers[userID]?.0{
+        if let session = sessionsByDisplayName[userID]{
+            if let peer = peersByDesplayName[userID]?.0{
                 do{
-                    try strongSession.send(string.data(using: .utf8)!, toPeers: [peer], with: .unreliable)
+                    try session.send(string.data(using: .utf8)!, toPeers: [peer], with: .unreliable)
                 }catch{
                     print("Сообщение отправить не удалось")
                 }
@@ -65,7 +65,22 @@ class TinkoffCommunicator: NSObject, Communicator, MCNearbyServiceAdvertiserDele
     // MARK: -
     
     func session(_ session: MCSession, peer peerID: MCPeerID, didChange state: MCSessionState) {
-        print("ПИР \(peerID.displayName) ИЗМЕНИЛ СВОЁ СОСТОЯНИЕ НА \(state.rawValue)")
+        
+        switch state {
+        case .connecting: break
+        case .connected:
+            if let userName = peersByDesplayName[peerID.displayName]?.info?["userName"]{
+                delegate?.didFoundUser(userID: peerID.displayName, userName: userName)
+            }
+        case .notConnected: break
+        }
+        
+        switch state {
+        case .connecting: print("ПИР \(peerID.displayName) ПОДКЛЮЧАЕТСЯ")
+        case .connected: print("ПИР \(peerID.displayName) ПОДКЛЮЧИЛСЯ")
+        case .notConnected: print("ПИР \(peerID.displayName) ОТКЛЮЧИЛСЯ")
+        }
+        
     }
     
     func session(_ session: MCSession, didReceive data: Data, fromPeer peerID: MCPeerID) {
@@ -89,56 +104,45 @@ class TinkoffCommunicator: NSObject, Communicator, MCNearbyServiceAdvertiserDele
     // MARK: -
     
     func advertiser(_ advertiser: MCNearbyServiceAdvertiser, didNotStartAdvertisingPeer error: Error) {
-        NSLog("%@", "didNotStartAdvertisingPeer: \(error)")
+        delegate?.failedToStartAdvertising(error: error)
+        print("didNotStartAdvertisingPeer: \(error)")
     }
     
     func advertiser(_ advertiser: MCNearbyServiceAdvertiser, didReceiveInvitationFromPeer peerID: MCPeerID, withContext context: Data?, invitationHandler: @escaping (Bool, MCSession?) -> Void) {
-                print("ПОЛУЧЕНО ПРИГЛАШЕНИЕ ОТ \(peerID)")
+        
+        print("ПОЛУЧЕНО ПРИГЛАШЕНИЕ ОТ \(peerID.displayName)")
         let session = MCSession(peer: myPeerId, securityIdentity: nil, encryptionPreference: .required)
         session.delegate = self
-        sessions[peerID.displayName] = session
-        if let strongSession = sessions[peerID.displayName]{
-            invitationHandler(true, strongSession)
-            print("ПРИНЯТО ПРИГЛАШЕНИЕ ОТ \(peerID.displayName)")
-            if let info = peers[peerID.displayName]{
-                if let strongInfo = info.1{
-                    if let userName = strongInfo["userName"]{
-                        delegate?.didFoundUser(userID: peerID.displayName, userName: userName)
-                    }
-                }
-            }
+        invitationHandler(true, session)
+        print("ПРИНЯТО ПРИГЛАШЕНИЕ ОТ \(peerID.displayName)")
+        if let userName = peersByDesplayName[peerID.displayName]?.info?["userName"]{
+                delegate?.didFoundUser(userID: peerID.displayName, userName: userName)
         }
-        
+        sessionsByDisplayName[peerID.displayName] = session
     }
     
     // MARK: -
     
     func browser(_ browser: MCNearbyServiceBrowser, didNotStartBrowsingForPeers error: Error) {
-        NSLog("%@", "didNotStartBrowsingForPeers: \(error)")
+        delegate?.failedToStartBrowsingForUsers(error: error)
+        print("didNotStartBrowsingForPeers: \(error)")
     }
     
     func browser(_ browser: MCNearbyServiceBrowser, foundPeer peerID: MCPeerID, withDiscoveryInfo info: [String : String]?) {
-        peers[peerID.displayName] = (peerID, info)
+        peersByDesplayName[peerID.displayName] = (peerID, info)
 
         print("НАЙДЕН ПИР: \(peerID.displayName)")
         
-        sessions[peerID.displayName] = MCSession(peer: myPeerId, securityIdentity: nil, encryptionPreference: .required)
-        if let strongSession = sessions[peerID.displayName]{
-            strongSession.delegate = self
-            browser.invitePeer(peerID, to: strongSession, withContext: generateMessageId().data(using: .utf8), timeout: 10)
-            sessions[peerID.displayName] = strongSession
-            if let strongInfo = info{
-                if let userName = strongInfo["userName"]{
-                    delegate?.didFoundUser(userID: peerID.displayName, userName: userName)
-                }
-            }
-        }
+        let session = MCSession(peer: myPeerId, securityIdentity: nil, encryptionPreference: .required)
+        session.delegate = self
+        browser.invitePeer(peerID, to: session, withContext: generateMessageId().data(using: .utf8), timeout: 10)
+        sessionsByDisplayName[peerID.displayName] = session
     }
     
     func browser(_ browser: MCNearbyServiceBrowser, lostPeer peerID: MCPeerID) {
-        peers[peerID.displayName] = nil
-        sessions[peerID.displayName] = nil
         print("ПОТЕРЯН ПИР \(peerID)")
+        peersByDesplayName[peerID.displayName] = nil
+        sessionsByDisplayName[peerID.displayName] = nil
         delegate?.didLostUser(userID: peerID.displayName)
     }
 

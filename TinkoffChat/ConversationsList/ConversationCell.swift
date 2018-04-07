@@ -15,6 +15,7 @@ class ConversationCell: UITableViewCell, ConversationCellConfiguration {
     @IBOutlet weak var messageLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var backgroundRectangle: UIView!
+    @IBOutlet var onlineCircleView: CircleView!
     
     var colorScheme: ColorScheme = whiteScheme
     
@@ -28,9 +29,9 @@ class ConversationCell: UITableViewCell, ConversationCellConfiguration {
                 messageLabel.font = UIFont.systemFont(ofSize: 17)
                 messageLabel.textColor = UIColor.darkGray
             }else{
-                messageLabel.text = "No messages yet"
+                messageLabel.text = "Нет сообщений"
                 messageLabel.font = UIFont.italicSystemFont(ofSize: 17)
-                messageLabel.textColor = UIColor.lightGray
+                messageLabel.textColor = UIColor.groupTableViewBackground
             }
         }
     }
@@ -46,35 +47,77 @@ class ConversationCell: UITableViewCell, ConversationCellConfiguration {
         }
     }
     
-    public var online: Bool = false
+    private var onlineValue: Bool = false
+    public var online: Bool{
+        get{
+            return onlineValue
+        }
+        set{
+            onlineValue = newValue
+            DispatchQueue.main.async {
+                self.onlineValue ? self.setOnline() : self.setOffline()
+            }
+        }
+    }
     public var hasUnreadMessages: Bool = false
     
     override func setHighlighted(_ highlighted: Bool, animated: Bool) {
         // Этот блок нужно перенести, потому что вычисляется всего один раз
-        if hasUnreadMessages{
-            messageLabel.font = UIFont.systemFont(ofSize: 17, weight: .bold)
-        }else{
-            messageLabel.font = UIFont.systemFont(ofSize: 17, weight: .regular)
-        }
+//        if hasUnreadMessages{
+//            messageLabel.font = UIFont.systemFont(ofSize: 17, weight: .bold)
+//        }else{
+//            messageLabel.font = UIFont.systemFont(ofSize: 17, weight: .regular)
+//        }
+        
         if highlighted{
-            backgroundRectangle.backgroundColor = colorScheme.backgroundHighlited
-            messageLabel.textColor = colorScheme.textColor
-            dateLabel.textColor = colorScheme.textColor
+            UIView.animate(withDuration: 0.3){
+                self.backgroundRectangle.backgroundColor = DesignConstants.pink
+                self.nameLabel.textColor = UIColor.white
+                self.dateLabel.textColor = UIColor.white
+                self.messageLabel.textColor = UIColor.white
+                self.backgroundRectangle.transform = CGAffineTransform(scaleX: 1.05, y: 1.05)
+                
+            }
         }else{
-            if online{
-                backgroundRectangle.backgroundColor = colorScheme.backgroundOnlineCell
-                messageLabel.textColor = colorScheme.textColor
-                dateLabel.textColor = colorScheme.textColor
-            }else{
-                backgroundRectangle.backgroundColor = UIColor.groupTableViewBackground
-                messageLabel.textColor = UIColor.darkGray
-                dateLabel.textColor = UIColor.darkGray
+            UIView.animate(withDuration: 0.3){
+                self.backgroundRectangle.backgroundColor = self.hasUnreadMessages ? DesignConstants.lightPink : UIColor.white
+                self.nameLabel.textColor = UIColor.darkText
+                self.dateLabel.textColor = UIColor.darkGray
+                self.messageLabel.textColor = UIColor.darkGray
+                self.backgroundRectangle.transform = CGAffineTransform(scaleX: 1, y: 1)
             }
         }
     }
     
+    func setOnline(){
+        UIView.animate(withDuration: 0.5){
+            self.profileImage.transform = CGAffineTransform(scaleX: 0.87, y: 0.87)
+            self.onlineCircleView.backgroundColor = DesignConstants.pink
+        }
+    }
+    
+    func setOffline(){
+        UIView.animate(withDuration: 0.5){
+            self.profileImage.transform = CGAffineTransform(scaleX: 1, y: 1)
+            self.onlineCircleView.backgroundColor = UIColor.clear
+        }
+    }
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
-            setHighlighted(selected, animated: animated)
+        if selected{
+            // Здесь анимация не нужна! Они должны перекрыть UNHIGHLIGHTNING
+            self.backgroundRectangle.backgroundColor = DesignConstants.pink
+            self.nameLabel.textColor = UIColor.white
+            self.dateLabel.textColor = UIColor.white
+            self.messageLabel.textColor = UIColor.white
+        }else{
+            UIView.animate(withDuration: 0.3){
+                self.backgroundRectangle.backgroundColor = UIColor.white
+                self.nameLabel.textColor = UIColor.darkText
+                self.dateLabel.textColor = UIColor.darkGray
+                self.messageLabel.textColor = UIColor.darkGray
+            }
+        }
     }
     
     override func awakeFromNib() {

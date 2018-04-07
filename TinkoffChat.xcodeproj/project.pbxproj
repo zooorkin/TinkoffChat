@@ -22,6 +22,8 @@
 		8869151C20517E3A0045D3F0 /* Conversation.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8869151B20517E3A0045D3F0 /* Conversation.storyboard */; };
 		8869151E20517ED40045D3F0 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8869151D20517ED40045D3F0 /* Message.swift */; };
 		88691520205182580045D3F0 /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8869151F205182580045D3F0 /* MessageCell.swift */; };
+		8869D22C207921030021ACEC /* ProfileCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8869D22B207921030021ACEC /* ProfileCells.swift */; };
+		8869D22E20792B2A0021ACEC /* EditTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8869D22D20792B2A0021ACEC /* EditTextView.swift */; };
 		88A3EBE92054668800CC5FD7 /* ConversationCellConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A3EBE82054668800CC5FD7 /* ConversationCellConfiguration.swift */; };
 		88A3EBEB205466B000CC5FD7 /* MessageCellConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A3EBEA205466B000CC5FD7 /* MessageCellConfiguration.swift */; };
 		88A3EBED20548A5600CC5FD7 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A3EBEC20548A5600CC5FD7 /* Data.swift */; };
@@ -66,6 +68,8 @@
 		8869151B20517E3A0045D3F0 /* Conversation.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Conversation.storyboard; sourceTree = "<group>"; };
 		8869151D20517ED40045D3F0 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		8869151F205182580045D3F0 /* MessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
+		8869D22B207921030021ACEC /* ProfileCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCells.swift; sourceTree = "<group>"; };
+		8869D22D20792B2A0021ACEC /* EditTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTextView.swift; sourceTree = "<group>"; };
 		88A3EBE82054668800CC5FD7 /* ConversationCellConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationCellConfiguration.swift; sourceTree = "<group>"; };
 		88A3EBEA205466B000CC5FD7 /* MessageCellConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCellConfiguration.swift; sourceTree = "<group>"; };
 		88A3EBEC20548A5600CC5FD7 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
@@ -120,6 +124,7 @@
 			children = (
 				88EE44C8206ED90F00633563 /* Для удаления */,
 				88EE44C5206EA46600633563 /* ProfileViewController2.swift */,
+				8869D22B207921030021ACEC /* ProfileCells.swift */,
 				884AF9312049EC2700A4A045 /* ChangeProfileImageButton.swift */,
 				884AF9352049FBB400A4A045 /* ProfileView.swift */,
 				884AF9292049E32D00A4A045 /* Profile.storyboard */,
@@ -155,6 +160,7 @@
 				88BF08372051322C00B08C69 /* RoundImage.swift */,
 				881AD48D20515690002503BF /* CircleView.swift */,
 				884AF9332049F71000A4A045 /* EditButton.swift */,
+				8869D22D20792B2A0021ACEC /* EditTextView.swift */,
 			);
 			path = CustomUIElements;
 			sourceTree = "<group>";
@@ -335,9 +341,11 @@
 				88DBB0312041BB0C005EDA8B /* ViewController.swift in Sources */,
 				88BF08342051318E00B08C69 /* ConversationCell.swift in Sources */,
 				88BB5CF72076C0F9000E225C /* InformationCell.swift in Sources */,
+				8869D22C207921030021ACEC /* ProfileCells.swift in Sources */,
 				8869151920517E1E0045D3F0 /* ConversationViewController.swift in Sources */,
 				884AF9382049FC9C00A4A045 /* DesignConstants.swift in Sources */,
 				884AF9362049FBB400A4A045 /* ProfileView.swift in Sources */,
+				8869D22E20792B2A0021ACEC /* EditTextView.swift in Sources */,
 				88EE44C6206EA46600633563 /* ProfileViewController2.swift in Sources */,
 				88691520205182580045D3F0 /* MessageCell.swift in Sources */,
 				88144CE0204329EA0035CB07 /* Log.swift in Sources */,

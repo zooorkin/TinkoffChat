@@ -63,13 +63,17 @@ class MessageCell: UITableViewCell, MessageCellConfiguration {
             messageLabel.textColor = UIColor.darkText
             timeLabel.textColor = UIColor.lightGray
         }else{
-            messageLabel.textColor = DesignConstants.darkDarkTextYellow
-            timeLabel.textColor = DesignConstants.lightTextYellow
+            messageLabel.textColor = UIColor.white
+                //DesignConstants.darkDarkTextYellow
+            timeLabel.textColor = DesignConstants.pink
+                //DesignConstants.lightTextYellow
         }
         if highlighted{
-            messageView.backgroundColor = isIncoming ? UIColor.lightGray : DesignConstants.mediumYellow
+            messageView.backgroundColor = isIncoming ? UIColor.lightGray : DesignConstants.darkPink
+                // DesignConstants.mediumYellow
         }else{
-            messageView.backgroundColor = isIncoming ? UIColor.groupTableViewBackground : DesignConstants.lightYellow
+            messageView.backgroundColor = isIncoming ? UIColor.groupTableViewBackground : DesignConstants.pink
+                //DesignConstants.lightYellow
         }
         // Теперь необходимо покрасить хвостик цветом сообщения
         tail.tintColor = messageView.backgroundColor
