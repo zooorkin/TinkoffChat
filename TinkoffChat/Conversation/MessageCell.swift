@@ -10,16 +10,17 @@ import UIKit
 
 class MessageCell: UITableViewCell, MessageCellConfiguration {
 
-    @IBOutlet weak var messageLabel: UILabel!
-    @IBOutlet weak var messageView: Message!
-    @IBOutlet weak var tail: UIImageView!
-    @IBOutlet weak var timeLabel: UILabel!
+    @IBOutlet var messageLabel: UILabel!
+    @IBOutlet var messageView: MessageView!
+    @IBOutlet var tail: UIImageView!
+    @IBOutlet var timeLabel: UILabel!
     
     public var message: String? {
         get{ return messageLabel.text }
         set{ messageLabel.text = newValue }
     }
     public var isIncoming: Bool = true
+    
     public var isUnread: Bool{
         get{
             return isUnreadValue
@@ -64,16 +65,12 @@ class MessageCell: UITableViewCell, MessageCellConfiguration {
             timeLabel.textColor = UIColor.lightGray
         }else{
             messageLabel.textColor = UIColor.white
-                //DesignConstants.darkDarkTextYellow
             timeLabel.textColor = DesignConstants.pink
-                //DesignConstants.lightTextYellow
         }
         if highlighted{
             messageView.backgroundColor = isIncoming ? UIColor.lightGray : DesignConstants.darkPink
-                // DesignConstants.mediumYellow
         }else{
             messageView.backgroundColor = isIncoming ? UIColor.groupTableViewBackground : DesignConstants.pink
-                //DesignConstants.lightYellow
         }
         // Теперь необходимо покрасить хвостик цветом сообщения
         tail.tintColor = messageView.backgroundColor

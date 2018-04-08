@@ -9,6 +9,11 @@
 import Foundation
 import MultipeerConnectivity
 
+private struct Message: Codable{
+    let eventType: String
+    let messageId: String
+    let text: String
+}
 
 class TinkoffCommunicator: NSObject, Communicator, MCNearbyServiceAdvertiserDelegate, MCNearbyServiceBrowserDelegate, MCSessionDelegate {
     
@@ -45,16 +50,31 @@ class TinkoffCommunicator: NSObject, Communicator, MCNearbyServiceAdvertiserDele
         self.browser.stopBrowsingForPeers()
     }
     
-    func sendMessage(string: String, to userID: String, completionHandler: ((Bool, Error?) -> ())?) {
+    // MARK: -
+    
+    func sendMessage(string: String, to userID: String, completionHandler: ((_ success: Bool, _ error: Error?) -> ())?) {
         if let session = sessionsByDisplayName[userID]{
             if let peer = peersByDesplayName[userID]?.0{
-                do{
-                    try session.send(string.data(using: .utf8)!, toPeers: [peer], with: .unreliable)
-                }catch{
-                    print("Сообщение отправить не удалось")
+                let message = Message(eventType: "TextMessage", messageId: generateMessageId(), text: string)
+                let jsonEncoder = JSONEncoder()
+                do {
+                    let data = try jsonEncoder.encode(message)
+                    do {
+                        try session.send(data, toPeers: [peer], with: .unreliable)
+                        completionHandler?(true, nil)
+                    } catch {
+                        print("Сообщение отправить не удалось: \(string)")
+                        completionHandler?(false, error)
+                    }
+                } catch {
+                    print("Не удалось закодировать в формат JSON")
+                    completionHandler?(false, error)
                 }
+
             }
+            
         }
+        
     }
     
     private func generateMessageId() -> String {
@@ -84,9 +104,19 @@ class TinkoffCommunicator: NSObject, Communicator, MCNearbyServiceAdvertiserDele
     }
     
     func session(_ session: MCSession, didReceive data: Data, fromPeer peerID: MCPeerID) {
-        let s = String.init(data: data, encoding: .utf8) ?? "nil"
-        print("СООБЩЕНИЕ: \(s)")
-        delegate?.didReceiveMessage(text: s, fromUser: peerID.displayName, toUser: myPeerId.displayName)
+        let jsonDecoder = JSONDecoder()
+        do{
+            let message = try jsonDecoder.decode(Message.self, from: data)
+            if message.eventType == "TextMessage" {
+                print("Сообщение: \(message.text)")
+                delegate?.didReceiveMessage(text: message.text, fromUser: peerID.displayName, toUser: myPeerId.displayName)
+            } else {
+                print("Получен неизвестный тип события: \(message.eventType)")
+            }
+        }catch{
+            print("Не удалось раскодировать формат JSON")
+        }
+        
     }
     
     func session(_ session: MCSession, didReceive stream: InputStream, withName streamName: String, fromPeer peerID: MCPeerID) {

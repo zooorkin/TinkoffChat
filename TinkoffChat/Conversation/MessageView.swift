@@ -8,7 +8,7 @@
 
 import UIKit
 
-@IBDesignable class Message: UIView {
+@IBDesignable class MessageView: UIView {
     
     override func layoutSubviews() {
             self.layer.cornerRadius = CGFloat(18)

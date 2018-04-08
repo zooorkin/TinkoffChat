@@ -14,7 +14,7 @@
         <!--Мой профиль-->
         <scene sceneID="W4b-0L-Uo3">
             <objects>
-                <tableViewController storyboardIdentifier="ProfileViewController" id="kQI-4w-OBe" customClass="ProfileViewController2" customModule="TinkoffChat" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="ProfileViewController" id="kQI-4w-OBe" customClass="ProfileViewController" customModule="TinkoffChat" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="94S-ml-WPR">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

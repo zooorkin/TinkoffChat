@@ -10,28 +10,28 @@ import UIKit
 
 class ConversationCell: UITableViewCell, ConversationCellConfiguration {
     
-    @IBOutlet weak var profileImage: RoundImage!
-    @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var messageLabel: UILabel!
-    @IBOutlet weak var dateLabel: UILabel!
-    @IBOutlet weak var backgroundRectangle: UIView!
-    @IBOutlet var onlineCircleView: CircleView!
-    
-    var colorScheme: ColorScheme = whiteScheme
+    @IBOutlet var userCircleView: UserCircle!
+    @IBOutlet var nameLabel: UILabel!
+    @IBOutlet var messageLabel: UILabel!
+    @IBOutlet var dateLabel: UILabel!
+    @IBOutlet var backgroundRectangle: UIView!
     
     private var dateValue: Date?
     
     var name:    String? { get{ return nameLabel.text } set{ nameLabel.text = newValue } }
+    var messageString: String?
     var message: String? { get{ return messageLabel.text }
         set{
             if newValue != nil{
+                messageString = newValue
                 messageLabel.text = newValue
                 messageLabel.font = UIFont.systemFont(ofSize: 17)
                 messageLabel.textColor = UIColor.darkGray
             }else{
+                messageString = nil
                 messageLabel.text = "Нет сообщений"
                 messageLabel.font = UIFont.italicSystemFont(ofSize: 17)
-                messageLabel.textColor = UIColor.groupTableViewBackground
+                messageLabel.textColor = UIColor.lightGray
             }
         }
     }
@@ -71,52 +71,80 @@ class ConversationCell: UITableViewCell, ConversationCellConfiguration {
         
         if highlighted{
             UIView.animate(withDuration: 0.3){
-                self.backgroundRectangle.backgroundColor = DesignConstants.pink
-                self.nameLabel.textColor = UIColor.white
-                self.dateLabel.textColor = UIColor.white
-                self.messageLabel.textColor = UIColor.white
+                if self.onlineValue {
+                    self.backgroundRectangle.backgroundColor = DesignConstants.pink
+                    self.nameLabel.textColor = UIColor.white
+                    self.dateLabel.textColor = UIColor.white
+                    self.messageLabel.textColor = UIColor.white
+                }else{
+                    self.backgroundRectangle.backgroundColor = UIColor.white
+                }
                 self.backgroundRectangle.transform = CGAffineTransform(scaleX: 1.05, y: 1.05)
                 
             }
         }else{
             UIView.animate(withDuration: 0.3){
-                self.backgroundRectangle.backgroundColor = self.hasUnreadMessages ? DesignConstants.lightPink : UIColor.white
+                if self.hasUnreadMessages {
+                    self.backgroundRectangle.backgroundColor = DesignConstants.lightPink
+                }else if self.onlineValue {
+                    self.backgroundRectangle.backgroundColor = UIColor.white
+                }else{
+                    self.backgroundRectangle.backgroundColor = UIColor.clear
+                }
                 self.nameLabel.textColor = UIColor.darkText
                 self.dateLabel.textColor = UIColor.darkGray
-                self.messageLabel.textColor = UIColor.darkGray
+                if self.messageString != nil {
+                    self.messageLabel.textColor = UIColor.darkGray
+                } else {
+                    self.messageLabel.textColor = UIColor.lightGray
+                }
                 self.backgroundRectangle.transform = CGAffineTransform(scaleX: 1, y: 1)
             }
-        }
-    }
-    
-    func setOnline(){
-        UIView.animate(withDuration: 0.5){
-            self.profileImage.transform = CGAffineTransform(scaleX: 0.87, y: 0.87)
-            self.onlineCircleView.backgroundColor = DesignConstants.pink
-        }
-    }
-    
-    func setOffline(){
-        UIView.animate(withDuration: 0.5){
-            self.profileImage.transform = CGAffineTransform(scaleX: 1, y: 1)
-            self.onlineCircleView.backgroundColor = UIColor.clear
         }
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         if selected{
             // Здесь анимация не нужна! Они должны перекрыть UNHIGHLIGHTNING
-            self.backgroundRectangle.backgroundColor = DesignConstants.pink
-            self.nameLabel.textColor = UIColor.white
-            self.dateLabel.textColor = UIColor.white
-            self.messageLabel.textColor = UIColor.white
-        }else{
-            UIView.animate(withDuration: 0.3){
+            if self.onlineValue {
+                self.backgroundRectangle.backgroundColor = DesignConstants.pink
+                self.nameLabel.textColor = UIColor.white
+                self.dateLabel.textColor = UIColor.white
+                self.messageLabel.textColor = UIColor.white
+            } else {
                 self.backgroundRectangle.backgroundColor = UIColor.white
+            }
+        } else {
+            UIView.animate(withDuration: 0.3){
+                if self.hasUnreadMessages {
+                    self.backgroundRectangle.backgroundColor = DesignConstants.lightPink
+                }else if self.onlineValue {
+                    self.backgroundRectangle.backgroundColor = UIColor.white
+                }else{
+                    self.backgroundRectangle.backgroundColor = UIColor.clear
+                }
                 self.nameLabel.textColor = UIColor.darkText
                 self.dateLabel.textColor = UIColor.darkGray
-                self.messageLabel.textColor = UIColor.darkGray
+                if self.messageString != nil {
+                    self.messageLabel.textColor = UIColor.darkGray
+                } else {
+                    self.messageLabel.textColor = UIColor.lightGray
+                }
             }
+        }
+    }
+    
+    func setOnline(){
+        UIView.animate(withDuration: 0.5){
+            self.userCircleView.setOnline()
+            self.backgroundRectangle.backgroundColor = self.hasUnreadMessages ? DesignConstants.lightPink : UIColor.white
+        }
+    }
+    
+    func setOffline(){
+        UIView.animate(withDuration: 0.5){
+            self.userCircleView.setOffline()
+            self.backgroundRectangle.backgroundColor = self.hasUnreadMessages ? DesignConstants.lightPink : UIColor.clear
         }
     }
     

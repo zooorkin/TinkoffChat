@@ -10,63 +10,43 @@ import UIKit
 
 // MARK: - ConversationsList
 
-class ConversationsListViewController: UITableViewController, ThemesViewControllerDelegate, CommunicatorDelegate{
+protocol ConversationsListProtocol {
+    func update()
+}
+
+class ConversationsListViewController: UITableViewController, ThemesViewControllerDelegate, ConversationsListProtocol{
     
     // MARK: -
-    
-    var conversation: ConversationViewController?
-    var communicator = TinkoffCommunicator(userName: "zooorkin")
-    var friendsData = [String: Friend]()
-    
-    var friendsRepresentation = [Friend]()
 
-    func updateFriendsRepresentation(){
-        var friends = [Friend]()
-        for eachFriend in friendsData{
-            friends += [eachFriend.value]
-        }
-        friendsRepresentation = friends.sorted{ (left, right) in
-            if left.date != nil && right.date != nil{
-                return left.date! > right.date!
-            }else if left.date == nil && right.date != nil{
-                return false
-            }else if left.date != nil && right.date == nil{
-                return true
-            }else{
-                return left.name > right.name
-            }
-        }
+    var communicator = TinkoffCommunicator(userName: "zooorkin")
+    
+    var manager = CommunicationManager()
+    var data: ConversationListData! {
+        return manager
     }
+    
     // MARK: -
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        manager.conversationList = ("zooorkin", self)
+        self.communicator.delegate = manager
         self.tableView.dataSource = self
         self.tableView.delegate = self
         self.tableView.rowHeight = 96
-        self.communicator.delegate = self
         // Uncomment the following line to preserve selection between presentations
          self.clearsSelectionOnViewWillAppear = true
-
+        
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        if let userID = conversation?.withUserID{
-            if let lastMessage = conversation?.messages.last{
-                friendsData[userID]?.lastMessage = lastMessage.message
-                friendsData[userID]?.date = lastMessage.date
-                friendsData[userID]?.isIncomming = lastMessage.isIncoming
-                friendsData[userID]?.hasUnreadMessages = false
-                updateFriendsRepresentation()
-            }
-            reloadFriend(withName: userID, animated: false)
-        }
+        reloadSection(section: 0, animated: true)
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        conversation = nil
+        manager.conversation = nil
     }
 
     // MARK: - Table view data source
@@ -76,33 +56,33 @@ class ConversationsListViewController: UITableViewController, ThemesViewControll
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if friendsRepresentation.isEmpty {
+        if data.conversationListData.isEmpty {
             return 1
         }else {
-            return friendsRepresentation.count + 1
+            return data.conversationListData.count + 1
         }
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if friendsRepresentation.isEmpty{
+        if data.conversationListData.isEmpty{
             guard let iCell = tableView.dequeueReusableCell(withIdentifier: "InformationCell", for: indexPath) as? InformationCell else{
                 fatalError()
             }
             iCell.information = "Нет друзей"
             return iCell
         }
-        if indexPath.row == friendsRepresentation.count{
+        if indexPath.row == data.conversationListData.count{
             guard let iCell = tableView.dequeueReusableCell(withIdentifier: "InformationCell", for: indexPath) as? InformationCell else{
                 fatalError()
             }
-            iCell.information = "Друзей: \(friendsRepresentation.count)"
+            iCell.information = "Друзей: \(data.conversationListData.count)"
             return iCell
         }
         let id = "ConversationCell"
         guard let cell = tableView.dequeueReusableCell(withIdentifier: id) as? ConversationCell else{
             fatalError()
         }
-        let currentFriend = friendsRepresentation[indexPath.row]
+        let currentFriend = data.conversationListData[indexPath.row]
         cell.name = currentFriend.name
         cell.message = currentFriend.lastMessage
         cell.date = currentFriend.date
@@ -113,25 +93,21 @@ class ConversationsListViewController: UITableViewController, ThemesViewControll
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // Отжатие информационной ячейки
-        if /*friendsRepresentation.count == 0 || */ indexPath.row == friendsRepresentation.count{
+        if /*manager.conversationListData.count == 0 || */ indexPath.row == data.conversationListData.count{
             tableView.deselectRow(at: indexPath, animated: true)
             return
         }
-        if !friendsRepresentation[indexPath.row].online{
+        if !data.conversationListData[indexPath.row].online{
             tableView.deselectRow(at: indexPath, animated: true)
             return
         }
         let conversationStoryboard = UIStoryboard(name: "Conversation", bundle: nil)
         let conversationController = conversationStoryboard.instantiateViewController(withIdentifier: "ConversationViewController") as! ConversationViewController
-        self.conversation = conversationController
-        let friend = friendsRepresentation[indexPath.row]
+        let friend = data.conversationListData[indexPath.row]
+        manager.conversation = (withUser: friend.id, controller: conversationController, messages: [])
+        conversationController.manager = manager
         conversationController.title = friend.name
-        if friend.lastMessage != nil{
-            conversationController.messages = [(message: friend.lastMessage!, isIncoming: friend.isIncomming!, date: friend.date!)]
-        }else{
-            conversationController.messages = []
-        }
-        conversationController.withUserID = friend.id
+        conversationController.isUserOnline = true
         conversationController.communicator = self.communicator
         // Первое слово в строке
         // String(friends[indexPath.section].friends[indexPath.row].name.split(separator: " ")[0])
@@ -171,61 +147,32 @@ class ConversationsListViewController: UITableViewController, ThemesViewControll
         barAppearance.barTintColor = selectedTheme
     }
     
-    // MARK: - CommunicatorDelegate
-    
-    func didFoundUser(userID: String, userName: String?) {
-        let friend = Friend(id: userID, name: userName ?? "Неизвестный", lastMessage: nil, isIncomming: nil, date: nil, online: true, hasUnreadMessages: false)
-        friendsData[userID] = friend
-        updateFriendsRepresentation()
-        DispatchQueue.main.async {
-            self.tableView.reloadSections(IndexSet(integer: 0), with: .automatic)
-        }
-    }
-    
-    func didLostUser(userID: String) {
-        friendsData[userID]?.online = false
-        updateFriendsRepresentation()
-        reloadFriend(withName: userID)
-    }
-    
-    func failedToStartBrowsingForUsers(error: Error) {
-        
-    }
-    
-    func failedToStartAdvertising(error: Error) {
-        
-    }
-    
     private func reloadFriend(withName fromUser: String, animated: Bool = true){
-        if let friend = friendsData[fromUser]{
-            if let index = friendsRepresentation.index(where: { $0.id == friend.id}){
-                DispatchQueue.main.async {
-                    let indexPath = IndexPath(row: index, section: 0)
-                    self.tableView.reloadRows(at: [indexPath], with: animated ? .automatic : .none)
-                }
-                return
+        if let index = data.conversationListData.index(where: { $0.id == fromUser}){
+            DispatchQueue.main.async {
+                let indexPath = IndexPath(row: index, section: 0)
+                self.tableView.reloadRows(at: [indexPath], with: animated ? .automatic : .none)
             }
+            return
         }
         DispatchQueue.main.async {
-            self.tableView.reloadSections(IndexSet(integer: 0), with: .automatic)
+            self.tableView.reloadSections(IndexSet(integer: 0), with: animated ? .automatic : .none)
         }
     }
     
-    func didReceiveMessage(text: String, fromUser: String, toUser: String) {
-        if let strongConversation = conversation {
-            if fromUser == conversation?.withUserID{
-                strongConversation.didReceiveMessage(text: text)
-            }
-        }else{
-            friendsData[fromUser]?.id = fromUser
-            friendsData[fromUser]?.name = fromUser
-            friendsData[fromUser]?.lastMessage = text
-            friendsData[fromUser]?.isIncomming = true
-            friendsData[fromUser]?.date = Date()
-            friendsData[fromUser]?.hasUnreadMessages = true
-            updateFriendsRepresentation()
-            reloadFriend(withName: fromUser)
+    // MARK: - ThemesViewControllerDelegate
+    
+    private func reloadSection(section: Int, animated: Bool = true){
+        DispatchQueue.main.async {
+            self.tableView.reloadSections(IndexSet(integer: section), with: animated ? .automatic : .none)
         }
     }
+    
+    // MARK: - ConversationsListProtocol
+    
+    public func update(){
+        reloadSection(section: 0, animated: true)
+    }
+    
 
 }

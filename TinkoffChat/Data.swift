@@ -8,14 +8,14 @@
 
 import Foundation
 
-let test = [
+private let test = [
     ("Here's to the crazy ones. The misfits. The rebels. The troublemakers. The round pegs in the square holes. The ones who see things differently. They're not fond of rules. And they have no respect for the status quo. You can quote them, disagree with them, glorify or vilify them. About the only thing…", true),
     ("Here's to the crazy ones. The misfits. The rebels. The troublemakers. The round pegs in the square holes. The ones who see things differently. They're not fond of rules. And they have no respect for the status quo. You can quote them, disagree with them, glorify or vilify them. About the only thing…", false),
     ("… you can't do is ignore them…", true),
     ("… you can't do is ignore them…", false),
     ("!",true),("?",false)]
 
-let names = ["Gustav Meyrink",
+private let names = ["Gustav Meyrink",
              "Franz Kafka",
              "Robert Musil",
              "Hermann Hesse",
@@ -29,7 +29,7 @@ let names = ["Gustav Meyrink",
              "Martin Heidegger",
              "Herbert Marcuse"]
 
-let messages = [
+private let messages = [
     nil, nil, "Und was Sie auch haben — nehmen Sie es nicht zu wichtig. Es gibt wenig, das lange wichtig bleibt.",
     "Was konnte man sich schon anderes geben als etwas Wärme? Und was war mehr?",
     "Toleranz ist die Tochter des Zweifels.",

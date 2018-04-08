@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ProfileViewController2: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextViewDelegate {
+class ProfileViewController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextViewDelegate {
     
     @IBOutlet var editButton: UIBarButtonItem!
     /*
