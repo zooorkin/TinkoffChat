@@ -10,23 +10,24 @@ import Foundation
 
 
 protocol CommunicatorDelegate: class {
-    // Discovering
+    /// Найден пользователь
     func didFoundUser(userID: String, userName: String?)
+    /// Потерян пользователь
     func didLostUser(userID: String)
-    // Errors
+    /// Ошибка запуска MCNearbyServiceBrowser
     func failedToStartBrowsingForUsers(error: Error)
+    /// Ошибка запуска MCNearbyServiceAdvertiser
     func failedToStartAdvertising(error: Error)
-    // Messages
+    /// Получено сообщение
     func didReceiveMessage(text: String, fromUser: String, toUser: String)
-    /*
-    func failedToSendMessage()
-    */
 }
 
 protocol Communicator {
+    /// Отправка сообщение
     func sendMessage(string: String,
                      to userID: String,
                      completionHandler:((_ success: Bool, _ error : Error?) -> ())?)
+    /// Делегат <CommunicatorDelegate>
     weak var delegate: CommunicatorDelegate? {get set}
     var online: Bool {get set}
 }

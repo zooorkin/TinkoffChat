@@ -9,10 +9,12 @@
 import Foundation
 import MultipeerConnectivity
 
+/// Интерфейс ConversationList для получения данных
 protocol ConversationListData {
     var conversationListData: [Friend] {get}
 }
 
+/// Интерфейс ConversationData для получения данных
 protocol ConversationData {
     var conversationData: [SimpleMessage] {get}
     var conversationWithUser: String {get}
@@ -21,6 +23,7 @@ protocol ConversationData {
 }
 
 class CommunicationManager: CommunicatorDelegate, ConversationListData, ConversationData{
+    
     
     var conversationList: (ofUser: String, controller: ConversationsListProtocol)?
     var conversation: (withUser: String, controller: ConversationProtocol,
@@ -50,6 +53,7 @@ class CommunicationManager: CommunicatorDelegate, ConversationListData, Conversa
         }
     }
     
+    /// Добавление нового сообщения
     public func pushNewMessage(_ message: SimpleMessage, toUser: String){
         friendsData[toUser]?.lastMessage = message.text
         friendsData[toUser]?.isIncomming = message.isIncoming
@@ -61,11 +65,14 @@ class CommunicationManager: CommunicatorDelegate, ConversationListData, Conversa
     
     // MARK: - Data
     
+    /// Несортированный список друзей
     private var friendsData = [String: Friend]()
+    /// Сортированный список друзей
     private var friendsRepresentation = [Friend]()
     
     // MARK: - Управление данными
     
+    /// Обновление friendsRepresentation после изменений в friendsData
     private func commitFriendsRepresentation(){
         var friends = [Friend]()
         for eachFriend in friendsData{
@@ -147,8 +154,5 @@ class CommunicationManager: CommunicatorDelegate, ConversationListData, Conversa
         conversationList?.controller.update()
         conversation?.controller.showNewMessage()
     }
-    /*
-    func failedToSendMessage() {
-    }
-    */
+    
 }

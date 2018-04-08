@@ -10,6 +10,7 @@ import UIKit
 
 class MessageCell: UITableViewCell, MessageCellConfiguration {
 
+    
     @IBOutlet var messageLabel: UILabel!
     @IBOutlet var messageView: MessageView!
     @IBOutlet var tail: UIImageView!
@@ -79,4 +80,5 @@ class MessageCell: UITableViewCell, MessageCellConfiguration {
     override func setSelected(_ selected: Bool, animated: Bool) {
         setHighlighted(selected, animated: animated)
     }
+    
 }

@@ -10,6 +10,7 @@ import UIKit
 
 class ConversationCell: UITableViewCell, ConversationCellConfiguration {
     
+    
     @IBOutlet var userCircleView: UserCircle!
     @IBOutlet var nameLabel: UILabel!
     @IBOutlet var messageLabel: UILabel!
@@ -156,4 +157,5 @@ class ConversationCell: UITableViewCell, ConversationCellConfiguration {
     override func layoutSubviews() {
         super.layoutSubviews()
     }
+    
 }

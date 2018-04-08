@@ -8,12 +8,6 @@
 
 import UIKit
 
-// MARK: - ConversationsList
-
-protocol ConversationsListProtocol {
-    func update()
-}
-
 class ConversationsListViewController: UITableViewController, ThemesViewControllerDelegate, ConversationsListProtocol{
     
     // MARK: -
@@ -174,5 +168,4 @@ class ConversationsListViewController: UITableViewController, ThemesViewControll
         reloadSection(section: 0, animated: true)
     }
     
-
 }

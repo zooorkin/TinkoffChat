@@ -13,11 +13,6 @@ enum ConversationState {
     case offline
 }
 
-protocol ConversationProtocol {
-    func didChangeState(state: ConversationState)
-    func showNewMessage()
-}
-
 class ConversationViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, ConversationProtocol, UITextFieldDelegate {
     
     // MARK: -

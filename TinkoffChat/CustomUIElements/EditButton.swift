@@ -10,7 +10,9 @@ import UIKit
 
 @IBDesignable class EditButton: UIButton {
     
+    
     private var isEditValue: Bool = false
+    
     var isEdit: Bool{
         get{
             return isEditValue
@@ -36,16 +38,5 @@ import UIKit
         layer.cornerRadius = DesignConstants.bordedButtonRadius
         clipsToBounds = true
     }
-}
-
-
-@IBDesignable class ColorButton: UIButton {
     
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        layer.borderWidth = 2
-        layer.borderColor = UIColor.darkGray.cgColor
-        layer.cornerRadius = DesignConstants.bordedButtonRadius
-        clipsToBounds = true
-    }
 }

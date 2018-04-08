@@ -9,14 +9,20 @@
 import Foundation
 import MultipeerConnectivity
 
+/// Структура кодируемого сообщения
 private struct Message: Codable{
+    /// Тип события
     let eventType: String
+    /// Уникальный ID сообщения
     let messageId: String
+    /// Текст сообщения
     let text: String
 }
 
+
 class TinkoffCommunicator: NSObject, Communicator, MCNearbyServiceAdvertiserDelegate, MCNearbyServiceBrowserDelegate, MCSessionDelegate {
     
+    /// ID текущего пира
     private let myPeerId: MCPeerID
     private let advertiser: MCNearbyServiceAdvertiser
     private let browser: MCNearbyServiceBrowser
@@ -26,8 +32,9 @@ class TinkoffCommunicator: NSObject, Communicator, MCNearbyServiceAdvertiserDele
     var delegate: CommunicatorDelegate?
     var online: Bool
     
+    /// Инициализатор
     init(userName: String) {
-        // 1
+        // 1 этап
         self.myPeerId = MCPeerID(displayName: userName)
         self.advertiser = MCNearbyServiceAdvertiser(peer: myPeerId,
                                                     discoveryInfo: ["userName": userName],
@@ -37,7 +44,7 @@ class TinkoffCommunicator: NSObject, Communicator, MCNearbyServiceAdvertiserDele
         self.sessionsByDisplayName = [:]
         self.online = true
         super.init()
-        // 2
+        // 2 этап
         self.advertiser.delegate = self//delegate as? MCNearbyServiceAdvertiserDelegate
         self.browser.delegate = self//delegate as? MCNearbyServiceBrowserDelegate
         self.advertiser.startAdvertisingPeer()
@@ -45,6 +52,7 @@ class TinkoffCommunicator: NSObject, Communicator, MCNearbyServiceAdvertiserDele
         print("TinkoffCommunicator inited")
     }
     
+    /// Деинициализатор
     deinit {
         self.advertiser.stopAdvertisingPeer()
         self.browser.stopBrowsingForPeers()
@@ -77,12 +85,13 @@ class TinkoffCommunicator: NSObject, Communicator, MCNearbyServiceAdvertiserDele
         
     }
     
+    /// Генерация уникального ID для сообщений
     private func generateMessageId() -> String {
         let string = "\(arc4random_uniform(UInt32.max))+\(Date.timeIntervalSinceReferenceDate)+\(arc4random_uniform(UInt32.max))".data(using: .utf8)?.base64EncodedString()
         return string!
     }
     
-    // MARK: -
+    // MARK: - MCSessionDelegate
     
     func session(_ session: MCSession, peer peerID: MCPeerID, didChange state: MCSessionState) {
         
@@ -131,7 +140,7 @@ class TinkoffCommunicator: NSObject, Communicator, MCNearbyServiceAdvertiserDele
         NSLog("%@", "didFinishReceivingResourceWithName")
     }
     
-    // MARK: -
+    // MARK: - MCNearbyServiceAdvertiserDelegate
     
     func advertiser(_ advertiser: MCNearbyServiceAdvertiser, didNotStartAdvertisingPeer error: Error) {
         delegate?.failedToStartAdvertising(error: error)
@@ -151,7 +160,7 @@ class TinkoffCommunicator: NSObject, Communicator, MCNearbyServiceAdvertiserDele
         sessionsByDisplayName[peerID.displayName] = session
     }
     
-    // MARK: -
+    // MARK: - MCNearbyServiceBrowserDelegate
     
     func browser(_ browser: MCNearbyServiceBrowser, didNotStartBrowsingForPeers error: Error) {
         delegate?.failedToStartBrowsingForUsers(error: error)

@@ -10,6 +10,7 @@ import UIKit
 
 class InformationCell: UITableViewCell {
     
+    
     @IBOutlet var informationText: UILabel!
     
     public var information: String{

@@ -10,6 +10,7 @@ import UIKit
 
 @IBDesignable class ChangeProfileImageButton: UIButton {
     
+    
     override open func layoutSubviews() {
         super.layoutSubviews()
         layer.cornerRadius = DesignConstants.profileImageRadius
@@ -21,4 +22,5 @@ import UIKit
             strongImageView.frame = CGRect(origin: point, size: size)
         }
     }
+    
 }

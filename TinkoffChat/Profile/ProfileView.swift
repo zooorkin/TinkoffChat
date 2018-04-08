@@ -9,10 +9,12 @@
 import UIKit
 
 @IBDesignable class ProfileView: UIView {
+  
     
     override open func layoutSubviews() {
         super.layoutSubviews()
         layer.cornerRadius = DesignConstants.profileImageRadius
         layer.masksToBounds = true
     }
+    
 }

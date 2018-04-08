@@ -9,8 +9,12 @@
 import Foundation
 
 protocol MessageCellConfiguration {
+    /// Текст сообщения
     var message: String? {get set}
+    /// Сообщение входящее
     var isIncoming: Bool {get set}
+    /// Сообщение непрочитанное
     var isUnread: Bool {get set}
+    /// Время сообщения
     var time: Date {get set}
 }

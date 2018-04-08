@@ -10,7 +10,9 @@ import UIKit
 
 @IBDesignable class EditTextView: UITextView {
     
+    
     private var isEditValue: Bool = false
+    
     var isEdit: Bool{
         get{
             return isEditValue
@@ -37,4 +39,5 @@ import UIKit
         layer.cornerRadius = DesignConstants.bordedButtonRadius
         clipsToBounds = true
     }
+    
 }

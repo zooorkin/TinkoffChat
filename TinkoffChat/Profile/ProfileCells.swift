@@ -9,37 +9,29 @@
 import UIKit
 
 class ProfilePhotoCell: UITableViewCell {
-    
     @IBOutlet var profilePhoto: UIImageView!
 }
 
 class ProfileEdittingPhotoCell: UITableViewCell {
-    
 }
 
-
 class ProfileNameCell: UITableViewCell {
-
     @IBOutlet var profileName: UILabel!
 }
 
 class ProfileEdittingNameCell: UITableViewCell {
-    
     @IBOutlet var profileName: EditTextView!
 }
 
 class ProfileDescriptionCell: UITableViewCell {
-    
     @IBOutlet var profileDescription: UILabel!
 }
 
 class ProfileEdittingDescriptionCell: UITableViewCell {
-    
     @IBOutlet var profileDescription: EditTextView!
 }
 
 class ProfileHeaderCell: UITableViewCell {
-    
     @IBOutlet var header: UILabel!
 }
 
@@ -50,5 +42,4 @@ class ProfileSaveCell: UITableViewCell {
     }
     @IBAction func operationSave(_ sender: Any) {
     }
-    
 }
