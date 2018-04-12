@@ -204,7 +204,7 @@ class ConversationViewController: UIViewController, UITableViewDelegate, UITable
             (success: Bool, error: Error?) in
             if !success{
                 let alertController = UIAlertController(title: "Ошибка", message: "Не удалось отправить сообщение \"\(text)\"", preferredStyle: .alert)
-                self.navigationController?.pushViewController(alertController, animated: true)
+                self.present(alertController, animated: true, completion: nil)
             }
         }
     }

@@ -10,7 +10,7 @@ import Foundation
 import MultipeerConnectivity
 
 /// Структура кодируемого сообщения
-private struct Message: Codable{
+private struct MessageStruct: Codable{
     /// Тип события
     let eventType: String
     /// Уникальный ID сообщения
@@ -63,7 +63,7 @@ class TinkoffCommunicator: NSObject, Communicator, MCNearbyServiceAdvertiserDele
     func sendMessage(string: String, to userID: String, completionHandler: ((_ success: Bool, _ error: Error?) -> ())?) {
         if let session = sessionsByDisplayName[userID]{
             if let peer = peersByDesplayName[userID]?.0{
-                let message = Message(eventType: "TextMessage", messageId: generateMessageId(), text: string)
+                let message = MessageStruct(eventType: "TextMessage", messageId: generateMessageId(), text: string)
                 let jsonEncoder = JSONEncoder()
                 do {
                     let data = try jsonEncoder.encode(message)
@@ -115,7 +115,7 @@ class TinkoffCommunicator: NSObject, Communicator, MCNearbyServiceAdvertiserDele
     func session(_ session: MCSession, didReceive data: Data, fromPeer peerID: MCPeerID) {
         let jsonDecoder = JSONDecoder()
         do{
-            let message = try jsonDecoder.decode(Message.self, from: data)
+            let message = try jsonDecoder.decode(MessageStruct.self, from: data)
             if message.eventType == "TextMessage" {
                 print("Сообщение: \(message.text)")
                 delegate?.didReceiveMessage(text: message.text, fromUser: peerID.displayName, toUser: myPeerId.displayName)
