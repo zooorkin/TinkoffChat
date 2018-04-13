@@ -10,6 +10,7 @@ import UIKit
 
 class ProfileViewController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextViewDelegate {
     
+    
     @IBOutlet var editButton: UIBarButtonItem!
     
     let storageManager = StorageManager()
@@ -18,24 +19,24 @@ class ProfileViewController: UITableViewController, UIImagePickerControllerDeleg
     
     var profileImage: UIImage? {
         get {
-            let index = IndexPath(row: 0, section: 0)
-            if !isEdittingMode {
-                let cell = self.tableView.cellForRow(at: index) as! ProfilePhotoCell
-                return cell.profileImage
+            if let data = appUser.currentUser!.photo {
+                return  UIImage(data: data)
             } else {
-                let cell = self.tableView.cellForRow(at: index) as! ProfileEdittingPhotoCell
-                return cell.profileImage
+                return nil
             }
         }
         set {
-            let index = IndexPath(row: 0, section: 0)
-            if !isEdittingMode {
-                let cell = self.tableView.cellForRow(at: index) as! ProfilePhotoCell
-                cell.profileImage = newValue
+            if let photo = newValue {
+                appUser.currentUser!.photo = UIImageJPEGRepresentation(photo, 1)
             } else {
-                let cell = self.tableView.cellForRow(at: index) as! ProfileEdittingPhotoCell
-                cell.profileImage = newValue
+                 appUser.currentUser!.photo = nil
             }
+        }
+    }
+    
+    var profileImageData: Data? {
+        get {
+            return appUser.currentUser!.photo
         }
     }
     
@@ -52,33 +53,30 @@ class ProfileViewController: UITableViewController, UIImagePickerControllerDeleg
         // Dispose of any resources that can be recreated.
     }
     
-    var editting = false
-    
-    @IBAction func edit(_ sender: Any) {
-        if isEdittingMode {
-            let index2 = IndexPath(row: 2, section: 0)
-            let cellName = self.tableView.cellForRow(at: index2) as! ProfileEdittingNameCell
-            let index4 = IndexPath(row: 4, section: 0)
-            let cellDesc = self.tableView.cellForRow(at: index4) as! ProfileEdittingDescriptionCell
-            storageManager.mainContext.perform {
-                self.appUser.currentUser?.name = cellName.profileName.text
-                self.appUser.currentUser?.info = cellDesc.profileDescription.text
-                if let photo = self.profileImage {
-                    self.appUser.currentUser?.photo = UIImagePNGRepresentation(photo)
-                }else{
-                    self.appUser.currentUser?.photo = nil
-                }
-                self.storageManager.performSave(context: self.storageManager.mainContext, completion: nil)
-                self.editButton.title = "Ред."
-                self.isEdittingMode = !self.isEdittingMode
-                let index = IndexSet(integer: 0)
-                self.tableView.reloadSections(index, with: .automatic)
-            }
-        } else {
-            editButton.title = "Сохранить"
-            isEdittingMode = !isEdittingMode
+    @IBAction func edit(_ sender: Any) { 
+        func end(title: String){
+            self.editButton.title = title
+            self.isEdittingMode = !self.isEdittingMode
             let index = IndexSet(integer: 0)
             self.tableView.reloadSections(index, with: .automatic)
+            
+        }
+        isEdittingMode ?
+            save(completion: {end(title: "Ред.")}) :
+            end(title: "Сохранить")
+    }
+    
+    func save(completion: (() -> Void)?){
+        let index2 = IndexPath(row: 2, section: 0)
+        let cellName = self.tableView.cellForRow(at: index2) as! ProfileEdittingNameCell
+        let index4 = IndexPath(row: 4, section: 0)
+        let cellDesc = self.tableView.cellForRow(at: index4) as! ProfileEdittingDescriptionCell
+        storageManager.mainContext.perform {
+            self.appUser.currentUser?.name = cellName.profileName.text
+            self.appUser.currentUser?.info = cellDesc.profileDescription.text
+            self.appUser.currentUser?.photo = self.profileImageData
+            self.storageManager.performSave(context: self.storageManager.mainContext, completion: nil)
+            completion?()
         }
     }
     
@@ -110,6 +108,8 @@ class ProfileViewController: UITableViewController, UIImagePickerControllerDeleg
             let destroy = UIAlertAction(title: "Удалить фотографию", style: .destructive){ _ in
                 // ВНИМАНИЕ! profileImage – вычисляемое свойство класса
                 self.profileImage = nil
+                let index = IndexPath(row: 0, section: 0)
+                self.tableView.reloadRows(at: [index], with: .none)
             }
             alertController.addAction(destroy)
         }
@@ -121,83 +121,18 @@ class ProfileViewController: UITableViewController, UIImagePickerControllerDeleg
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
             // ВНИМАНИЕ! profileImage – вычисляемое свойство класса
-            
-            profileImage = pickedImage
+            self.profileImage = pickedImage
+            //profileImage = pickedImage
+            let index = IndexPath(row: 0, section: 0)
+            tableView.reloadRows(at: [index], with: .none)
         }
         dismiss(animated: true, completion: nil)
     }
     
-    
-    // MARK: - Table view data source
-    
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-    
-    
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if isEdittingMode{
-            return 5
-        }else{
-            return 3
-        }
-    }
-    
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if !isEdittingMode{
-            switch indexPath.row {
-            case 0:
-                let cell = tableView.dequeueReusableCell(withIdentifier: "ProfilePhotoCell", for: indexPath) as? ProfilePhotoCell
-                if let image = appUser.currentUser?.photo {
-                    cell!.profileImage = UIImage(data: image)
-                } else {
-                    cell!.profileImage = nil
-                }
-                return cell!
-            case 1:
-                let cell = tableView.dequeueReusableCell(withIdentifier: "ProfileNameCell", for: indexPath) as? ProfileNameCell
-                cell!.profileName.text = appUser.currentUser?.name ?? ""
-                return cell!
-            case 2:
-                let cell = tableView.dequeueReusableCell(withIdentifier: "ProfileDescriptionCell", for: indexPath) as? ProfileDescriptionCell
-                cell!.profileDescription.text = appUser.currentUser?.info
-                return cell!
-            default:
-                fatalError()
-            }
-        }else{
-            switch indexPath.row {
-            case 0:
-                let cell = tableView.dequeueReusableCell(withIdentifier: "ProfileEdittingPhotoCell", for: indexPath) as? ProfileEdittingPhotoCell
-                if let image = appUser.currentUser?.photo {
-                    cell!.profileImage = UIImage(data: image)
-                } else {
-                    cell!.profileImage = nil
-                }
-                return cell!
-            case 1:
-                let cell = tableView.dequeueReusableCell(withIdentifier: "ProfileHeaderCell", for: indexPath) as? ProfileHeaderCell
-                cell?.header = "Имя пользователя"
-                return cell!
-            case 2:
-                let cell = tableView.dequeueReusableCell(withIdentifier: "ProfileEdittingNameCell", for: indexPath) as? ProfileEdittingNameCell
-                cell!.profileName.text = appUser.currentUser?.name ?? ""
-                return cell!
-            case 3:
-                let cell = tableView.dequeueReusableCell(withIdentifier: "ProfileHeaderCell", for: indexPath) as? ProfileHeaderCell
-                cell?.header = "Описание"
-                return cell!
-            case 4:
-                let cell = tableView.dequeueReusableCell(withIdentifier: "ProfileEdittingDescriptionCell", for: indexPath) as? ProfileEdittingDescriptionCell
-                cell!.profileDescription.text = appUser.currentUser?.info
-                return cell!
-            default:
-                fatalError()
-            }
-        }
-    }
-    
     @IBAction func close(_ sender: Any) {
+        storageManager.mainContext.perform {
+            self.storageManager.mainContext.refresh(self.appUser, mergeChanges: true)
+        }
         dismiss(animated: true, completion: nil)
     }
     

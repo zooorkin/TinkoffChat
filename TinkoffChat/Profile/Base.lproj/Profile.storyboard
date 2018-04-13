@@ -7,6 +7,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -60,20 +61,25 @@
                                             </constraints>
                                         </imageView>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zhl-XG-XiO" customClass="ChangeProfileImageButton" customModule="TinkoffChat" customModuleProvider="target">
-                                            <rect key="frame" x="226" y="147.66666666666666" width="85" height="85"/>
-                                            <color key="backgroundColor" red="1" green="0.73333333329999995" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <state key="normal" image="slr-camera-2-xxl"/>
+                                            <rect key="frame" x="90.333333333333329" y="19" width="194.66666666666669" height="194.66666666666666"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.24591401457055215" colorSpace="calibratedWhite"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" secondItem="zhl-XG-XiO" secondAttribute="height" multiplier="1:1" id="BH9-d7-ldV"/>
+                                            </constraints>
+                                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <state key="normal" title="Изменить"/>
                                             <connections>
                                                 <action selector="changeProfileImage:" destination="kQI-4w-OBe" eventType="touchUpInside" id="t5x-y4-DgY"/>
                                             </connections>
                                         </button>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstAttribute="trailing" secondItem="zhl-XG-XiO" secondAttribute="trailing" constant="64" id="G4a-oL-bVR"/>
+                                        <constraint firstItem="zhl-XG-XiO" firstAttribute="centerX" secondItem="rA0-Tg-TKe" secondAttribute="centerX" id="Ddn-iB-oIl"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="zhl-XG-XiO" secondAttribute="bottom" constant="8" id="FZz-2u-4pA"/>
+                                        <constraint firstItem="zhl-XG-XiO" firstAttribute="top" secondItem="rA0-Tg-TKe" secondAttribute="topMargin" constant="8" id="LWT-bs-m6M"/>
                                         <constraint firstAttribute="bottom" secondItem="P3i-nL-61v" secondAttribute="bottom" constant="16" id="qGN-sh-COg"/>
                                         <constraint firstItem="P3i-nL-61v" firstAttribute="top" secondItem="rA0-Tg-TKe" secondAttribute="top" constant="16" id="xON-s6-IQ6"/>
                                         <constraint firstItem="P3i-nL-61v" firstAttribute="centerX" secondItem="rA0-Tg-TKe" secondAttribute="centerX" id="yKU-CR-lv1"/>
-                                        <constraint firstAttribute="bottom" secondItem="zhl-XG-XiO" secondAttribute="bottom" id="zVs-3H-rUb"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -195,6 +201,9 @@
                                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalHuggingPriority="249" scrollEnabled="NO" text="Художник-живописец 🎨, люблю архитектуру и дизайн" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Mlq-Cq-KH3">
                                             <rect key="frame" x="16" y="8" width="343" height="93.666666666666671"/>
                                             <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="256" id="TT1-DA-Upq"/>
+                                            </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                         </textView>
@@ -265,6 +274,5 @@
     </scenes>
     <resources>
         <image name="placeholder-user" width="200" height="200"/>
-        <image name="slr-camera-2-xxl" width="85" height="85"/>
     </resources>
 </document>

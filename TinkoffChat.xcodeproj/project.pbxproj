@@ -10,6 +10,9 @@
 		88144CE0204329EA0035CB07 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88144CDF204329EA0035CB07 /* Log.swift */; };
 		881AD48E20515690002503BF /* CircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881AD48D20515690002503BF /* CircleView.swift */; };
 		881AD4902051677B002503BF /* Friend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881AD48F2051677B002503BF /* Friend.swift */; };
+		882F1AFE2080D27F002E75C2 /* ProfileDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 882F1AFD2080D27F002E75C2 /* ProfileDataSource.swift */; };
+		882F1B002080E758002E75C2 /* ProfileEdittingDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 882F1AFF2080E758002E75C2 /* ProfileEdittingDataSource.swift */; };
+		882F1B022080E8B5002E75C2 /* ConversationListDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 882F1B012080E8B5002E75C2 /* ConversationListDataSource.swift */; };
 		8835FA2A205D9A47002CFA21 /* ThemesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8835FA29205D9A47002CFA21 /* ThemesViewController.m */; };
 		8835FA2D205D9BED002CFA21 /* Themes.m in Sources */ = {isa = PBXBuildFile; fileRef = 8835FA2C205D9BED002CFA21 /* Themes.m */; };
 		8835FA32205DA86A002CFA21 /* ThemesViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8835FA31205DA86A002CFA21 /* ThemesViewController.storyboard */; };
@@ -23,6 +26,7 @@
 		88691520205182580045D3F0 /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8869151F205182580045D3F0 /* MessageCell.swift */; };
 		8869D22C207921030021ACEC /* ProfileCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8869D22B207921030021ACEC /* ProfileCells.swift */; };
 		8869D22E20792B2A0021ACEC /* EditTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8869D22D20792B2A0021ACEC /* EditTextView.swift */; };
+		886D6B912080F1780032AE80 /* ProfileTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 886D6B902080F1780032AE80 /* ProfileTableView.swift */; };
 		888DED592080249A00B95022 /* Storage.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 888DED572080249A00B95022 /* Storage.xcdatamodeld */; };
 		88A030D7207A741C008C297A /* SimpleMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A030D6207A741C008C297A /* SimpleMessage.swift */; };
 		88A030D9207AB4C9008C297A /* ColorButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A030D8207AB4C9008C297A /* ColorButton.swift */; };
@@ -55,6 +59,9 @@
 		88144CDF204329EA0035CB07 /* Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
 		881AD48D20515690002503BF /* CircleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleView.swift; sourceTree = "<group>"; };
 		881AD48F2051677B002503BF /* Friend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Friend.swift; sourceTree = "<group>"; };
+		882F1AFD2080D27F002E75C2 /* ProfileDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDataSource.swift; sourceTree = "<group>"; };
+		882F1AFF2080E758002E75C2 /* ProfileEdittingDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEdittingDataSource.swift; sourceTree = "<group>"; };
+		882F1B012080E8B5002E75C2 /* ConversationListDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationListDataSource.swift; sourceTree = "<group>"; };
 		8835FA27205D9A47002CFA21 /* TinkoffChat-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TinkoffChat-Bridging-Header.h"; sourceTree = "<group>"; };
 		8835FA28205D9A47002CFA21 /* ThemesViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ThemesViewController.h; sourceTree = "<group>"; };
 		8835FA29205D9A47002CFA21 /* ThemesViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ThemesViewController.m; sourceTree = "<group>"; };
@@ -72,6 +79,7 @@
 		8869151F205182580045D3F0 /* MessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
 		8869D22B207921030021ACEC /* ProfileCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCells.swift; sourceTree = "<group>"; };
 		8869D22D20792B2A0021ACEC /* EditTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTextView.swift; sourceTree = "<group>"; };
+		886D6B902080F1780032AE80 /* ProfileTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableView.swift; sourceTree = "<group>"; };
 		888DED582080249A00B95022 /* TinkoffChat.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TinkoffChat.xcdatamodel; sourceTree = "<group>"; };
 		88A030D6207A741C008C297A /* SimpleMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleMessage.swift; sourceTree = "<group>"; };
 		88A030D8207AB4C9008C297A /* ColorButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorButton.swift; sourceTree = "<group>"; };
@@ -129,6 +137,9 @@
 			isa = PBXGroup;
 			children = (
 				88EE44C5206EA46600633563 /* ProfileViewController.swift */,
+				886D6B902080F1780032AE80 /* ProfileTableView.swift */,
+				882F1AFD2080D27F002E75C2 /* ProfileDataSource.swift */,
+				882F1AFF2080E758002E75C2 /* ProfileEdittingDataSource.swift */,
 				8869D22B207921030021ACEC /* ProfileCells.swift */,
 				884AF9312049EC2700A4A045 /* ChangeProfileImageButton.swift */,
 				884AF9352049FBB400A4A045 /* ProfileView.swift */,
@@ -196,6 +207,7 @@
 			isa = PBXGroup;
 			children = (
 				88BF082E20512AA900B08C69 /* ConversationsListViewController.swift */,
+				882F1B012080E8B5002E75C2 /* ConversationListDataSource.swift */,
 				88A030DA207AB522008C297A /* ConversationsListProtocol.swift */,
 				88BF08332051318E00B08C69 /* ConversationCell.swift */,
 				88A3EBE82054668800CC5FD7 /* ConversationCellConfiguration.swift */,
@@ -348,12 +360,16 @@
 				884AF9382049FC9C00A4A045 /* DesignConstants.swift in Sources */,
 				884AF9362049FBB400A4A045 /* ProfileView.swift in Sources */,
 				8869D22E20792B2A0021ACEC /* EditTextView.swift in Sources */,
+				886D6B912080F1780032AE80 /* ProfileTableView.swift in Sources */,
 				88EE44C6206EA46600633563 /* ProfileViewController.swift in Sources */,
+				882F1B002080E758002E75C2 /* ProfileEdittingDataSource.swift in Sources */,
+				882F1AFE2080D27F002E75C2 /* ProfileDataSource.swift in Sources */,
 				88691520205182580045D3F0 /* MessageCell.swift in Sources */,
 				88144CE0204329EA0035CB07 /* Log.swift in Sources */,
 				8835FA2A205D9A47002CFA21 /* ThemesViewController.m in Sources */,
 				88B96C032053307900C4961C /* DateFunctions.swift in Sources */,
 				88A030D7207A741C008C297A /* SimpleMessage.swift in Sources */,
+				882F1B022080E8B5002E75C2 /* ConversationListDataSource.swift in Sources */,
 				8835FA2D205D9BED002CFA21 /* Themes.m in Sources */,
 				881AD4902051677B002503BF /* Friend.swift in Sources */,
 				884AF9342049F71000A4A045 /* EditButton.swift in Sources */,
