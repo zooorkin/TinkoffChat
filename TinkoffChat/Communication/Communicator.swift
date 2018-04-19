@@ -9,6 +9,16 @@
 import Foundation
 import MultipeerConnectivity
 
+protocol Communicator {
+    /// Отправка сообщение
+    func sendMessage(string: String,
+                     to userID: String,
+                     completionHandler:((_ success: Bool, _ error : Error?) -> ())?)
+    /// Делегат <CommunicatorDelegate>
+    weak var delegate: CommunicatorDelegate? {get set}
+    var online: Bool {get set}
+}
+
 /// Структура кодируемого сообщения
 private struct MessageStruct: Codable{
     /// Тип события
@@ -18,7 +28,6 @@ private struct MessageStruct: Codable{
     /// Текст сообщения
     let text: String
 }
-
 
 class TinkoffCommunicator: NSObject, Communicator, MCNearbyServiceAdvertiserDelegate, MCNearbyServiceBrowserDelegate, MCSessionDelegate {
     
@@ -118,7 +127,7 @@ class TinkoffCommunicator: NSObject, Communicator, MCNearbyServiceAdvertiserDele
             let message = try jsonDecoder.decode(MessageStruct.self, from: data)
             if message.eventType == "TextMessage" {
                 print("Сообщение: \(message.text)")
-                delegate?.didReceiveMessage(text: message.text, fromUser: peerID.displayName, toUser: myPeerId.displayName)
+                delegate?.didReceiveMessage(text: message.text, fromUserID: peerID.displayName, toUserID: myPeerId.displayName)
             } else {
                 print("Получен неизвестный тип события: \(message.eventType)")
             }

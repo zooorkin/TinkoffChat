@@ -77,11 +77,45 @@ class StorageManager {
     }
 }
 
+
+extension Message {
+    static func insertConversation(in context: NSManagedObjectContext) -> Message {
+        let message = NSEntityDescription.insertNewObject(forEntityName: "Message", into: context) as! Message
+        return message
+    }
+    
+    static func getArrayFrom(set: NSSet?) -> [Message]? {
+        if let strongSet = set {
+            if let messages = Array(strongSet) as? [Message] {
+                return messages
+            }
+        }
+        return nil
+    }
+    
+}
+
+extension Conversation {
+    static func insertConversation(in context: NSManagedObjectContext) -> Conversation {
+        let conversation = NSEntityDescription.insertNewObject(forEntityName: "Conversation", into: context) as! Conversation
+        return conversation
+    }
+}
+
 extension User {
     
     static func insertUser(in context: NSManagedObjectContext) -> User {
         let user = NSEntityDescription.insertNewObject(forEntityName: "User", into: context) as! User
         return user
+    }
+    
+    static func getArrayFrom(set: NSSet?) -> [User]? {
+        if let strongSet = set {
+            if let users = Array(strongSet) as? [User] {
+                return users
+            }
+        }
+        return nil
     }
     
 }
@@ -125,13 +159,14 @@ extension AppUser {
         
         if appUser == nil {
             appUser = AppUser.insertAppUser(in: context)
-            appUser?.currentUser = User.insertUser(in: context)
+            appUser?.user = User.insertUser(in: context)
         }
         
         return appUser
     }
     
 }
+
 
 
 

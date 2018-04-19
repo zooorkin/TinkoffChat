@@ -20,7 +20,7 @@ class ConversationCell: UITableViewCell, ConversationCellConfiguration {
     private var dateValue: Date?
     
     var name:    String? { get{ return nameLabel.text } set{ nameLabel.text = newValue } }
-    var messageString: String?
+    private var messageString: String?
     var message: String? { get{ return messageLabel.text }
         set{
             if newValue != nil{

@@ -9,6 +9,19 @@
 import Foundation
 import MultipeerConnectivity
 
+protocol CommunicatorDelegate: class {
+    /// Найден пользователь
+    func didFoundUser(userID: String, userName: String?)
+    /// Потерян пользователь
+    func didLostUser(userID: String)
+    /// Ошибка запуска MCNearbyServiceBrowser
+    func failedToStartBrowsingForUsers(error: Error)
+    /// Ошибка запуска MCNearbyServiceAdvertiser
+    func failedToStartAdvertising(error: Error)
+    /// Получено сообщение
+    func didReceiveMessage(text: String, fromUserID: String, toUserID: String)
+}
+
 /// Интерфейс ConversationList для получения данных
 protocol ConversationListData {
     var conversationListData: [Friend] {get}
@@ -137,16 +150,16 @@ class CommunicationManager: CommunicatorDelegate, ConversationListData, Conversa
     func failedToStartAdvertising(error: Error) {
     }
     
-    func didReceiveMessage(text: String, fromUser: String, toUser: String) {
-        friendsData[fromUser]?.id = fromUser
-        friendsData[fromUser]?.name = fromUser
-        friendsData[fromUser]?.lastMessage = text
-        friendsData[fromUser]?.isIncomming = true
-        friendsData[fromUser]?.date = Date()
-        friendsData[fromUser]?.hasUnreadMessages = true
+    func didReceiveMessage(text: String, fromUserID: String, toUserID: String) {
+        friendsData[fromUserID]?.id = "???"
+        friendsData[fromUserID]?.name = fromUserID
+        friendsData[fromUserID]?.lastMessage = text
+        friendsData[fromUserID]?.isIncomming = true
+        friendsData[fromUserID]?.date = Date()
+        friendsData[fromUserID]?.hasUnreadMessages = true
         commitFriendsRepresentation()
         
-        if let strongConversation = conversation, fromUser == strongConversation.withUser{
+        if let strongConversation = conversation, fromUserID == strongConversation.withUser{
             let message = SimpleMessage(text: text, isIncoming: true, date: Date())
             conversation?.messages.append(message)
         }

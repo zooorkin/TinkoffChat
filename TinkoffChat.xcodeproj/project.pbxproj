@@ -48,7 +48,6 @@
 		88DBB0342041BB0C005EDA8B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 88DBB0322041BB0C005EDA8B /* Main.storyboard */; };
 		88DBB0392041BB0C005EDA8B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 88DBB0382041BB0C005EDA8B /* Assets.xcassets */; };
 		88DBB03C2041BB0C005EDA8B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 88DBB03A2041BB0C005EDA8B /* LaunchScreen.storyboard */; };
-		88E5978C2075E7B500CE3444 /* CommunicatorProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E5978B2075E7B500CE3444 /* CommunicatorProtocols.swift */; };
 		88E5978E2075E9DA00CE3444 /* Communicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E5978D2075E9DA00CE3444 /* Communicator.swift */; };
 		88E597902075F1C100CE3444 /* CommunicationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E5978F2075F1C100CE3444 /* CommunicationManager.swift */; };
 		88EE44C6206EA46600633563 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88EE44C5206EA46600633563 /* ProfileViewController.swift */; };
@@ -103,7 +102,6 @@
 		88DBB0382041BB0C005EDA8B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		88DBB03B2041BB0C005EDA8B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		88DBB03D2041BB0C005EDA8B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		88E5978B2075E7B500CE3444 /* CommunicatorProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunicatorProtocols.swift; sourceTree = "<group>"; };
 		88E5978D2075E9DA00CE3444 /* Communicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Communicator.swift; sourceTree = "<group>"; };
 		88E5978F2075F1C100CE3444 /* CommunicationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunicationManager.swift; sourceTree = "<group>"; };
 		88EE44C5206EA46600633563 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -268,7 +266,6 @@
 			children = (
 				88E5978D2075E9DA00CE3444 /* Communicator.swift */,
 				88E5978F2075F1C100CE3444 /* CommunicationManager.swift */,
-				88E5978B2075E7B500CE3444 /* CommunicatorProtocols.swift */,
 			);
 			path = Communication;
 			sourceTree = "<group>";
@@ -387,7 +384,6 @@
 				88CDE169207F910100C68C70 /* StorageManager.swift in Sources */,
 				88CA58F2207A150B00D5646C /* UserCircle.swift in Sources */,
 				88BF08382051322C00B08C69 /* RoundImage.swift in Sources */,
-				88E5978C2075E7B500CE3444 /* CommunicatorProtocols.swift in Sources */,
 				888DED592080249A00B95022 /* Storage.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

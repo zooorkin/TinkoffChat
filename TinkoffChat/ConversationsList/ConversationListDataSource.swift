@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+/*
 extension ConversationsListViewController {
     
     
@@ -62,7 +62,7 @@ extension ConversationsListViewController {
         let conversationStoryboard = UIStoryboard(name: "Conversation", bundle: nil)
         let conversationController = conversationStoryboard.instantiateViewController(withIdentifier: "ConversationViewController") as! ConversationViewController
         let friend = data.conversationListData[indexPath.row]
-        manager.conversation = (withUser: friend.id, controller: conversationController, messages: [])
+        //manager.conversation = (withUser: friend.id, controller: conversationController, messages: [])
         conversationController.manager = manager
         conversationController.title = friend.name
         conversationController.isUserOnline = true
@@ -75,3 +75,5 @@ extension ConversationsListViewController {
         
     }
 }
+
+ */

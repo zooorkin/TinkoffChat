@@ -7,26 +7,28 @@
 //
 
 import UIKit
+import CoreData
 
 enum ConversationState {
     case online
     case offline
 }
 
-class ConversationViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, ConversationProtocol, UITextFieldDelegate {
+class ConversationViewController: UIViewController, UITextFieldDelegate {
     
     // MARK: -
     
-    weak var communicator: TinkoffCommunicator?
-    weak var manager: CommunicationManager!
-    var data: ConversationData {
-        return manager
+    var withFriend: User?
+     var communicator: TinkoffCommunicator?
+      var storageManager = StorageManager()
+       private var context: NSManagedObjectContext? {
+        return storageManager.mainContext
     }
     
     @IBOutlet var tableView: UITableView!
-    @IBOutlet var gestureTap: UITapGestureRecognizer!
-    @IBOutlet var inputTextField: UITextField!
-    @IBOutlet var sendButton: UIButton!
+     @IBOutlet var gestureTap: UITapGestureRecognizer!
+      @IBOutlet var inputTextField: UITextField!
+       @IBOutlet var sendButton: UIButton!
     
     private var isUserOnlineValue: Bool = false
     var isUserOnline: Bool{
@@ -52,41 +54,37 @@ class ConversationViewController: UIViewController, UITableViewDelegate, UITable
     }
     
     // MARK: -
+    private var fetchedResultController: NSFetchedResultsController<Message>?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        sendButton.isEnabled = false
-        inputTextField.returnKeyType = .default
-        inputTextField.enablesReturnKeyAutomatically = true
-        self.tableView.addGestureRecognizer(gestureTap)
-        self.tabBarController?.tabBar.isHidden = true
-        self.tableView.dataSource = self
-        self.tableView.delegate = self
-        self.tableView.rowHeight = UITableViewAutomaticDimension
-        if #available(iOS 11.0, *) {
-            navigationController?.navigationBar.prefersLargeTitles = false
-        } else {
-            // Fallback on earlier versions
-        }
-        inputTextField.delegate = self
+         sendButton.isEnabled = false
+          inputTextField.returnKeyType = .default
+           inputTextField.enablesReturnKeyAutomatically = true
+            self.tableView.addGestureRecognizer(gestureTap)
+             self.tabBarController?.tabBar.isHidden = true
+              self.tableView.dataSource = self
+               self.tableView.delegate = self
+              self.tableView.rowHeight = UITableViewAutomaticDimension
+            if #available(iOS 11.0, *) {
+           navigationController?.navigationBar.prefersLargeTitles = false
+          } else {
+        // Fallback on earlier versions
+         }
+          inputTextField.delegate = self
+           setupFRC()
+            fetchData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillDisappear), name: Notification.Name.UIKeyboardWillHide, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillAppear), name: Notification.Name.UIKeyboardWillShow, object: nil)
-        if let index = tableView.indexPathForSelectedRow{
+         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillDisappear), name: Notification.Name.UIKeyboardWillHide, object: nil)
+               NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillAppear), name: Notification.Name.UIKeyboardWillShow, object: nil)
+        
+          if let index = tableView.indexPathForSelectedRow{
             tableView.deselectRow(at: index, animated: animated)
-        }
-        if let friend = data.conversationWithFriend(){
-            if friend.lastMessage != nil{
-                let message = SimpleMessage(text: friend.lastMessage!, isIncoming: friend.isIncomming!, date: friend.date!)
-                manager.conversation!.messages = [message]
-            } else {
-                manager.conversation!.messages = []
-            }
         } else {
-            fatalError()
+            //fatalError()
         }
         
     }
@@ -94,16 +92,18 @@ class ConversationViewController: UIViewController, UITableViewDelegate, UITable
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         NotificationCenter.default.removeObserver(self)
+        
+        storageManager.performSave(context: storageManager.mainContext, completion: nil)
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        if let messages = manager.conversation?.messages{
-            if !messages.isEmpty {
-                let indexPath = IndexPath(row: messages.count - 1, section: 0)
-                self.tableView.scrollToRow(at: indexPath, at: .bottom, animated: false)
-            }
-        }
+//        if let messages = manager.conversation?.messages{
+//            if !messages.isEmpty {
+//                let indexPath = IndexPath(row: messages.count - 1, section: 0)
+//                self.tableView.scrollToRow(at: indexPath, at: .bottom, animated: false)
+//            }
+//        }
     }
     
     override func willMove(toParentViewController parent: UIViewController?) {
@@ -118,6 +118,31 @@ class ConversationViewController: UIViewController, UITableViewDelegate, UITable
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    private func setupFRC() {
+        let fetchRequest = NSFetchRequest<Message>(entityName: "Message")
+        let predicate = NSPredicate(format: "fromConversation.id = %@", withFriend!.conversation!.id!)
+        let sortDescriptor = NSSortDescriptor(key: "date", ascending: true)
+        fetchRequest.sortDescriptors = [sortDescriptor]
+        fetchRequest.predicate = predicate
+        
+        guard let context = context else { return }
+        
+        fetchedResultController = NSFetchedResultsController<Message>(fetchRequest: fetchRequest,
+                                                                      managedObjectContext: context,
+                                                                      sectionNameKeyPath: nil,
+                                                                      cacheName: nil)
+        
+        fetchedResultController?.delegate = self
+    }
+    
+    private func fetchData() {
+        do {
+            try fetchedResultController?.performFetch()
+        } catch {
+            print("Error - \(error), function:" + #function)
+        }
     }
     
     // MARK: - Keyboard
@@ -143,70 +168,39 @@ class ConversationViewController: UIViewController, UITableViewDelegate, UITable
         }
     }
 
-    // MARK: - Table view data source
-
-    func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 1
-    }
-
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        if data.conversationData.isEmpty{
-            return 1
-        }else{
-            return data.conversationData.count
-        }
-    }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: MessageCell
-        if data.conversationData.isEmpty{
-            return tableView.dequeueReusableCell(withIdentifier: "NoMessages", for: indexPath)
-        }
-        if data.conversationData[indexPath.row].isIncoming{
-            cell = tableView.dequeueReusableCell(withIdentifier: "InputMessage", for: indexPath) as! MessageCell
-        }else{
-            cell = tableView.dequeueReusableCell(withIdentifier: "OutputMessage", for: indexPath) as! MessageCell
-        }
-        let message = data.conversationData[indexPath.row]
-        cell.message = message.text
-        cell.isIncoming = message.isIncoming
-        //cell.isUnread = ?
-        cell.time = message.date
-        // Configure the cell...
-
-        return cell
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
+    /// Генерация уникального ID для сообщений
+    private func generateMessageId() -> String {
+        let string = "\(arc4random_uniform(UInt32.max))+\(Date.timeIntervalSinceReferenceDate)+\(arc4random_uniform(UInt32.max))".data(using: .utf8)?.base64EncodedString()
+        return string!
     }
     
     // MARK: - Actions
     
+    
     @IBAction func send(_ sender: UIButton) {
+        
         sendButton.isEnabled = false
         let text = inputTextField.text ?? "???"
         inputTextField.text = nil
-        let message = SimpleMessage(text: text, isIncoming: false, date: Date())
-        data.pushNewMessage(message, toUser: data.conversationWithUser)
-        if data.conversationData.count == 1 {
-            let index = IndexPath(row: data.conversationData.count-1, section: 0)
-            self.tableView.reloadRows(at: [index], with: .left)
-            self.tableView.scrollToRow(at: index, at: .bottom, animated: true)
-        }else{
-            let index = IndexPath(row: data.conversationData.count-1, section: 0)
-            self.tableView.insertRows(at: [index], with: .right)
-            self.tableView.scrollToRow(at: index, at: .bottom, animated: true)
-        }
-        communicator?.sendMessage(string: text, to: data.conversationWithUser){
+        let newMessage = Message.insertConversation(in: storageManager.mainContext)
+        newMessage.date = Date()
+        newMessage.text = text
+        newMessage.incomming = false
+        newMessage.id = generateMessageId()
+        withFriend?.conversation?.addToMessages(newMessage)
+        if let userID = withFriend?.userId {
+        communicator?.sendMessage(string: text, to: userID){
             (success: Bool, error: Error?) in
             if !success{
                 let alertController = UIAlertController(title: "Ошибка", message: "Не удалось отправить сообщение \"\(text)\"", preferredStyle: .alert)
+                let action = UIAlertAction(title: "OK", style: .default, handler: nil)
+                alertController.addAction(action)
                 self.present(alertController, animated: true, completion: nil)
             }
         }
+        }
+        
     }
     
     @IBAction func gestureTapped(_ sender: Any) {
@@ -239,20 +233,93 @@ class ConversationViewController: UIViewController, UITableViewDelegate, UITable
         }
     }
     
-    func showNewMessage() {
-        DispatchQueue.main.sync {
-            if let messages = self.manager.conversation?.messages{
-                if messages.count == 1 {
-                    let index = IndexPath(row: messages.count-1, section: 0)
-                    self.tableView.reloadRows(at: [index], with: .right)
-                    self.tableView.scrollToRow(at: index, at: .bottom, animated: true)
-                }else{
-                    let index = IndexPath(row: messages.count-1, section: 0)
-                    self.tableView.insertRows(at: [index], with: .left)
-                    self.tableView.scrollToRow(at: index, at: .bottom, animated: true)
-                }
+}
+
+
+// MARK: - NSFetchedResultsControllerDelegate
+
+extension ConversationViewController: NSFetchedResultsControllerDelegate {
+    
+    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        tableView.beginUpdates()
+    }
+    
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>,
+                    didChange anObject: Any,
+                    at indexPath: IndexPath?,
+                    for type: NSFetchedResultsChangeType,
+                    newIndexPath: IndexPath?) {
+        switch type {
+        case .delete:
+            if let indexPath = indexPath {
+                tableView.deleteRows(at: [indexPath], with: .automatic)
+            }
+        case .insert:
+            if let newIndexPath = newIndexPath {
+                tableView.insertRows(at: [newIndexPath], with: .automatic)
+            }
+        case .move:
+            if let indexPath = indexPath {
+                tableView.deleteRows(at: [indexPath], with: .automatic)
+            }
+            
+            if let newIndexPath = newIndexPath {
+                tableView.insertRows(at: [newIndexPath], with: .automatic)
+            }
+        case .update:
+            if let indexPath = indexPath {
+                tableView.reloadRows(at: [indexPath], with: .automatic)
             }
         }
     }
     
+    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        tableView.endUpdates()
+    }
 }
+
+
+// MARK: - UITableViewDataSource
+
+extension ConversationViewController: UITableViewDataSource {
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        guard let sectionsCount = fetchedResultController?.sections?.count else {
+            return 0
+        }
+        
+        return sectionsCount
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        guard let sections = fetchedResultController?.sections else {
+            return 0
+        }
+        
+        return sections[section].numberOfObjects
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "OutputMessage") as? MessageCell else {
+            fatalError()
+        }
+        
+        if let message = fetchedResultController?.object(at: indexPath) {
+            cell.message = message.text
+        }
+        
+        return cell
+    }
+}
+
+
+// MARK: - UITableViewDelegate
+
+extension ConversationViewController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+}
+
+
