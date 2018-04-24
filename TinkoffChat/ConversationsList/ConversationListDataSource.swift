@@ -10,61 +10,68 @@ import UIKit
 
 extension ConversationsListViewController {
     
-    
     // MARK: - Table view data source
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if data.conversationListData.isEmpty {
+        if friends.isEmpty {
             return 1
         }else {
-            return data.conversationListData.count + 1
+            return friends.count + 1
         }
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if data.conversationListData.isEmpty{
+        if friends.isEmpty{
             guard let iCell = tableView.dequeueReusableCell(withIdentifier: "InformationCell", for: indexPath) as? InformationCell else{
                 fatalError()
             }
             iCell.information = "Нет друзей"
             return iCell
         }
-        if indexPath.row == data.conversationListData.count{
+        if indexPath.row == friends.count{
             guard let iCell = tableView.dequeueReusableCell(withIdentifier: "InformationCell", for: indexPath) as? InformationCell else{
                 fatalError()
             }
-            iCell.information = "Друзей: \(data.conversationListData.count)"
+            iCell.information = "Друзей: \(friends.count)"
             return iCell
         }
         let id = "ConversationCell"
         guard let cell = tableView.dequeueReusableCell(withIdentifier: id) as? ConversationCell else{
             fatalError()
         }
-        let currentFriend = data.conversationListData[indexPath.row]
-        cell.name = currentFriend.name
-        cell.message = currentFriend.lastMessage
-        cell.date = currentFriend.date
+        let currentFriend = friends[indexPath.row]
+        cell.name = currentFriend.fullName
+        if let conversation = dataManager.getConversation(with: currentFriend) {
+            if let lastMessage = conversation.lastMessage {
+                cell.message = lastMessage.text
+                cell.date = lastMessage.date
+                cell.hasUnreadMessages = lastMessage.unread
+            }
+        }
         cell.online = currentFriend.online
-        cell.hasUnreadMessages = currentFriend.hasUnreadMessages
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // Отжатие информационной ячейки
-        if /*manager.conversationListData.count == 0 || */ indexPath.row == data.conversationListData.count{
+        if /*manager.conversationListData.count == 0 || */ indexPath.row == friends.count{
             tableView.deselectRow(at: indexPath, animated: true)
             return
         }
-        if !data.conversationListData[indexPath.row].online{
+        if !friends[indexPath.row].online{
             tableView.deselectRow(at: indexPath, animated: true)
             return
         }
         let conversationStoryboard = UIStoryboard(name: "Conversation", bundle: nil)
         let conversationController = conversationStoryboard.instantiateViewController(withIdentifier: "ConversationViewController") as! ConversationViewController
-        let friend = data.conversationListData[indexPath.row]
-        manager.conversation = (withUser: friend.id, controller: conversationController, messages: [])
-        conversationController.manager = manager
-        conversationController.title = friend.name
+        let friend = friends[indexPath.row]
+        conversationController.dataManager = dataManager
+        conversationController.withUser = friend
+        conversationController.title = friend.fullName
+        if let conversation = dataManager.getConversation(with: friend) {
+            conversationController.messages = dataManager.getMessages(from: conversation)
+        }
+        dataManager.conversationVC = conversationController
         conversationController.isUserOnline = true
         conversationController.communicator = self.communicator
         // Первое слово в строке

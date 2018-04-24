@@ -8,39 +8,41 @@
 
 import UIKit
 
-class ConversationsListViewController: UITableViewController, ThemesViewControllerDelegate, ConversationsListProtocol{
+class ConversationsListViewController: UITableViewController, ThemesViewControllerDelegate, ConversationsListProtocol {
     
     
     // MARK: -
 
     var communicator = TinkoffCommunicator(userName: "zooorkin")
-    var manager = CommunicationManager()
-    var data: ConversationListData! {
-        return manager
-    }
+    var dataManager = CommunicationDataManager(storage: StorageManager())
+    
+    var friends: [TCUser] = []
     
     // MARK: -
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        manager.conversationList = ("zooorkin", self)
-        self.communicator.delegate = manager
+        self.communicator.delegate = dataManager
+        self.dataManager.conversationListVC = self
         self.tableView.dataSource = self
         self.tableView.delegate = self
         self.tableView.rowHeight = 96
         // Uncomment the following line to preserve selection between presentations
          self.clearsSelectionOnViewWillAppear = true
-        
+        friends = dataManager.getUsers()
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        reloadSection(section: 0, animated: true)
+        if let selected = tableView.indexPathForSelectedRow {
+            tableView.deselectRow(at: selected, animated: true)
+        }
+       // reloadSection(section: 0, animated: true)
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        manager.conversation = nil
+
     }
     
     // MARK: - Actions
@@ -76,26 +78,27 @@ class ConversationsListViewController: UITableViewController, ThemesViewControll
     }
     
     // MARK: - ConversationsListProtocol
-    
+
     public func update(){
+        friends = dataManager.getUsers()
         reloadSection(section: 0, animated: true)
     }
-    
-    // MARK: - Private functions
-    
-    private func reloadFriend(withName fromUser: String, animated: Bool = true){
-        if let index = data.conversationListData.index(where: { $0.id == fromUser}){
-            DispatchQueue.main.async {
-                let indexPath = IndexPath(row: index, section: 0)
-                self.tableView.reloadRows(at: [indexPath], with: animated ? .automatic : .none)
-            }
-            return
-        }
-        DispatchQueue.main.async {
-            self.tableView.reloadSections(IndexSet(integer: 0), with: animated ? .automatic : .none)
-        }
-    }
-    
+//
+//    // MARK: - Private functions
+//
+//    private func reloadFriend(withName fromUser: String, animated: Bool = true){
+//        if let index = data.conversationListData.index(where: { $0.id == fromUser}){
+//            DispatchQueue.main.async {
+//                let indexPath = IndexPath(row: index, section: 0)
+//                self.tableView.reloadRows(at: [indexPath], with: animated ? .automatic : .none)
+//            }
+//            return
+//        }
+//        DispatchQueue.main.async {
+//            self.tableView.reloadSections(IndexSet(integer: 0), with: animated ? .automatic : .none)
+//        }
+//    }
+//
     private func reloadSection(section: Int, animated: Bool = true){
         DispatchQueue.main.async {
             self.tableView.reloadSections(IndexSet(integer: section), with: animated ? .automatic : .none)

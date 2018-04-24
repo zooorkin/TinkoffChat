@@ -12,5 +12,5 @@ protocol ConversationProtocol {
     /// Уведомление об изменении online статуса собеседника
     func didChangeState(state: ConversationState)
     /// Уведомление о наличии новго сообщения, которое необходимо показать
-    func showNewMessage()
+    func showNewMessage(isIncomming: Bool)
 }

@@ -19,7 +19,6 @@ private struct MessageStruct: Codable{
     let text: String
 }
 
-
 class TinkoffCommunicator: NSObject, Communicator, MCNearbyServiceAdvertiserDelegate, MCNearbyServiceBrowserDelegate, MCSessionDelegate {
     
     /// ID текущего пира
@@ -29,13 +28,13 @@ class TinkoffCommunicator: NSObject, Communicator, MCNearbyServiceAdvertiserDele
     private var sessionsByDisplayName: [String: MCSession]
     private var peersByDesplayName: [String: (peerID: MCPeerID, info: [String: String]?)] = [:]
     
-    var delegate: CommunicatorDelegate?
+    var delegate: CommunicatorDataDelegate?
     var online: Bool
     
     /// Инициализатор
     init(userName: String) {
         // 1 этап
-        self.myPeerId = MCPeerID(displayName: userName)
+        self.myPeerId = MCPeerID(displayName: UIDevice.current.name)
         self.advertiser = MCNearbyServiceAdvertiser(peer: myPeerId,
                                                     discoveryInfo: ["userName": userName],
                                                     serviceType: "tinkoff-chat")
@@ -60,10 +59,11 @@ class TinkoffCommunicator: NSObject, Communicator, MCNearbyServiceAdvertiserDele
     
     // MARK: -
     
-    func sendMessage(string: String, to userID: String, completionHandler: ((_ success: Bool, _ error: Error?) -> ())?) {
+    func sendMessage(text: String, to userID: String, completionHandler: ((_ success: Bool, _ error: Error?) -> ())?) {
+        delegate?.sendMessage(text: text, to: userID)
         if let session = sessionsByDisplayName[userID]{
             if let peer = peersByDesplayName[userID]?.0{
-                let message = MessageStruct(eventType: "TextMessage", messageId: generateMessageId(), text: string)
+                let message = MessageStruct(eventType: "TextMessage", messageId: generateMessageId(), text: text)
                 let jsonEncoder = JSONEncoder()
                 do {
                     let data = try jsonEncoder.encode(message)
@@ -71,7 +71,7 @@ class TinkoffCommunicator: NSObject, Communicator, MCNearbyServiceAdvertiserDele
                         try session.send(data, toPeers: [peer], with: .unreliable)
                         completionHandler?(true, nil)
                     } catch {
-                        print("Сообщение отправить не удалось: \(string)")
+                        print("Сообщение отправить не удалось: \(text)")
                         completionHandler?(false, error)
                     }
                 } catch {
@@ -97,10 +97,10 @@ class TinkoffCommunicator: NSObject, Communicator, MCNearbyServiceAdvertiserDele
         
         switch state {
         case .connecting: break
-        case .connected:
-            if let userName = peersByDesplayName[peerID.displayName]?.info?["userName"]{
-                delegate?.didFoundUser(userID: peerID.displayName, userName: userName)
-            }
+        case .connected: break
+//            if let userName = peersByDesplayName[peerID.displayName]?.info?["userName"]{
+//                delegate?.didFoundUser(userID: peerID.displayName, userName: userName)
+//            }
         case .notConnected: break
         }
         
@@ -118,7 +118,7 @@ class TinkoffCommunicator: NSObject, Communicator, MCNearbyServiceAdvertiserDele
             let message = try jsonDecoder.decode(MessageStruct.self, from: data)
             if message.eventType == "TextMessage" {
                 print("Сообщение: \(message.text)")
-                delegate?.didReceiveMessage(text: message.text, fromUser: peerID.displayName, toUser: myPeerId.displayName)
+                delegate?.didReceiveMessage(text: message.text, from: peerID.displayName)
             } else {
                 print("Получен неизвестный тип события: \(message.eventType)")
             }
@@ -169,13 +169,13 @@ class TinkoffCommunicator: NSObject, Communicator, MCNearbyServiceAdvertiserDele
     
     func browser(_ browser: MCNearbyServiceBrowser, foundPeer peerID: MCPeerID, withDiscoveryInfo info: [String : String]?) {
         peersByDesplayName[peerID.displayName] = (peerID, info)
-
         print("НАЙДЕН ПИР: \(peerID.displayName)")
-        
         let session = MCSession(peer: myPeerId, securityIdentity: nil, encryptionPreference: .required)
         session.delegate = self
         browser.invitePeer(peerID, to: session, withContext: generateMessageId().data(using: .utf8), timeout: 10)
         sessionsByDisplayName[peerID.displayName] = session
+        let name = info?["userName"] ?? "unknown"
+        delegate?.didFoundUser(userID: peerID.displayName, userName: name)
     }
     
     func browser(_ browser: MCNearbyServiceBrowser, lostPeer peerID: MCPeerID) {

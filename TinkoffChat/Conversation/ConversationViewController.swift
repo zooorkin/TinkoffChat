@@ -17,11 +17,11 @@ class ConversationViewController: UIViewController, UITableViewDelegate, UITable
     
     // MARK: -
     
-    weak var communicator: TinkoffCommunicator?
-    weak var manager: CommunicationManager!
-    var data: ConversationData {
-        return manager
-    }
+    var communicator: TinkoffCommunicator?
+    var dataManager: CommunicationDataManager!
+    
+    var withUser: TCUser!
+    var messages: [TCMessage] = []
     
     @IBOutlet var tableView: UITableView!
     @IBOutlet var gestureTap: UITapGestureRecognizer!
@@ -78,17 +78,6 @@ class ConversationViewController: UIViewController, UITableViewDelegate, UITable
         if let index = tableView.indexPathForSelectedRow{
             tableView.deselectRow(at: index, animated: animated)
         }
-        if let friend = data.conversationWithFriend(){
-            if friend.lastMessage != nil{
-                let message = SimpleMessage(text: friend.lastMessage!, isIncoming: friend.isIncomming!, date: friend.date!)
-                manager.conversation!.messages = [message]
-            } else {
-                manager.conversation!.messages = []
-            }
-        } else {
-            fatalError()
-        }
-        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -98,11 +87,9 @@ class ConversationViewController: UIViewController, UITableViewDelegate, UITable
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        if let messages = manager.conversation?.messages{
-            if !messages.isEmpty {
-                let indexPath = IndexPath(row: messages.count - 1, section: 0)
-                self.tableView.scrollToRow(at: indexPath, at: .bottom, animated: false)
-            }
+        if !messages.isEmpty {
+            let indexPath = IndexPath(row: messages.count - 1, section: 0)
+            self.tableView.scrollToRow(at: indexPath, at: .bottom, animated: false)
         }
     }
     
@@ -152,29 +139,28 @@ class ConversationViewController: UIViewController, UITableViewDelegate, UITable
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        if data.conversationData.isEmpty{
+        if messages.isEmpty{
             return 1
         }else{
-            return data.conversationData.count
+            return messages.count
         }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: MessageCell
-        if data.conversationData.isEmpty{
+        if messages.isEmpty{
             return tableView.dequeueReusableCell(withIdentifier: "NoMessages", for: indexPath)
         }
-        if data.conversationData[indexPath.row].isIncoming{
+        if messages[indexPath.row].incomming{
             cell = tableView.dequeueReusableCell(withIdentifier: "InputMessage", for: indexPath) as! MessageCell
         }else{
             cell = tableView.dequeueReusableCell(withIdentifier: "OutputMessage", for: indexPath) as! MessageCell
         }
-        let message = data.conversationData[indexPath.row]
+        let message = messages[indexPath.row]
         cell.message = message.text
-        cell.isIncoming = message.isIncoming
-        //cell.isUnread = ?
-        cell.time = message.date
-        // Configure the cell...
+        cell.isIncoming = message.incomming
+        cell.isUnread = message.unread
+        cell.time = message.date!
 
         return cell
     }
@@ -189,23 +175,18 @@ class ConversationViewController: UIViewController, UITableViewDelegate, UITable
         sendButton.isEnabled = false
         let text = inputTextField.text ?? "???"
         inputTextField.text = nil
-        let message = SimpleMessage(text: text, isIncoming: false, date: Date())
-        data.pushNewMessage(message, toUser: data.conversationWithUser)
-        if data.conversationData.count == 1 {
-            let index = IndexPath(row: data.conversationData.count-1, section: 0)
-            self.tableView.reloadRows(at: [index], with: .left)
-            self.tableView.scrollToRow(at: index, at: .bottom, animated: true)
-        }else{
-            let index = IndexPath(row: data.conversationData.count-1, section: 0)
-            self.tableView.insertRows(at: [index], with: .right)
-            self.tableView.scrollToRow(at: index, at: .bottom, animated: true)
-        }
-        communicator?.sendMessage(string: text, to: data.conversationWithUser){
-            (success: Bool, error: Error?) in
-            if !success{
-                let alertController = UIAlertController(title: "Ошибка", message: "Не удалось отправить сообщение \"\(text)\"", preferredStyle: .alert)
-                self.present(alertController, animated: true, completion: nil)
+        if let userId = withUser.userId {
+            communicator?.sendMessage(text: text, to: userId){
+                (success: Bool, error: Error?) in
+                if !success{
+                    let alertController = UIAlertController(title: "Ошибка", message: "Не удалось отправить сообщение \"\(text)\"", preferredStyle: .alert)
+                    let ok = UIAlertAction(title: "OK", style: .default, handler: nil)
+                    alertController.addAction(ok)
+                    self.present(alertController, animated: true, completion: nil)
+                }
             }
+        }else{
+            //
         }
     }
     
@@ -239,20 +220,33 @@ class ConversationViewController: UIViewController, UITableViewDelegate, UITable
         }
     }
     
-    func showNewMessage() {
-        DispatchQueue.main.sync {
-            if let messages = self.manager.conversation?.messages{
-                if messages.count == 1 {
-                    let index = IndexPath(row: messages.count-1, section: 0)
-                    self.tableView.reloadRows(at: [index], with: .right)
-                    self.tableView.scrollToRow(at: index, at: .bottom, animated: true)
-                }else{
-                    let index = IndexPath(row: messages.count-1, section: 0)
-                    self.tableView.insertRows(at: [index], with: .left)
-                    self.tableView.scrollToRow(at: index, at: .bottom, animated: true)
-                }
+    func showNewMessage(isIncomming: Bool) {
+        if let conversation = dataManager.getConversation(with: withUser) {
+            messages = dataManager.getMessages(from: conversation)
+        }
+        
+        if isIncomming {
+            if messages.count == 1 {
+                let index = IndexPath(row: messages.count-1, section: 0)
+                self.tableView.reloadRows(at: [index], with: .right)
+                self.tableView.scrollToRow(at: index, at: .bottom, animated: true)
+            }else{
+                let index = IndexPath(row: messages.count-1, section: 0)
+                self.tableView.insertRows(at: [index], with: .left)
+                self.tableView.scrollToRow(at: index, at: .bottom, animated: true)
+            }
+        } else {
+            if messages.count == 1 {
+                let index = IndexPath(row: messages.count-1, section: 0)
+                self.tableView.reloadRows(at: [index], with: .left)
+                self.tableView.scrollToRow(at: index, at: .bottom, animated: true)
+            }else{
+                let index = IndexPath(row: messages.count-1, section: 0)
+                self.tableView.insertRows(at: [index], with: .right)
+                self.tableView.scrollToRow(at: index, at: .bottom, animated: true)
             }
         }
     }
+    
     
 }

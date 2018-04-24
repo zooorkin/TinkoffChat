@@ -19,7 +19,7 @@ class ProfileViewController: UITableViewController, UIImagePickerControllerDeleg
     
     var profileImage: UIImage? {
         get {
-            if let data = appUser.currentUser!.photo {
+            if let data = appUser.user!.photo {
                 return  UIImage(data: data)
             } else {
                 return nil
@@ -27,21 +27,21 @@ class ProfileViewController: UITableViewController, UIImagePickerControllerDeleg
         }
         set {
             if let photo = newValue {
-                appUser.currentUser!.photo = UIImageJPEGRepresentation(photo, 1)
+                appUser.user!.photo = UIImageJPEGRepresentation(photo, 1)
             } else {
-                 appUser.currentUser!.photo = nil
+                 appUser.user!.photo = nil
             }
         }
     }
     
     var profileImageData: Data? {
         get {
-            return appUser.currentUser!.photo
+            return appUser.user!.photo
         }
     }
     
-    lazy var appUser: AppUser = {
-        return AppUser.findOrInsertAppUser(in: storageManager.mainContext)!
+    lazy var appUser: TCAppUser = {
+        return TCAppUser.findOrInsertAppUser(in: storageManager.mainContext)
     }()
     
     override func viewDidLoad() {
@@ -72,9 +72,9 @@ class ProfileViewController: UITableViewController, UIImagePickerControllerDeleg
         let index4 = IndexPath(row: 4, section: 0)
         let cellDesc = self.tableView.cellForRow(at: index4) as! ProfileEdittingDescriptionCell
         storageManager.mainContext.perform {
-            self.appUser.currentUser?.name = cellName.profileName.text
-            self.appUser.currentUser?.info = cellDesc.profileDescription.text
-            self.appUser.currentUser?.photo = self.profileImageData
+            self.appUser.user?.fullName = cellName.profileName.text
+            self.appUser.user?.info = cellDesc.profileDescription.text
+            self.appUser.user?.photo = self.profileImageData
             self.storageManager.performSave(context: self.storageManager.mainContext, completion: nil)
             completion?()
         }

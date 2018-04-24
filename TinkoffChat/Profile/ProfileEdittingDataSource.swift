@@ -17,7 +17,7 @@ extension ProfileViewController {
         switch indexPath.row {
         case 0:
             let cell = tableView.dequeueReusableCell(withIdentifier: "ProfileEdittingPhotoCell", for: indexPath) as? ProfileEdittingPhotoCell
-            if let image = appUser.currentUser?.photo {
+            if let image = appUser.user?.photo {
                 cell!.profileImage = UIImage(data: image)
             } else {
                 cell!.profileImage = nil
@@ -29,7 +29,7 @@ extension ProfileViewController {
             return cell!
         case 2:
             let cell = tableView.dequeueReusableCell(withIdentifier: "ProfileEdittingNameCell", for: indexPath) as? ProfileEdittingNameCell
-            cell!.profileName.text = appUser.currentUser?.name ?? ""
+            cell!.profileName.text = appUser.user?.fullName ?? ""
             return cell!
         case 3:
             let cell = tableView.dequeueReusableCell(withIdentifier: "ProfileHeaderCell", for: indexPath) as? ProfileHeaderCell
@@ -37,7 +37,7 @@ extension ProfileViewController {
             return cell!
         case 4:
             let cell = tableView.dequeueReusableCell(withIdentifier: "ProfileEdittingDescriptionCell", for: indexPath) as? ProfileEdittingDescriptionCell
-            cell!.profileDescription.text = appUser.currentUser?.info
+            cell!.profileDescription.text = appUser.user?.info
             return cell!
         default:
             fatalError()

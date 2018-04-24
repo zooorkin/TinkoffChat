@@ -9,7 +9,8 @@
 /* Begin PBXBuildFile section */
 		88144CE0204329EA0035CB07 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88144CDF204329EA0035CB07 /* Log.swift */; };
 		881AD48E20515690002503BF /* CircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881AD48D20515690002503BF /* CircleView.swift */; };
-		881AD4902051677B002503BF /* Friend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881AD48F2051677B002503BF /* Friend.swift */; };
+		882CB4C9208F7CC500538AC0 /* EntitiesExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 882CB4C8208F7CC500538AC0 /* EntitiesExtensions.swift */; };
+		882CB4EF208F913C00538AC0 /* CoreDataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 882CB4EE208F913C00538AC0 /* CoreDataTests.swift */; };
 		882F1AFE2080D27F002E75C2 /* ProfileDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 882F1AFD2080D27F002E75C2 /* ProfileDataSource.swift */; };
 		882F1B002080E758002E75C2 /* ProfileEdittingDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 882F1AFF2080E758002E75C2 /* ProfileEdittingDataSource.swift */; };
 		882F1B022080E8B5002E75C2 /* ConversationListDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 882F1B012080E8B5002E75C2 /* ConversationListDataSource.swift */; };
@@ -27,8 +28,8 @@
 		8869D22C207921030021ACEC /* ProfileCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8869D22B207921030021ACEC /* ProfileCells.swift */; };
 		8869D22E20792B2A0021ACEC /* EditTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8869D22D20792B2A0021ACEC /* EditTextView.swift */; };
 		886D6B912080F1780032AE80 /* ProfileTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 886D6B902080F1780032AE80 /* ProfileTableView.swift */; };
+		886DD24D208F9D2D0042922B /* CommunicationDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 886DD24C208F9D2D0042922B /* CommunicationDataManager.swift */; };
 		888DED592080249A00B95022 /* Storage.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 888DED572080249A00B95022 /* Storage.xcdatamodeld */; };
-		88A030D7207A741C008C297A /* SimpleMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A030D6207A741C008C297A /* SimpleMessage.swift */; };
 		88A030D9207AB4C9008C297A /* ColorButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A030D8207AB4C9008C297A /* ColorButton.swift */; };
 		88A030DB207AB522008C297A /* ConversationsListProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A030DA207AB522008C297A /* ConversationsListProtocol.swift */; };
 		88A030DD207AB554008C297A /* ConversationProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A030DC207AB554008C297A /* ConversationProtocol.swift */; };
@@ -50,15 +51,27 @@
 		88DBB03C2041BB0C005EDA8B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 88DBB03A2041BB0C005EDA8B /* LaunchScreen.storyboard */; };
 		88E5978C2075E7B500CE3444 /* CommunicatorProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E5978B2075E7B500CE3444 /* CommunicatorProtocols.swift */; };
 		88E5978E2075E9DA00CE3444 /* Communicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E5978D2075E9DA00CE3444 /* Communicator.swift */; };
-		88E597902075F1C100CE3444 /* CommunicationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E5978F2075F1C100CE3444 /* CommunicationManager.swift */; };
 		88EE44C6206EA46600633563 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88EE44C5206EA46600633563 /* ProfileViewController.swift */; };
 		88EE44C7206EC85900633563 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 884AF9292049E32D00A4A045 /* Profile.storyboard */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		882CB4F1208F913C00538AC0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 88DBB0232041BB0C005EDA8B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 88DBB02A2041BB0C005EDA8B;
+			remoteInfo = TinkoffChat;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		88144CDF204329EA0035CB07 /* Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
 		881AD48D20515690002503BF /* CircleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleView.swift; sourceTree = "<group>"; };
-		881AD48F2051677B002503BF /* Friend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Friend.swift; sourceTree = "<group>"; };
+		882CB4C8208F7CC500538AC0 /* EntitiesExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntitiesExtensions.swift; sourceTree = "<group>"; };
+		882CB4EC208F913C00538AC0 /* CoreDataTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CoreDataTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		882CB4EE208F913C00538AC0 /* CoreDataTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataTests.swift; sourceTree = "<group>"; };
+		882CB4F0208F913C00538AC0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		882F1AFD2080D27F002E75C2 /* ProfileDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDataSource.swift; sourceTree = "<group>"; };
 		882F1AFF2080E758002E75C2 /* ProfileEdittingDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEdittingDataSource.swift; sourceTree = "<group>"; };
 		882F1B012080E8B5002E75C2 /* ConversationListDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationListDataSource.swift; sourceTree = "<group>"; };
@@ -80,8 +93,8 @@
 		8869D22B207921030021ACEC /* ProfileCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCells.swift; sourceTree = "<group>"; };
 		8869D22D20792B2A0021ACEC /* EditTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTextView.swift; sourceTree = "<group>"; };
 		886D6B902080F1780032AE80 /* ProfileTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableView.swift; sourceTree = "<group>"; };
+		886DD24C208F9D2D0042922B /* CommunicationDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunicationDataManager.swift; sourceTree = "<group>"; };
 		888DED582080249A00B95022 /* TinkoffChat.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TinkoffChat.xcdatamodel; sourceTree = "<group>"; };
-		88A030D6207A741C008C297A /* SimpleMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleMessage.swift; sourceTree = "<group>"; };
 		88A030D8207AB4C9008C297A /* ColorButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorButton.swift; sourceTree = "<group>"; };
 		88A030DA207AB522008C297A /* ConversationsListProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsListProtocol.swift; sourceTree = "<group>"; };
 		88A030DC207AB554008C297A /* ConversationProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationProtocol.swift; sourceTree = "<group>"; };
@@ -105,11 +118,17 @@
 		88DBB03D2041BB0C005EDA8B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		88E5978B2075E7B500CE3444 /* CommunicatorProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunicatorProtocols.swift; sourceTree = "<group>"; };
 		88E5978D2075E9DA00CE3444 /* Communicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Communicator.swift; sourceTree = "<group>"; };
-		88E5978F2075F1C100CE3444 /* CommunicationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunicationManager.swift; sourceTree = "<group>"; };
 		88EE44C5206EA46600633563 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		882CB4E9208F913C00538AC0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		88DBB0282041BB0C005EDA8B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -120,6 +139,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		882CB4ED208F913C00538AC0 /* CoreDataTests */ = {
+			isa = PBXGroup;
+			children = (
+				882CB4EE208F913C00538AC0 /* CoreDataTests.swift */,
+				882CB4F0208F913C00538AC0 /* Info.plist */,
+			);
+			path = CoreDataTests;
+			sourceTree = "<group>";
+		};
 		8835FA26205D9785002CFA21 /* ThemesViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -194,15 +222,6 @@
 			path = Utilites;
 			sourceTree = "<group>";
 		};
-		88BB5CF22076B8B9000E225C /* Data */ = {
-			isa = PBXGroup;
-			children = (
-				881AD48F2051677B002503BF /* Friend.swift */,
-				88A030D6207A741C008C297A /* SimpleMessage.swift */,
-			);
-			path = Data;
-			sourceTree = "<group>";
-		};
 		88BF083020512ACB00B08C69 /* ConversationsList */ = {
 			isa = PBXGroup;
 			children = (
@@ -221,6 +240,7 @@
 			children = (
 				888DED572080249A00B95022 /* Storage.xcdatamodeld */,
 				88CDE168207F910100C68C70 /* StorageManager.swift */,
+				882CB4C8208F7CC500538AC0 /* EntitiesExtensions.swift */,
 			);
 			path = CoreDataStack;
 			sourceTree = "<group>";
@@ -229,6 +249,7 @@
 			isa = PBXGroup;
 			children = (
 				88DBB02D2041BB0C005EDA8B /* TinkoffChat */,
+				882CB4ED208F913C00538AC0 /* CoreDataTests */,
 				88DBB02C2041BB0C005EDA8B /* Products */,
 			);
 			sourceTree = "<group>";
@@ -237,6 +258,7 @@
 			isa = PBXGroup;
 			children = (
 				88DBB02B2041BB0C005EDA8B /* TinkoffChat.app */,
+				882CB4EC208F913C00538AC0 /* CoreDataTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -249,7 +271,6 @@
 				88CDE167207F90DA00C68C70 /* CoreDataStack */,
 				88E5978A2075E78600CE3444 /* Communication */,
 				8835FA26205D9785002CFA21 /* ThemesViewController */,
-				88BB5CF22076B8B9000E225C /* Data */,
 				8892FBE020548DBA00D851E3 /* Utilites */,
 				88691523205199130045D3F0 /* CustomUIElements */,
 				88BF083020512ACB00B08C69 /* ConversationsList */,
@@ -267,7 +288,7 @@
 			isa = PBXGroup;
 			children = (
 				88E5978D2075E9DA00CE3444 /* Communicator.swift */,
-				88E5978F2075F1C100CE3444 /* CommunicationManager.swift */,
+				886DD24C208F9D2D0042922B /* CommunicationDataManager.swift */,
 				88E5978B2075E7B500CE3444 /* CommunicatorProtocols.swift */,
 			);
 			path = Communication;
@@ -276,6 +297,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		882CB4EB208F913C00538AC0 /* CoreDataTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 882CB4F3208F913C00538AC0 /* Build configuration list for PBXNativeTarget "CoreDataTests" */;
+			buildPhases = (
+				882CB4E8208F913C00538AC0 /* Sources */,
+				882CB4E9208F913C00538AC0 /* Frameworks */,
+				882CB4EA208F913C00538AC0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				882CB4F2208F913C00538AC0 /* PBXTargetDependency */,
+			);
+			name = CoreDataTests;
+			productName = CoreDataTests;
+			productReference = 882CB4EC208F913C00538AC0 /* CoreDataTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		88DBB02A2041BB0C005EDA8B /* TinkoffChat */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 88DBB0402041BB0C005EDA8B /* Build configuration list for PBXNativeTarget "TinkoffChat" */;
@@ -303,6 +342,11 @@
 				LastUpgradeCheck = 0920;
 				ORGANIZATIONNAME = "Андрей Зорькин";
 				TargetAttributes = {
+					882CB4EB208F913C00538AC0 = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 88DBB02A2041BB0C005EDA8B;
+					};
 					88DBB02A2041BB0C005EDA8B = {
 						CreatedOnToolsVersion = 9.2;
 						LastSwiftMigration = 0920;
@@ -324,11 +368,19 @@
 			projectRoot = "";
 			targets = (
 				88DBB02A2041BB0C005EDA8B /* TinkoffChat */,
+				882CB4EB208F913C00538AC0 /* CoreDataTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		882CB4EA208F913C00538AC0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		88DBB0292041BB0C005EDA8B /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -347,6 +399,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		882CB4E8208F913C00538AC0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				882CB4EF208F913C00538AC0 /* CoreDataTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		88DBB0272041BB0C005EDA8B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -363,20 +423,18 @@
 				886D6B912080F1780032AE80 /* ProfileTableView.swift in Sources */,
 				88EE44C6206EA46600633563 /* ProfileViewController.swift in Sources */,
 				882F1B002080E758002E75C2 /* ProfileEdittingDataSource.swift in Sources */,
+				882CB4C9208F7CC500538AC0 /* EntitiesExtensions.swift in Sources */,
 				882F1AFE2080D27F002E75C2 /* ProfileDataSource.swift in Sources */,
 				88691520205182580045D3F0 /* MessageCell.swift in Sources */,
 				88144CE0204329EA0035CB07 /* Log.swift in Sources */,
 				8835FA2A205D9A47002CFA21 /* ThemesViewController.m in Sources */,
 				88B96C032053307900C4961C /* DateFunctions.swift in Sources */,
-				88A030D7207A741C008C297A /* SimpleMessage.swift in Sources */,
 				882F1B022080E8B5002E75C2 /* ConversationListDataSource.swift in Sources */,
 				8835FA2D205D9BED002CFA21 /* Themes.m in Sources */,
-				881AD4902051677B002503BF /* Friend.swift in Sources */,
 				884AF9342049F71000A4A045 /* EditButton.swift in Sources */,
 				88A3EBEB205466B000CC5FD7 /* MessageCellConfiguration.swift in Sources */,
 				884AF9322049EC2700A4A045 /* ChangeProfileImageButton.swift in Sources */,
 				88A3EBE92054668800CC5FD7 /* ConversationCellConfiguration.swift in Sources */,
-				88E597902075F1C100CE3444 /* CommunicationManager.swift in Sources */,
 				88E5978E2075E9DA00CE3444 /* Communicator.swift in Sources */,
 				88A030DB207AB522008C297A /* ConversationsListProtocol.swift in Sources */,
 				88BF082F20512AA900B08C69 /* ConversationsListViewController.swift in Sources */,
@@ -386,6 +444,7 @@
 				8869151E20517ED40045D3F0 /* MessageView.swift in Sources */,
 				88CDE169207F910100C68C70 /* StorageManager.swift in Sources */,
 				88CA58F2207A150B00D5646C /* UserCircle.swift in Sources */,
+				886DD24D208F9D2D0042922B /* CommunicationDataManager.swift in Sources */,
 				88BF08382051322C00B08C69 /* RoundImage.swift in Sources */,
 				88E5978C2075E7B500CE3444 /* CommunicatorProtocols.swift in Sources */,
 				888DED592080249A00B95022 /* Storage.xcdatamodeld in Sources */,
@@ -393,6 +452,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		882CB4F2208F913C00538AC0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 88DBB02A2041BB0C005EDA8B /* TinkoffChat */;
+			targetProxy = 882CB4F1208F913C00538AC0 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		884AF9292049E32D00A4A045 /* Profile.storyboard */ = {
@@ -422,6 +489,42 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		882CB4F4208F913C00538AC0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 68427LK7H9;
+				INFOPLIST_FILE = CoreDataTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = zooorkin.CoreDataTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TinkoffChat.app/TinkoffChat";
+			};
+			name = Debug;
+		};
+		882CB4F5208F913C00538AC0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 68427LK7H9;
+				INFOPLIST_FILE = CoreDataTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = zooorkin.CoreDataTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TinkoffChat.app/TinkoffChat";
+			};
+			name = Release;
+		};
 		88DBB03E2041BB0C005EDA8B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -539,7 +642,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 68427LK7H9;
 				INFOPLIST_FILE = TinkoffChat/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ru.zooorkin.TinkoffChat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -560,7 +663,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 68427LK7H9;
 				INFOPLIST_FILE = TinkoffChat/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ru.zooorkin.TinkoffChat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -575,6 +678,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		882CB4F3208F913C00538AC0 /* Build configuration list for PBXNativeTarget "CoreDataTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				882CB4F4208F913C00538AC0 /* Debug */,
+				882CB4F5208F913C00538AC0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		88DBB0262041BB0C005EDA8B /* Build configuration list for PBXProject "TinkoffChat" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

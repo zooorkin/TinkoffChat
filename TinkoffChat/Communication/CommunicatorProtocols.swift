@@ -9,7 +9,7 @@
 import Foundation
 
 
-protocol CommunicatorDelegate: class {
+protocol CommunicatorDataDelegate: class {
     /// Найден пользователь
     func didFoundUser(userID: String, userName: String?)
     /// Потерян пользователь
@@ -19,16 +19,24 @@ protocol CommunicatorDelegate: class {
     /// Ошибка запуска MCNearbyServiceAdvertiser
     func failedToStartAdvertising(error: Error)
     /// Получено сообщение
-    func didReceiveMessage(text: String, fromUser: String, toUser: String)
+    func didReceiveMessage(text: String, from userId: String)
+    /// Отправка сообщение
+    func sendMessage(text: String, to userId: String)
+}
+
+protocol CommunicatorGetDataDelegate {
+    func getUsers() -> [TCUser]
+    func getConversation(with: TCUser) -> TCConversation?
+    func getMessages(from: TCConversation) -> [TCMessage]
 }
 
 protocol Communicator {
     /// Отправка сообщение
-    func sendMessage(string: String,
+    func sendMessage(text: String,
                      to userID: String,
                      completionHandler:((_ success: Bool, _ error : Error?) -> ())?)
     /// Делегат <CommunicatorDelegate>
-    weak var delegate: CommunicatorDelegate? {get set}
+    weak var delegate: CommunicatorDataDelegate? {get set}
     var online: Bool {get set}
 }
 
