@@ -13,12 +13,10 @@ import CoreData
 
 class CoreDataTests: XCTestCase {
     
-    var manager: StorageManager?
-    
     private let rootAssembly = TCRootAssembly()
     
     var context: NSManagedObjectContext {
-        return manager!.mainContext
+        return rootAssembly.presentationAssembly.servicesAssembly.coreAssembly.coreDataStack.mainContext
     }
     var model: NSManagedObjectModel {
         return context.model!
@@ -26,7 +24,6 @@ class CoreDataTests: XCTestCase {
     
     override func setUp() {
         super.setUp()
-        manager = StorageManager()
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
     
