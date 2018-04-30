@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TCMessageCell" customModule="TinkoffChat" customModuleProvider="target"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TCOutputMessageCell" id="BcD-dN-oQp" customClass="TCMessageCell" customModule="TinkoffChat" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="BcD-dN-oQp" id="Eht-aD-6dN">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tail52" translatesAutoresizingMaskIntoConstraints="NO" id="B1f-go-3NR">
+                        <rect key="frame" x="341" y="22" width="26" height="18"/>
+                        <color key="tintColor" red="1" green="0.071421912759999998" blue="0.46033846020000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="18" id="nnE-5e-Rri"/>
+                            <constraint firstAttribute="width" constant="26" id="qdW-Bq-u8a"/>
+                        </constraints>
+                    </imageView>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="A20-gp-RdA" customClass="MessageView" customModule="TinkoffChat" customModuleProvider="target">
+                        <rect key="frame" x="139" y="4" width="220" height="36"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Исходящее сообщение" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1DV-8F-EP0">
+                                <rect key="frame" x="16" y="8" width="188" height="20"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="1DV-8F-EP0" secondAttribute="trailing" constant="16" id="62u-4n-n1e"/>
+                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="36" id="GZi-4g-7zg"/>
+                            <constraint firstAttribute="bottom" secondItem="1DV-8F-EP0" secondAttribute="bottom" constant="8" id="cfx-Ui-NZd"/>
+                            <constraint firstItem="1DV-8F-EP0" firstAttribute="leading" secondItem="A20-gp-RdA" secondAttribute="leading" constant="16" id="phV-lC-Vqz"/>
+                            <constraint firstItem="1DV-8F-EP0" firstAttribute="top" secondItem="A20-gp-RdA" secondAttribute="top" constant="8" id="uYD-1U-goR"/>
+                        </constraints>
+                    </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="9:43" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GPI-8X-BHb">
+                        <rect key="frame" x="100" y="16.5" width="27" height="15"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="A20-gp-RdA" secondAttribute="trailing" constant="16" id="10Q-T8-5Kh"/>
+                    <constraint firstItem="A20-gp-RdA" firstAttribute="top" secondItem="Eht-aD-6dN" secondAttribute="top" constant="4" id="45l-Li-6E8"/>
+                    <constraint firstAttribute="bottom" secondItem="GPI-8X-BHb" secondAttribute="bottom" constant="12" id="6R2-UJ-eGk"/>
+                    <constraint firstAttribute="bottom" secondItem="B1f-go-3NR" secondAttribute="bottom" constant="4" id="BQ5-SE-q1K"/>
+                    <constraint firstAttribute="bottom" secondItem="A20-gp-RdA" secondAttribute="bottom" constant="4" id="SZ9-NM-Yqw"/>
+                    <constraint firstItem="A20-gp-RdA" firstAttribute="leading" secondItem="GPI-8X-BHb" secondAttribute="trailing" constant="12" id="nhw-2q-dmt"/>
+                    <constraint firstItem="A20-gp-RdA" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Eht-aD-6dN" secondAttribute="leading" constant="93" id="nir-lA-Jud"/>
+                    <constraint firstAttribute="trailing" secondItem="B1f-go-3NR" secondAttribute="trailing" constant="8" id="zcS-sW-wTP"/>
+                </constraints>
+            </tableViewCellContentView>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <connections>
+                <outlet property="messageLabel" destination="1DV-8F-EP0" id="MtQ-fu-fR9"/>
+                <outlet property="messageView" destination="A20-gp-RdA" id="BMR-kC-GQ1"/>
+                <outlet property="tail" destination="B1f-go-3NR" id="DSR-Uz-lq7"/>
+                <outlet property="timeLabel" destination="GPI-8X-BHb" id="G4N-kz-zBc"/>
+            </connections>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="tail52" width="26" height="18"/>
+    </resources>
+</document>

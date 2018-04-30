@@ -16,7 +16,7 @@ protocol ITCStorage {
     func getMessages(from: TCConversation) -> [TCMessage]
     func getLastMessage(from: TCConversation) -> TCMessage
     
-    func userDidBecomeOnline(userId: String)
+    func userDidBecomeOnline(userId: String, withName: String)
     func userDidBecomeOffine(userId: String)
     func didReceive(message: String, fromUserWithId: String)
     func didSend(message: String, toUserWithId: String)

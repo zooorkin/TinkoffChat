@@ -15,6 +15,8 @@ class CoreDataTests: XCTestCase {
     
     var manager: StorageManager?
     
+    private let rootAssembly = TCRootAssembly()
+    
     var context: NSManagedObjectContext {
         return manager!.mainContext
     }
@@ -56,12 +58,11 @@ class CoreDataTests: XCTestCase {
         _ = TCMessage.fetchRequest(conversationId: "0", model: model)
         _ = TCMessage.getAll(in: context)
         _ = TCMessage.get(conversationId: "0", in: context)
+        
     }
     
     func testPerformanceExample() {
-        // This is an example of a performance test case.
         self.measure {
-            // Put the code you want to measure the time of here.
         }
     }
     

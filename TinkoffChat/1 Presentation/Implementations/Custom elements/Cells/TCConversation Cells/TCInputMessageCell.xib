@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TCMessageCell" customModule="TinkoffChat" customModuleProvider="target"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TCInputMessageCell" id="pex-Ke-GhL" customClass="TCMessageCell" customModule="TinkoffChat" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="pex-Ke-GhL" id="RwP-fh-BED">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tail51" translatesAutoresizingMaskIntoConstraints="NO" id="EEd-BZ-nw9">
+                        <rect key="frame" x="8" y="22" width="26" height="18"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="26" id="ME2-yd-ih4"/>
+                            <constraint firstAttribute="height" constant="18" id="mup-BL-r0e"/>
+                        </constraints>
+                    </imageView>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cFx-ID-tLy" customClass="MessageView" customModule="TinkoffChat" customModuleProvider="target">
+                        <rect key="frame" x="16" y="4" width="209" height="36"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Входящее сообщение" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xdm-Iv-XZk">
+                                <rect key="frame" x="16" y="8" width="177" height="20"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Xdm-Iv-XZk" firstAttribute="top" secondItem="cFx-ID-tLy" secondAttribute="top" constant="8" id="9gi-pb-CM6"/>
+                            <constraint firstAttribute="bottom" secondItem="Xdm-Iv-XZk" secondAttribute="bottom" constant="8" id="RgS-Ix-28s"/>
+                            <constraint firstAttribute="trailing" secondItem="Xdm-Iv-XZk" secondAttribute="trailing" constant="16" id="ZGV-aD-cco"/>
+                            <constraint firstItem="Xdm-Iv-XZk" firstAttribute="leading" secondItem="cFx-ID-tLy" secondAttribute="leading" constant="16" id="aUY-Km-zVj"/>
+                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="46" id="uYq-7O-ofU"/>
+                        </constraints>
+                    </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="9:41" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qei-6i-uHt">
+                        <rect key="frame" x="237" y="17.5" width="24.5" height="14.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="qei-6i-uHt" firstAttribute="leading" secondItem="cFx-ID-tLy" secondAttribute="trailing" constant="12" id="9cK-lt-nX1"/>
+                    <constraint firstAttribute="bottom" secondItem="EEd-BZ-nw9" secondAttribute="bottom" constant="4" id="QJ2-s2-mOk"/>
+                    <constraint firstAttribute="bottom" secondItem="qei-6i-uHt" secondAttribute="bottom" constant="12" id="Qov-nf-TcS"/>
+                    <constraint firstAttribute="bottom" secondItem="cFx-ID-tLy" secondAttribute="bottom" constant="4" id="eqx-ba-5FH"/>
+                    <constraint firstItem="cFx-ID-tLy" firstAttribute="leading" secondItem="RwP-fh-BED" secondAttribute="leading" constant="16" id="glQ-w0-5WP"/>
+                    <constraint firstItem="EEd-BZ-nw9" firstAttribute="leading" secondItem="RwP-fh-BED" secondAttribute="leading" constant="8" id="ko5-ZV-mCh"/>
+                    <constraint firstItem="cFx-ID-tLy" firstAttribute="top" secondItem="RwP-fh-BED" secondAttribute="top" constant="4" id="s6i-QZ-bmD"/>
+                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="cFx-ID-tLy" secondAttribute="trailing" constant="93" id="u2k-5n-E7U"/>
+                </constraints>
+            </tableViewCellContentView>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <connections>
+                <outlet property="messageLabel" destination="Xdm-Iv-XZk" id="KIa-jg-vTz"/>
+                <outlet property="messageView" destination="cFx-ID-tLy" id="WsQ-46-FMP"/>
+                <outlet property="tail" destination="EEd-BZ-nw9" id="Eos-Mw-5ux"/>
+                <outlet property="timeLabel" destination="qei-6i-uHt" id="Gdv-57-d4f"/>
+            </connections>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="tail51" width="26" height="18"/>
+    </resources>
+</document>

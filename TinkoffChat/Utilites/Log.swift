@@ -48,6 +48,11 @@ class Log{
         }
     }
     
+    func logTime(_ text: String){
+        printTime()
+        print(text)
+    }
+    
     func printTime(){
         // Переполнится через ~ 24 суток со времени запуска
         // (2^32/2)/(1000*60*60*24)

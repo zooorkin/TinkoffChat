@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner">
+            <connections>
+                <outlet property="gestureTap" destination="v3T-Dr-Qjm" id="DkJ-7N-v9W"/>
+                <outlet property="inputTextField" destination="LV2-hO-vYe" id="qfU-iq-q2Q"/>
+                <outlet property="sendButton" destination="fPL-4r-JEu" id="Y6t-mS-gFa"/>
+                <outlet property="tableView" destination="5M3-0T-sTb" id="raA-si-aAP"/>
+                <outlet property="view" destination="cNW-Fi-62g" id="bLL-me-vgW"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="cNW-Fi-62g">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="5M3-0T-sTb">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="sectionIndexBackgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <view key="tableHeaderView" contentMode="scaleToFill" id="06E-bU-uB9">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="4"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <view key="tableFooterView" contentMode="scaleToFill" id="iRU-Gs-8Tz">
+                        <rect key="frame" x="0.0" y="4" width="375" height="4"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </tableView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bZ8-30-o7I">
+                    <rect key="frame" x="0.0" y="618" width="375" height="49"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fPL-4r-JEu">
+                            <rect key="frame" x="320" y="8" width="47" height="33"/>
+                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                            <state key="normal" title="Отпр.">
+                                <color key="titleColor" red="1" green="0.1647058824" blue="0.41960784309999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </state>
+                            <state key="disabled">
+                                <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <state key="selected">
+                                <color key="titleColor" red="1" green="0.1647058824" blue="0.41960784309999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </state>
+                            <state key="highlighted">
+                                <color key="titleColor" red="1" green="0.1647058824" blue="0.41960784309999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </state>
+                            <connections>
+                                <action selector="send:" destination="-1" eventType="touchUpInside" id="PAb-Gh-vef"/>
+                            </connections>
+                        </button>
+                        <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Введите сообщение" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LV2-hO-vYe">
+                            <rect key="frame" x="8" y="8" width="304" height="33"/>
+                            <nil key="textColor"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </textField>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="fPL-4r-JEu" firstAttribute="top" secondItem="bZ8-30-o7I" secondAttribute="top" constant="8" id="FNY-EO-dH0"/>
+                        <constraint firstItem="LV2-hO-vYe" firstAttribute="leading" secondItem="bZ8-30-o7I" secondAttribute="leading" constant="8" id="Tll-g9-YjO"/>
+                        <constraint firstItem="fPL-4r-JEu" firstAttribute="leading" secondItem="LV2-hO-vYe" secondAttribute="trailing" constant="8" id="YH5-bt-foA"/>
+                        <constraint firstAttribute="bottom" secondItem="LV2-hO-vYe" secondAttribute="bottom" constant="8" id="Zw0-x5-28F"/>
+                        <constraint firstItem="LV2-hO-vYe" firstAttribute="top" secondItem="bZ8-30-o7I" secondAttribute="top" constant="8" id="jUY-Jj-xMp"/>
+                        <constraint firstAttribute="trailing" secondItem="fPL-4r-JEu" secondAttribute="trailing" constant="8" id="nAS-QU-Hxr"/>
+                        <constraint firstAttribute="bottom" secondItem="fPL-4r-JEu" secondAttribute="bottom" constant="8" id="xhv-E1-DFS"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <gestureRecognizers/>
+            <constraints>
+                <constraint firstItem="bZ8-30-o7I" firstAttribute="leading" secondItem="DaD-5U-Iak" secondAttribute="leading" id="20w-Pi-fFS"/>
+                <constraint firstAttribute="trailing" secondItem="5M3-0T-sTb" secondAttribute="trailing" id="4Lt-nQ-wcH"/>
+                <constraint firstItem="DaD-5U-Iak" firstAttribute="trailing" secondItem="bZ8-30-o7I" secondAttribute="trailing" id="Oyf-pQ-4HM"/>
+                <constraint firstItem="5M3-0T-sTb" firstAttribute="leading" secondItem="DaD-5U-Iak" secondAttribute="leading" id="T26-ew-6Bx"/>
+                <constraint firstItem="bZ8-30-o7I" firstAttribute="top" secondItem="5M3-0T-sTb" secondAttribute="bottom" id="okd-WI-3Zg"/>
+                <constraint firstItem="5M3-0T-sTb" firstAttribute="top" secondItem="cNW-Fi-62g" secondAttribute="top" id="tRp-FB-NXg"/>
+                <constraint firstItem="DaD-5U-Iak" firstAttribute="bottom" secondItem="bZ8-30-o7I" secondAttribute="bottom" id="wwy-Dn-efZ"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="DaD-5U-Iak"/>
+            <connections>
+                <outletCollection property="gestureRecognizers" destination="v3T-Dr-Qjm" appends="YES" id="muT-b6-JdX"/>
+            </connections>
+        </view>
+        <tapGestureRecognizer id="v3T-Dr-Qjm">
+            <connections>
+                <action selector="gestureTapped:" destination="-1" id="oZv-D6-uSJ"/>
+            </connections>
+        </tapGestureRecognizer>
+    </objects>
+</document>

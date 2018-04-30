@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TCConversationCell" customModule="TinkoffChat" customModuleProvider="target"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="TCConversationCell" rowHeight="96" id="kmn-Lt-Ykd" customClass="TCConversationCell" customModule="TinkoffChat" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="96"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="kmn-Lt-Ykd" id="e8H-25-HZt">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="95.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fhc-jN-Mph" customClass="MessageView" customModule="TinkoffChat" customModuleProvider="target">
+                        <rect key="frame" x="16" y="8" width="343" height="80"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" verticalCompressionResistancePriority="749" text="Привет!" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PJO-BH-iN8">
+                                <rect key="frame" x="82" y="41" width="196.5" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="Зорькина Анастасия" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zAN-WL-1Q4">
+                                <rect key="frame" x="82" y="12" width="245" height="21"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="9:41" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xxb-8X-IE5">
+                                <rect key="frame" x="294.5" y="41" width="32.5" height="20"/>
+                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lQc-uy-hyH" userLabel="UserCycle" customClass="UserCircle" customModule="TinkoffChat" customModuleProvider="target">
+                                <rect key="frame" x="6" y="6" width="68" height="68"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="zAN-WL-1Q4" firstAttribute="leading" secondItem="lQc-uy-hyH" secondAttribute="trailing" constant="8" id="1uK-Dg-HUX"/>
+                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="PJO-BH-iN8" secondAttribute="bottom" constant="12" id="DPq-pd-etC"/>
+                            <constraint firstItem="zAN-WL-1Q4" firstAttribute="top" secondItem="fhc-jN-Mph" secondAttribute="top" constant="12" id="IUw-xp-l6H"/>
+                            <constraint firstAttribute="trailing" secondItem="Xxb-8X-IE5" secondAttribute="trailing" constant="16" id="Oey-97-QeO"/>
+                            <constraint firstItem="lQc-uy-hyH" firstAttribute="width" secondItem="lQc-uy-hyH" secondAttribute="height" multiplier="1:1" id="Vg0-Lu-cbe"/>
+                            <constraint firstItem="lQc-uy-hyH" firstAttribute="leading" secondItem="fhc-jN-Mph" secondAttribute="leading" constant="6" id="abA-rK-hLX"/>
+                            <constraint firstItem="Xxb-8X-IE5" firstAttribute="leading" secondItem="PJO-BH-iN8" secondAttribute="trailing" constant="16" id="ahi-gI-5LM"/>
+                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Xxb-8X-IE5" secondAttribute="bottom" constant="12" id="dYw-bm-aoT"/>
+                            <constraint firstItem="lQc-uy-hyH" firstAttribute="top" secondItem="fhc-jN-Mph" secondAttribute="top" constant="6" id="f7e-20-UL8"/>
+                            <constraint firstItem="PJO-BH-iN8" firstAttribute="top" secondItem="zAN-WL-1Q4" secondAttribute="bottom" constant="8" id="h5f-Px-7if"/>
+                            <constraint firstItem="Xxb-8X-IE5" firstAttribute="top" secondItem="zAN-WL-1Q4" secondAttribute="bottom" constant="8" id="lNN-jA-eme"/>
+                            <constraint firstAttribute="bottom" secondItem="lQc-uy-hyH" secondAttribute="bottom" constant="6" id="mSE-Rd-x9X"/>
+                            <constraint firstAttribute="trailing" secondItem="zAN-WL-1Q4" secondAttribute="trailing" constant="16" id="nQQ-Fm-iWq"/>
+                            <constraint firstItem="PJO-BH-iN8" firstAttribute="leading" secondItem="lQc-uy-hyH" secondAttribute="trailing" constant="8" id="waI-Cc-6Yg"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="fhc-jN-Mph" firstAttribute="top" secondItem="e8H-25-HZt" secondAttribute="top" constant="8" id="Fak-5e-F7y"/>
+                    <constraint firstItem="fhc-jN-Mph" firstAttribute="leading" secondItem="e8H-25-HZt" secondAttribute="leading" constant="16" id="HOz-yw-PVF"/>
+                    <constraint firstAttribute="trailing" secondItem="fhc-jN-Mph" secondAttribute="trailing" constant="16" id="KP0-zB-nhm"/>
+                    <constraint firstAttribute="bottom" secondItem="fhc-jN-Mph" secondAttribute="bottom" constant="8" id="hYT-eF-UjY"/>
+                </constraints>
+            </tableViewCellContentView>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <connections>
+                <outlet property="backgroundRectangle" destination="fhc-jN-Mph" id="Ixc-NG-tYV"/>
+                <outlet property="dateLabel" destination="Xxb-8X-IE5" id="fKg-D6-sgB"/>
+                <outlet property="messageLabel" destination="PJO-BH-iN8" id="g60-5M-QPc"/>
+                <outlet property="nameLabel" destination="zAN-WL-1Q4" id="1ej-Qi-KQH"/>
+                <outlet property="userCircleView" destination="lQc-uy-hyH" id="Ztp-qS-99w"/>
+            </connections>
+            <point key="canvasLocation" x="82.5" y="17"/>
+        </tableViewCell>
+    </objects>
+</document>

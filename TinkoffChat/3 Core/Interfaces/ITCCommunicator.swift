@@ -11,7 +11,7 @@ import Foundation
 /// Интерфейс коммуникатора Tinkoff Chat (Interface of Tinkoff Chat Communicator)
 protocol ITCCommunicator{
     func send(message: String,
-              toUserWithUserId: String)
+              toUserWithUserId: String, completionHandler: ((_ success: Bool, _ error: Error?) -> ())?)
     var delegate: ITCCommunicatorDelegate? {get set}
 }
 

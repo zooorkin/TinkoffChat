@@ -14,12 +14,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
     
-    private let rootAssembly = RootAssembly()
+    private let rootAssembly: ITCRootAssembly = TCRootAssembly()
     
     var log = Log(hideLogs: true)
     
     func application(_ application: UIApplication, willFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]? = nil) -> Bool {
         log.appState(from: .NotRunning, now: application.applicationState, to: .Inactive, method: #function)
+        
+        self.window = UIWindow(frame: UIScreen.main.bounds)
+        let controller = rootAssembly.presentationAssembly.conversationListViewController()
+        let navigationController = rootAssembly.presentationAssembly.navigationController(rootViewController: controller)
+        window?.rootViewController = navigationController
+        window?.makeKeyAndVisible()
+        
         return true
     }
     
