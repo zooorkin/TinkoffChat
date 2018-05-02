@@ -124,6 +124,9 @@ extension TCAppUser {
             appUser = {
                 let temporaryAppUser = TCAppUser.insert(in: context)
                 temporaryAppUser.user = TCUser.insert(in: context)
+                temporaryAppUser.user?.fullName = "Andrew Zooorkin"
+                temporaryAppUser.user?.userId = "z5839049-8062158439849582"
+                temporaryAppUser.user?.online = true
                 return temporaryAppUser
             }()
         }

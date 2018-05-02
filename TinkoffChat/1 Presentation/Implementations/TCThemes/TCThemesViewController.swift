@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TCThemesViewController: UIViewController, ITCManagerDelegate {
+class TCThemesViewController: UIViewController {
 
     
     private let presentationAssembly: ITCPresentationAssembly
@@ -20,26 +20,6 @@ class TCThemesViewController: UIViewController, ITCManagerDelegate {
         super.init(nibName: TCNibName.TCThemes.rawValue, bundle: nil)
         print("----TCThemesViewController has been initialized")
         print("------Now TCConversationListViewController is delegate of TCManager")
-    }
-    
-    // MARK: - ITCManagerDelegate
-    
-    var childDelegate: ITCManagerDelegate?
-    
-    func userDidBecomeOnline(userId: String) {
-        childDelegate?.userDidBecomeOnline(userId: userId)
-    }
-    
-    func userDidBecomeOffine(userId: String) {
-        childDelegate?.userDidBecomeOffine(userId: userId)
-    }
-    
-    func didReceiveMessage(fromUserWithId: String) {
-        childDelegate?.didReceiveMessage(fromUserWithId: fromUserWithId)
-    }
-    
-    func didSendMessage(toUserWithId: String) {
-        childDelegate?.didSendMessage(toUserWithId: toUserWithId)
     }
     
     
@@ -56,6 +36,7 @@ class TCThemesViewController: UIViewController, ITCManagerDelegate {
         // Do any additional setup after loading the view.
     }
 
+    
     // MARK: -
     
     private func adjustNavigationBar(){

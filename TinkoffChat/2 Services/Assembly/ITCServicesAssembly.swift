@@ -8,6 +8,8 @@
 
 protocol ITCServicesAssembly {
     var coreAssembly: ITCCoreAssembly {get}
+    
     init(coreAssembly: ITCCoreAssembly)
+    
     var manager: ITCManager {get}
 }

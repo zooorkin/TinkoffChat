@@ -16,9 +16,8 @@ protocol ITCCoreDataStack {
 }
 
 class TCCoreDataStack: ITCCoreDataStack {
-    init() {
-        print("----TCCoreDataStack has been initialized")
-    }
+    
+    
     private var storeURL: URL {
         get {
             let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!

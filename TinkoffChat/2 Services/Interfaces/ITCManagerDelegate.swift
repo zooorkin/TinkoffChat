@@ -7,7 +7,6 @@
 //
 
 protocol ITCManagerDelegate {
-    var childDelegate: ITCManagerDelegate? {get}
     func userDidBecomeOnline(userId: String)
     func userDidBecomeOffine(userId: String)
     func didReceiveMessage(fromUserWithId: String)

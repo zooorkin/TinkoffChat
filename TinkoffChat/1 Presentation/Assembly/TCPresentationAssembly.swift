@@ -13,7 +13,6 @@ class TCPresentationAssembly: ITCPresentationAssembly {
     
     required init(servicesAssembly: ITCServicesAssembly) {
         self.servicesAssembly = servicesAssembly
-        print("--TCPresentationAssembly has been initialized")
     }
     
     func navigationController(rootViewController: UIViewController) -> UINavigationController{
@@ -21,11 +20,17 @@ class TCPresentationAssembly: ITCPresentationAssembly {
     }
     
     func conversationListViewController() -> TCConversationListViewController {
-        return TCConversationListViewController(presentationAssembly: self, manager: servicesAssembly.manager)
+        let model = TCConversationListModel(manager: servicesAssembly.manager)
+        let conversationListVC = TCConversationListViewController(presentationAssembly: self, model: model)
+        model.delegate = conversationListVC
+        return conversationListVC
     }
     
-    func conversationViewController(user: User) -> TCConversationViewController {
-        return TCConversationViewController(presentationAssembly: self, manager: servicesAssembly.manager, user: user)
+    func conversationViewController(userId id: String) -> TCConversationViewController {
+        let model = TCConversationModel(manager: servicesAssembly.manager, userId: id)
+        let conversationVC = TCConversationViewController(presentationAssembly: self, model: model)
+        model.delegate = conversationVC
+        return conversationVC
     }
     
     func profileViewController() -> TCProfileViewController {

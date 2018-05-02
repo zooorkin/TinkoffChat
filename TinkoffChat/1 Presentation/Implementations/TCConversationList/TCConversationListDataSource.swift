@@ -11,37 +11,36 @@ import Foundation
 extension TCConversationListViewController {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if users.isEmpty {
+        if dataSource.isEmpty {
             return 1
         }else {
-            return users.count + 1
+            return dataSource.count + 1
         }
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if users.isEmpty{
+        if dataSource.isEmpty{
             guard let iCell = tableView.dequeueReusableCell(withIdentifier: TCNibName.TCInformationCell.rawValue, for: indexPath) as? TCInformationCell else{
                 fatalError()
             }
             iCell.information = "Нет друзей"
             return iCell
         }
-        if indexPath.row == users.count{
+        if indexPath.row == dataSource.count{
             guard let iCell = tableView.dequeueReusableCell(withIdentifier: TCNibName.TCInformationCell.rawValue, for: indexPath) as? TCInformationCell else{
                 fatalError()
             }
-            iCell.information = "Друзей: \(users.count)"
+            iCell.information = "Друзей: \(dataSource.count)"
             return iCell
         }
         
         guard let cell =  tableView.dequeueReusableCell(withIdentifier: TCNibName.TCConversationCell.rawValue) as? TCConversationCell else {
             fatalError()
         }
-        let user = users[indexPath.row]
+        let user = dataSource[indexPath.row]
         cell.name = user.name
         cell.online = user.online
-        let conversation = manager.getConversation(with: user)
-        if let lastMessage = conversation?.lastMessage {
+        if let lastMessage = user.lastMessage{
             cell.date = lastMessage.date
             cell.message = lastMessage.text
             cell.hasUnreadMessages = lastMessage.unread
@@ -61,17 +60,16 @@ extension TCConversationListViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // Отжатие информационной ячейки
-        if indexPath.row == users.count {
+        if indexPath.row == dataSource.count {
             tableView.deselectRow(at: indexPath, animated: true)
             return
         }
-        let user = users[indexPath.row]
+        let user = dataSource[indexPath.row]
 
-        let conversationController = presentationAssembly.conversationViewController(user: user)
+        let conversationController = presentationAssembly.conversationViewController(userId: user.id)
 
         conversationController.title = user.name
         conversationController.isUserOnline = user.online
-        childDelegate = conversationController
         self.navigationController?.pushViewController(conversationController, animated: true)
     }
 }

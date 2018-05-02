@@ -12,12 +12,14 @@ import Foundation
 protocol ITCStorage {
     func getCurrentUser() -> TCUser
     func getUsers() -> [TCUser]
+    func getUser(withId: String) -> TCUser?
     func getConversation(with: TCUser) -> TCConversation?
     func getMessages(from: TCConversation) -> [TCMessage]
     func getLastMessage(from: TCConversation) -> TCMessage
+    func save()
     
     func userDidBecomeOnline(userId: String, withName: String)
     func userDidBecomeOffine(userId: String)
-    func didReceive(message: String, fromUserWithId: String)
-    func didSend(message: String, toUserWithId: String)
+    func didReceive(message: String, fromUserWithId: String, completion: (() -> ())?)
+    func didSend(message: String, toUserWithId: String, completion: (() -> ())?)
 }

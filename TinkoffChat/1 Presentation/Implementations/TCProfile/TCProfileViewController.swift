@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class TCProfileViewController: UITableViewController, ITCManagerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextViewDelegate {
+class TCProfileViewController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextViewDelegate {
    
     var editButton: UIBarButtonItem!
     var isEdittingMode = false
@@ -56,25 +56,6 @@ class TCProfileViewController: UITableViewController, ITCManagerDelegate, UIImag
         return TCAppUser.findOrInsertAppUser(in: mainContext)
     }()
     
-    // MARK: - ITCManagerDelegate
-    
-    var childDelegate: ITCManagerDelegate?
-    
-    func userDidBecomeOnline(userId: String) {
-        childDelegate?.userDidBecomeOnline(userId: userId)
-    }
-    
-    func userDidBecomeOffine(userId: String) {
-        childDelegate?.userDidBecomeOffine(userId: userId)
-    }
-    
-    func didReceiveMessage(fromUserWithId: String) {
-        childDelegate?.didReceiveMessage(fromUserWithId: fromUserWithId)
-    }
-    
-    func didSendMessage(toUserWithId: String) {
-        childDelegate?.didSendMessage(toUserWithId: toUserWithId)
-    }
     
     // MARK: - init
     

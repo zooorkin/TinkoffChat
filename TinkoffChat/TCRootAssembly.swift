@@ -14,9 +14,7 @@ protocol ITCRootAssembly {
 }
 
 class TCRootAssembly: ITCRootAssembly {
-    init() {
-        print("TCRootAssembly has been initialized")
-    }
+
     lazy var presentationAssembly: ITCPresentationAssembly = TCPresentationAssembly(servicesAssembly: servicesAssembly)
     private lazy var servicesAssembly: ITCServicesAssembly = TCServicesAssembly(coreAssembly: coreAssembly)
     private lazy var coreAssembly: ITCCoreAssembly = TCCoreAssembly()

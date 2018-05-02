@@ -28,13 +28,16 @@ protocol IMessage {
     
 }
 
-protocol ITCManager: ITCCommunicatorDelegate/*, ITCStorageDelegate */ {
-    func getCurrentUser() -> User
-    func getUsers() -> [User]
-    func getConversation(with: User) -> Conversation?
-    func getMessages(from: Conversation) -> [Message]
-    func getLastMessage(from: Conversation) -> Message
+protocol ITCManager {
+    func getCurrentUser() -> TCUser
+    func getUser(withId: String) -> TCUser?
+    func getUsers() -> [TCUser]
+    func getConversation(with: TCUser) -> TCConversation?
+    func getMessages(from: TCConversation) -> [TCMessage]
+    func getLastMessage(from: TCConversation) -> TCMessage
     func send(message: String,
               toUserWithUserId: String, completionHandler: ((_ success: Bool, _ error: Error?) -> ())?)
-    var delegate: ITCManagerDelegate? {get set}
+    func save()
+    var firstDelegate: ITCManagerDelegate? {get set}
+    var secondDelegate: ITCManagerDelegate? {get set}
 }

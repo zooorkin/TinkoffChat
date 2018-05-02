@@ -8,14 +8,19 @@
 
 import UIKit
 
-class TCConversationViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, ITCManagerDelegate, UITextFieldDelegate {
+class TCConversationViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, ITCConversationModelDelegate {
     
     @IBOutlet var tableView: UITableView!
     @IBOutlet var sendButton: UIButton!
     @IBOutlet var inputTextField: UITextField!
     @IBOutlet var gestureTap: UITapGestureRecognizer!
     
-    var messages: [Message]
+    
+    private let presentationAssembly: ITCPresentationAssembly
+    
+    internal let model: ITCConversationModel
+    
+    internal var dataSource: [TCConversationCellModel] = []
     
     private var isUserOnlineValue: Bool = false
     var isUserOnline: Bool{
@@ -40,80 +45,23 @@ class TCConversationViewController: UIViewController, UITableViewDelegate, UITab
         }
     }
     
-    private let presentationAssembly: ITCPresentationAssembly
-    private var manager: ITCManager
-    private let user: User
-    
-    private let log = Log(hideLogs: false)
-    
-    // MARK: - ITCManagerDelegate
-    
-    var childDelegate: ITCManagerDelegate?
-    
-    func userDidBecomeOnline(userId: String) {
-        if user.id == userId {
-            isUserOnline = true
-        }
-        childDelegate?.userDidBecomeOnline(userId: userId)
-    }
-    
-    func userDidBecomeOffine(userId: String) {
-        if user.id == userId {
-            isUserOnline = false
-        }
-        childDelegate?.userDidBecomeOffine(userId: userId)
-    }
-    
-    func didReceiveMessage(fromUserWithId: String) {
-        childDelegate?.didReceiveMessage(fromUserWithId: fromUserWithId)
-        showNewMessage(isIncomming: true, userId: fromUserWithId)
-    }
-    
-    
-    func didSendMessage(toUserWithId: String) {
-        childDelegate?.didSendMessage(toUserWithId: toUserWithId)
-        showNewMessage(isIncomming: false, userId: toUserWithId)
-    }
-    
     // MARK: - init
     
-    init(presentationAssembly: ITCPresentationAssembly, manager: ITCManager, user: User) {
+    init(presentationAssembly: ITCPresentationAssembly, model: ITCConversationModel) {
         self.presentationAssembly = presentationAssembly
-        self.manager = manager
-        self.user = user
-        self.messages =  {
-            if let conversation = manager.getConversation(with: user) {
-                return manager.getMessages(from: conversation)
-            } else {
-                return []
-            }
-        }()
+        self.model = model
         super.init(nibName: TCNibName.TCConversation.rawValue, bundle: nil)
-        log.logTime(#function)
-        print("----TCConversationViewController has been initialized")
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func registerNibs() {
-        let nib1 = UINib(nibName: TCNibName.TCNoMessagesCell.rawValue, bundle: nil)
-        let nib2 = UINib(nibName: TCNibName.TCNewMessagesCell.rawValue, bundle: nil)
-        let nib3 = UINib(nibName: TCNibName.TCInputMessageCell.rawValue, bundle: nil)
-        let nib4 = UINib(nibName: TCNibName.TCOutputMessageCell.rawValue, bundle: nil)
-        
-        tableView.register(nib1, forCellReuseIdentifier: TCNibName.TCNoMessagesCell.rawValue)
-        tableView.register(nib2, forCellReuseIdentifier: TCNibName.TCNewMessagesCell.rawValue)
-        tableView.register(nib3, forCellReuseIdentifier: TCNibName.TCInputMessageCell.rawValue)
-        tableView.register(nib4, forCellReuseIdentifier: TCNibName.TCOutputMessageCell.rawValue)
-    }
-    
     override func viewDidLoad() {
-        log.logTime(#function)
         title = "Conversation"
         super.viewDidLoad()
-        log.logTime(#function)
+        model.fetchUpdate()
+        tableView.reloadData()
         registerNibs()
         sendButton.isEnabled = false
         inputTextField.returnKeyType = .default
@@ -129,7 +77,6 @@ class TCConversationViewController: UIViewController, UITableViewDelegate, UITab
             // Fallback on earlier versions
         }
         inputTextField.delegate = self
-        log.logTime(#function)
     }
 
     override func didReceiveMemoryWarning() {
@@ -153,8 +100,8 @@ class TCConversationViewController: UIViewController, UITableViewDelegate, UITab
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        if !messages.isEmpty {
-            let indexPath = IndexPath(row: messages.count - 1, section: 0)
+        if !dataSource.isEmpty {
+            let indexPath = IndexPath(row: dataSource.count - 1, section: 0)
             self.tableView.scrollToRow(at: indexPath, at: .bottom, animated: false)
         }
     }
@@ -194,21 +141,17 @@ class TCConversationViewController: UIViewController, UITableViewDelegate, UITab
     // MARK: - Actions
     
     @IBAction func send(_ sender: UIButton) {
-        sendButton.isEnabled = false
-        if let text = inputTextField.text {
-            inputTextField.text = nil
+        DispatchQueue.main.async {
+            self.sendButton.isEnabled = false
+            if let text = self.inputTextField.text {
+                self.inputTextField.text = nil
             if text == "" {
                 return
+            } else {
+                self.model.send(text: text)
+                
             }
-            manager.send(message: text, toUserWithUserId: user.id){
-                (success: Bool, error: Error?) in
-                if !success{
-                    let alertController = UIAlertController(title: "Ошибка", message: "Не удалось отправить сообщение \"\(text)\"", preferredStyle: .alert)
-                    let ok = UIAlertAction(title: "OK", style: .default, handler: nil)
-                    alertController.addAction(ok)
-                    self.present(alertController, animated: true, completion: nil)
-                }
-            }
+        }
         }
     }
     
@@ -233,66 +176,97 @@ class TCConversationViewController: UIViewController, UITableViewDelegate, UITab
         return false
     }
 
-    func showNewMessage(isIncomming: Bool, userId: String) {
-        DispatchQueue.main.async {
-            if self.user.id == userId, let conversation = self.manager.getConversation(with: self.user) {
-                self.messages = self.manager.getMessages(from: conversation)
-            } else {
-                return
+    func showNewMessage(isIncomming: Bool) {
+        if isIncomming {
+            if self.dataSource.count == 1 {
+                let index = IndexPath(row: self.dataSource.count-1, section: 0)
+                self.tableView.reloadRows(at: [index], with: .right)
+                self.tableView.scrollToRow(at: index, at: .bottom, animated: true)
+            }else{
+                let index = IndexPath(row: self.dataSource.count-1, section: 0)
+                
+                self.tableView.insertRows(at: [index], with: .left)
+                self.tableView.scrollToRow(at: index, at: .bottom, animated: true)
+                
             }
-            if isIncomming {
-                if self.messages.count == 1 {
-                    let index = IndexPath(row: self.messages.count-1, section: 0)
-                    self.tableView.reloadRows(at: [index], with: .right)
-                    self.tableView.scrollToRow(at: index, at: .bottom, animated: true)
-                }else{
-                    let index = IndexPath(row: self.messages.count-1, section: 0)
-                    
-                    self.tableView.insertRows(at: [index], with: .left)
-                    self.tableView.scrollToRow(at: index, at: .bottom, animated: true)
-                    
-                }
-            } else {
-                if self.messages.count == 1 {
-                    let index = IndexPath(row: self.messages.count-1, section: 0)
-                    self.tableView.reloadRows(at: [index], with: .left)
-                    self.tableView.scrollToRow(at: index, at: .bottom, animated: true)
-                }else{
-                    let index = IndexPath(row: self.messages.count-1, section: 0)
-                    self.tableView.insertRows(at: [index], with: .right)
-                    self.tableView.scrollToRow(at: index, at: .bottom, animated: true)
-                }
+        } else {
+            if self.dataSource.count == 1 {
+                let index = IndexPath(row: self.dataSource.count-1, section: 0)
+                self.tableView.reloadRows(at: [index], with: .left)
+                self.tableView.scrollToRow(at: index, at: .bottom, animated: true)
+            }else{
+                let index = IndexPath(row: self.dataSource.count-1, section: 0)
+                self.tableView.insertRows(at: [index], with: .right)
+                self.tableView.scrollToRow(at: index, at: .bottom, animated: true)
             }
         }
     }
-
+    
     // MARK: - TableViewDataSource
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if messages.isEmpty{
+        if dataSource.isEmpty{
             return 1
         }else{
-            return messages.count
+            return dataSource.count
         }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: TCMessageCell
-        if messages.isEmpty{
+        if dataSource.isEmpty{
             return tableView.dequeueReusableCell(withIdentifier: TCNibName.TCNoMessagesCell.rawValue)!
         }
-        if messages[indexPath.row].incomming{
+        if dataSource[indexPath.row].incomming{
             cell = tableView.dequeueReusableCell(withIdentifier: TCNibName.TCInputMessageCell.rawValue) as! TCMessageCell
         }else{
             cell = tableView.dequeueReusableCell(withIdentifier: TCNibName.TCOutputMessageCell.rawValue) as! TCMessageCell
         }
-        let message = messages[indexPath.row]
+        let message = dataSource[indexPath.row]
         cell.message = message.text
         cell.isIncoming = message.incomming
         cell.isUnread = message.unread
-        cell.time = message.date!
+        cell.time = message.date
         
         return cell
+    }
+    
+    // MARK: - ITCConversationModelDelegate
+    
+    func update(dataSource: [TCConversationCellModel]) {
+        self.dataSource = dataSource
+    }
+    
+    func didRecieveNewMessage() {
+        showNewMessage(isIncomming: true)
+    }
+    
+    func didSendNewMessage() {
+        showNewMessage(isIncomming: false)
+    }
+    
+    func userBecome(online: Bool) {
+        isUserOnline = online
+    }
+    
+    func showAlertMessage(text: String) {
+        let alertController = UIAlertController(title: "Ошибка", message: text, preferredStyle: .alert)
+        let ok = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alertController.addAction(ok)
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
+    // MARK: - PRIVATE
+    
+    private func registerNibs() {
+        let nib1 = UINib(nibName: TCNibName.TCNoMessagesCell.rawValue, bundle: nil)
+        let nib2 = UINib(nibName: TCNibName.TCNewMessagesCell.rawValue, bundle: nil)
+        let nib3 = UINib(nibName: TCNibName.TCInputMessageCell.rawValue, bundle: nil)
+        let nib4 = UINib(nibName: TCNibName.TCOutputMessageCell.rawValue, bundle: nil)
+        tableView.register(nib1, forCellReuseIdentifier: TCNibName.TCNoMessagesCell.rawValue)
+        tableView.register(nib2, forCellReuseIdentifier: TCNibName.TCNewMessagesCell.rawValue)
+        tableView.register(nib3, forCellReuseIdentifier: TCNibName.TCInputMessageCell.rawValue)
+        tableView.register(nib4, forCellReuseIdentifier: TCNibName.TCOutputMessageCell.rawValue)
     }
     
 }

@@ -47,6 +47,8 @@
 		8869151E20517ED40045D3F0 /* MessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8869151D20517ED40045D3F0 /* MessageView.swift */; };
 		8869D22C207921030021ACEC /* TCProfileCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8869D22B207921030021ACEC /* TCProfileCells.swift */; };
 		8869D22E20792B2A0021ACEC /* EditTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8869D22D20792B2A0021ACEC /* EditTextView.swift */; };
+		887F2E5E209836A800DFCC08 /* TCConversationListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887F2E5D209836A800DFCC08 /* TCConversationListModel.swift */; };
+		887F2E6020983EEB00DFCC08 /* TCConversationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887F2E5F20983EEB00DFCC08 /* TCConversationModel.swift */; };
 		888DED592080249A00B95022 /* Storage.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 888DED572080249A00B95022 /* Storage.xcdatamodeld */; };
 		88A030D9207AB4C9008C297A /* ColorButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A030D8207AB4C9008C297A /* ColorButton.swift */; };
 		88A3EBE92054668800CC5FD7 /* ITCConversationCellConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A3EBE82054668800CC5FD7 /* ITCConversationCellConfiguration.swift */; };
@@ -70,11 +72,7 @@
 		88FF787D20960980005A3F45 /* TCConversationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88FF787C20960980005A3F45 /* TCConversationCell.xib */; };
 		88FF787F20960A32005A3F45 /* TCConversationListDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88FF787E20960A32005A3F45 /* TCConversationListDataSource.swift */; };
 		88FF788120960B28005A3F45 /* TCConversationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88FF788020960B28005A3F45 /* TCConversationCell.swift */; };
-		88FF788720961A47005A3F45 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88FF788620961A47005A3F45 /* User.swift */; };
-		88FF789020965C2B005A3F45 /* Conversation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88FF788F20965C2B005A3F45 /* Conversation.swift */; };
-		88FF789220965C9F005A3F45 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88FF789120965C9F005A3F45 /* Message.swift */; };
 		88FF789420966DD9005A3F45 /* TCCoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88FF789320966DD9005A3F45 /* TCCoreDataStack.swift */; };
-		88FF789620967D02005A3F45 /* TCConversationDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88FF789520967D02005A3F45 /* TCConversationDataSource.swift */; };
 		88FF78982096842E005A3F45 /* TCNoMessagesCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88FF78972096842E005A3F45 /* TCNoMessagesCell.xib */; };
 		88FF789A2096843E005A3F45 /* TCInputMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88FF78992096843E005A3F45 /* TCInputMessageCell.xib */; };
 		88FF789C20968449005A3F45 /* TCOutputMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88FF789B20968449005A3F45 /* TCOutputMessageCell.xib */; };
@@ -139,6 +137,8 @@
 		8869151D20517ED40045D3F0 /* MessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageView.swift; sourceTree = "<group>"; };
 		8869D22B207921030021ACEC /* TCProfileCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TCProfileCells.swift; sourceTree = "<group>"; };
 		8869D22D20792B2A0021ACEC /* EditTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTextView.swift; sourceTree = "<group>"; };
+		887F2E5D209836A800DFCC08 /* TCConversationListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TCConversationListModel.swift; sourceTree = "<group>"; };
+		887F2E5F20983EEB00DFCC08 /* TCConversationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TCConversationModel.swift; sourceTree = "<group>"; };
 		888DED582080249A00B95022 /* TinkoffChat.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TinkoffChat.xcdatamodel; sourceTree = "<group>"; };
 		88A030D8207AB4C9008C297A /* ColorButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorButton.swift; sourceTree = "<group>"; };
 		88A3EBE82054668800CC5FD7 /* ITCConversationCellConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ITCConversationCellConfiguration.swift; sourceTree = "<group>"; };
@@ -164,11 +164,7 @@
 		88FF787C20960980005A3F45 /* TCConversationCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TCConversationCell.xib; sourceTree = "<group>"; };
 		88FF787E20960A32005A3F45 /* TCConversationListDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TCConversationListDataSource.swift; sourceTree = "<group>"; };
 		88FF788020960B28005A3F45 /* TCConversationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TCConversationCell.swift; sourceTree = "<group>"; };
-		88FF788620961A47005A3F45 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		88FF788F20965C2B005A3F45 /* Conversation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Conversation.swift; sourceTree = "<group>"; };
-		88FF789120965C9F005A3F45 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		88FF789320966DD9005A3F45 /* TCCoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TCCoreDataStack.swift; sourceTree = "<group>"; };
-		88FF789520967D02005A3F45 /* TCConversationDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TCConversationDataSource.swift; sourceTree = "<group>"; };
 		88FF78972096842E005A3F45 /* TCNoMessagesCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TCNoMessagesCell.xib; sourceTree = "<group>"; };
 		88FF78992096843E005A3F45 /* TCInputMessageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TCInputMessageCell.xib; sourceTree = "<group>"; };
 		88FF789B20968449005A3F45 /* TCOutputMessageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TCOutputMessageCell.xib; sourceTree = "<group>"; };
@@ -199,7 +195,6 @@
 			isa = PBXGroup;
 			children = (
 				880C288F20926DD200BFD30D /* Assembly */,
-				880C289820927EDB00BFD30D /* Interfaces */,
 				880C289920927EE300BFD30D /* Implementations */,
 			);
 			path = "1 Presentation";
@@ -255,8 +250,7 @@
 		880C289420927E7A00BFD30D /* Implementations */ = {
 			isa = PBXGroup;
 			children = (
-				885B77882097224400534DD7 /* TCManager */,
-				885B77892097225200534DD7 /* Model */,
+				880C28922092756900BFD30D /* TCManager.swift */,
 			);
 			path = Implementations;
 			sourceTree = "<group>";
@@ -283,24 +277,19 @@
 		880C289720927EBC00BFD30D /* Implementations */ = {
 			isa = PBXGroup;
 			children = (
-				88CDE167207F90DA00C68C70 /* TCCoreDataStack */,
-				88FF788D2096486B005A3F45 /* TCCommunicator */,
-				88FF788E2096487A005A3F45 /* TCStorage */,
+				880C289C2092816C00BFD30D /* TCCommunicator.swift */,
+				880C289E2092817F00BFD30D /* TCStorage.swift */,
+				88FF789320966DD9005A3F45 /* TCCoreDataStack.swift */,
+				888DED572080249A00B95022 /* Storage.xcdatamodeld */,
 				882CB4C8208F7CC500538AC0 /* EntitiesExtensions.swift */,
 			);
 			path = Implementations;
 			sourceTree = "<group>";
 		};
-		880C289820927EDB00BFD30D /* Interfaces */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Interfaces;
-			sourceTree = "<group>";
-		};
 		880C289920927EE300BFD30D /* Implementations */ = {
 			isa = PBXGroup;
 			children = (
+				884AF9372049FC9C00A4A045 /* DesignConstants.swift */,
 				88FF786C2095DB1B005A3F45 /* TCNibNames.swift */,
 				88BF083020512ACB00B08C69 /* Custom elements */,
 				8835FA26205D9785002CFA21 /* ThemesViewController */,
@@ -332,24 +321,6 @@
 				8835FA31205DA86A002CFA21 /* ThemesViewController.storyboard */,
 			);
 			path = ThemesViewController;
-			sourceTree = "<group>";
-		};
-		885B77882097224400534DD7 /* TCManager */ = {
-			isa = PBXGroup;
-			children = (
-				880C28922092756900BFD30D /* TCManager.swift */,
-			);
-			path = TCManager;
-			sourceTree = "<group>";
-		};
-		885B77892097225200534DD7 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				88FF788620961A47005A3F45 /* User.swift */,
-				88FF788F20965C2B005A3F45 /* Conversation.swift */,
-				88FF789120965C9F005A3F45 /* Message.swift */,
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		885B778A209723F500534DD7 /* Cells */ = {
@@ -461,15 +432,6 @@
 			path = "Custom elements";
 			sourceTree = "<group>";
 		};
-		88CDE167207F90DA00C68C70 /* TCCoreDataStack */ = {
-			isa = PBXGroup;
-			children = (
-				88FF789320966DD9005A3F45 /* TCCoreDataStack.swift */,
-				888DED572080249A00B95022 /* Storage.xcdatamodeld */,
-			);
-			path = TCCoreDataStack;
-			sourceTree = "<group>";
-		};
 		88DBB0222041BB0C005EDA8B = {
 			isa = PBXGroup;
 			children = (
@@ -496,11 +458,10 @@
 				880C28802092658D00BFD30D /* 3 Core */,
 				88DBB02E2041BB0C005EDA8B /* AppDelegate.swift */,
 				880C288520926D1600BFD30D /* TCRootAssembly.swift */,
-				884AF9372049FC9C00A4A045 /* DesignConstants.swift */,
-				8892FBE020548DBA00D851E3 /* Utilites */,
 				88DBB0382041BB0C005EDA8B /* Assets.xcassets */,
-				88DBB03A2041BB0C005EDA8B /* LaunchScreen.storyboard */,
 				88DBB03D2041BB0C005EDA8B /* Info.plist */,
+				88DBB03A2041BB0C005EDA8B /* LaunchScreen.storyboard */,
+				8892FBE020548DBA00D851E3 /* Utilites */,
 			);
 			path = TinkoffChat;
 			sourceTree = "<group>";
@@ -508,6 +469,7 @@
 		88FF788820964610005A3F45 /* TCConversationList */ = {
 			isa = PBXGroup;
 			children = (
+				887F2E5D209836A800DFCC08 /* TCConversationListModel.swift */,
 				88FF785C2095D710005A3F45 /* TCConversationListViewController.swift */,
 				88FF787E20960A32005A3F45 /* TCConversationListDataSource.swift */,
 				88FF78642095D92D005A3F45 /* TCConversationList.xib */,
@@ -518,8 +480,8 @@
 		88FF788920964626005A3F45 /* TCConversation */ = {
 			isa = PBXGroup;
 			children = (
+				887F2E5F20983EEB00DFCC08 /* TCConversationModel.swift */,
 				88FF785E2095D73D005A3F45 /* TCConversationViewController.swift */,
-				88FF789520967D02005A3F45 /* TCConversationDataSource.swift */,
 				88FF78662095D939005A3F45 /* TCConversation.xib */,
 			);
 			path = TCConversation;
@@ -544,22 +506,6 @@
 				88FF786A2095D956005A3F45 /* TCThemes.xib */,
 			);
 			path = TCThemes;
-			sourceTree = "<group>";
-		};
-		88FF788D2096486B005A3F45 /* TCCommunicator */ = {
-			isa = PBXGroup;
-			children = (
-				880C289C2092816C00BFD30D /* TCCommunicator.swift */,
-			);
-			path = TCCommunicator;
-			sourceTree = "<group>";
-		};
-		88FF788E2096487A005A3F45 /* TCStorage */ = {
-			isa = PBXGroup;
-			children = (
-				880C289E2092817F00BFD30D /* TCStorage.swift */,
-			);
-			path = TCStorage;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -700,15 +646,14 @@
 				880C288E20926DCD00BFD30D /* TCPresentationAssembly.swift in Sources */,
 				8869D22C207921030021ACEC /* TCProfileCells.swift in Sources */,
 				88FF785D2095D710005A3F45 /* TCConversationListViewController.swift in Sources */,
-				88FF788720961A47005A3F45 /* User.swift in Sources */,
 				884AF9382049FC9C00A4A045 /* DesignConstants.swift in Sources */,
 				880C288920926D4600BFD30D /* TCCoreAssembly.swift in Sources */,
 				884AF9362049FBB400A4A045 /* ProfileView.swift in Sources */,
 				8869D22E20792B2A0021ACEC /* EditTextView.swift in Sources */,
 				880C288620926D1600BFD30D /* TCRootAssembly.swift in Sources */,
-				88FF789220965C9F005A3F45 /* Message.swift in Sources */,
 				882CB4C9208F7CC500538AC0 /* EntitiesExtensions.swift in Sources */,
 				880C289D2092816C00BFD30D /* TCCommunicator.swift in Sources */,
+				887F2E6020983EEB00DFCC08 /* TCConversationModel.swift in Sources */,
 				885B778520971F6700534DD7 /* ITCCoreAssembly.swift in Sources */,
 				88FF788120960B28005A3F45 /* TCConversationCell.swift in Sources */,
 				88FF787F20960A32005A3F45 /* TCConversationListDataSource.swift in Sources */,
@@ -724,7 +669,6 @@
 				884AF9322049EC2700A4A045 /* ChangeProfileImageButton.swift in Sources */,
 				88FF78612095D74C005A3F45 /* TCProfileViewController.swift in Sources */,
 				88A3EBE92054668800CC5FD7 /* ITCConversationCellConfiguration.swift in Sources */,
-				88FF789020965C2B005A3F45 /* Conversation.swift in Sources */,
 				88616CA62092887500100F90 /* ITCManagerDelegate.swift in Sources */,
 				88A030D9207AB4C9008C297A /* ColorButton.swift in Sources */,
 				88DBB02F2041BB0C005EDA8B /* AppDelegate.swift in Sources */,
@@ -733,6 +677,7 @@
 				880C2891209274F200BFD30D /* ITCManager.swift in Sources */,
 				880C289F2092817F00BFD30D /* TCStorage.swift in Sources */,
 				8869151E20517ED40045D3F0 /* MessageView.swift in Sources */,
+				887F2E5E209836A800DFCC08 /* TCConversationListModel.swift in Sources */,
 				88FF78A220968DD0005A3F45 /* TCInformationCell.swift in Sources */,
 				880C288420926BCF00BFD30D /* ITCStorage.swift in Sources */,
 				88FF78A020968496005A3F45 /* TCMessageCell.swift in Sources */,
@@ -740,7 +685,6 @@
 				885B778320971F4700534DD7 /* ITCServicesAssembly.swift in Sources */,
 				88BF08382051322C00B08C69 /* RoundImage.swift in Sources */,
 				880C288220926B9F00BFD30D /* ITCCommunicator.swift in Sources */,
-				88FF789620967D02005A3F45 /* TCConversationDataSource.swift in Sources */,
 				888DED592080249A00B95022 /* Storage.xcdatamodeld in Sources */,
 				885B776D2097130600534DD7 /* TCProfileDataSource.swift in Sources */,
 				885B776F2097131300534DD7 /* TCProfileEdittingDataSource.swift in Sources */,

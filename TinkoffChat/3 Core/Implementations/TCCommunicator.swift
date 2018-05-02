@@ -47,7 +47,6 @@ class TCCommunicator: NSObject, ITCCommunicator, MCNearbyServiceAdvertiserDelega
         self.browser.delegate = self//delegate as? MCNearbyServiceBrowserDelegate
         self.advertiser.startAdvertisingPeer()
         self.browser.startBrowsingForPeers()
-        print("----TCCommunicator has been initialized")
     }
     
     /// Деинициализатор
@@ -99,9 +98,6 @@ class TCCommunicator: NSObject, ITCCommunicator, MCNearbyServiceAdvertiserDelega
         switch state {
         case .connecting: break
         case .connected: break
-            //            if let userName = peersByDesplayName[peerID.displayName]?.info?["userName"]{
-            //                delegate?.didFoundUser(userID: peerID.displayName, userName: userName)
-        //            }
         case .notConnected: break
         }
         

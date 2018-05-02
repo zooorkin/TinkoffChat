@@ -22,7 +22,6 @@ class TCStorage: ITCStorage {
     init(coreDataStack: ITCCoreDataStack) {
         self.coreDataStack = coreDataStack
         appUser = TCAppUser.findOrInsertAppUser(in: coreDataStack.mainContext)
-        print("----TCStorage has been initialized")
     }
     
     
@@ -33,6 +32,10 @@ class TCStorage: ITCStorage {
             fatalError()
         }
         return user
+    }
+    
+    func getUser(withId id: String) -> TCUser? {
+        return TCUser.get(withUserId: id, in: mainContext)
     }
     
     func getUsers() -> [TCUser] {
@@ -93,6 +96,11 @@ class TCStorage: ITCStorage {
         return lastMessage
     }
     
+    func save() {
+        coreDataStack.performSave(context: mainContext, completion: nil)
+        print("SAVED")
+    }
+    
     func userDidBecomeOnline(userId: String, withName userName: String) {
         if let foundUsed = TCUser.get(withUserId: userId, in: self.mainContext) {
             foundUsed.online = true
@@ -114,7 +122,7 @@ class TCStorage: ITCStorage {
         //try? self.mainContext.save()
     }
     
-    func didReceive(message text: String, fromUserWithId userId: String) {
+    func didReceive(message text: String, fromUserWithId userId: String, completion: (() -> ())?) {
         mainContext.perform {
             if let foundUsed = TCUser.get(withUserId: userId, in: self.mainContext) {
                 let conversationId = userId
@@ -136,6 +144,7 @@ class TCStorage: ITCStorage {
                     message.conversation = conversation
                     message.lastFromConversation = conversation
                 }
+                completion?()
             } else {
                 print("Пришло сообщение от незнакомца")
             }
@@ -143,7 +152,7 @@ class TCStorage: ITCStorage {
         }
     }
     
-    func didSend(message text: String, toUserWithId userId: String) {
+    func didSend(message text: String, toUserWithId userId: String, completion: (() -> ())?) {
         mainContext.perform {
             if let foundUsed = TCUser.get(withUserId: userId, in: self.mainContext) {
                 let conversationId = userId
@@ -156,18 +165,17 @@ class TCStorage: ITCStorage {
                 message.fromUserId = self.appUser.user?.userId
                 message.toUserId = userId
                 message.conversationId = conversationId
-                if let conversation =  TCConversation.get(id: conversationId, in: self.mainContext) {
-                    message.conversation = conversation
-                    message.lastFromConversation = conversation
+                if let conversation =  TCConversation.get(id: conversationId, in: self.mainContext) {                    message.lastFromConversation = conversation
+                    conversation.lastMessage = message
+                    conversation.addToMessages(message)
                 } else {
                     let conversation = TCConversation.insert(in: self.mainContext)
                     conversation.id = foundUsed.userId
-                    message.conversation = conversation
                     message.lastFromConversation = conversation
+                    conversation.lastMessage = message
+                    conversation.addToMessages(message)
                 }
-            } else {
-                //
-                //fatalError()
+                completion?()
             }
             //try? self.mainContext.save()
         }

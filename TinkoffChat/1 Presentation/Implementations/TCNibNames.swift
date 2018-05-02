@@ -10,34 +10,29 @@ import Foundation
 
 enum TCNibName: String {
     
-    //case TCNavigation
-    
+    // ViewControllers
     case TCConversationList
     case TCConversation
     case TCProfile
     case TCThemes
     
-    //
-    
+    // Cells for ConversationListVC
     case TCConversationCell
     case TCInformationCell
     
-    //
-    
+    // Cells for ConversationVC
     case TCNoMessagesCell
     case TCInputMessageCell
     case TCOutputMessageCell
     case TCNewMessagesCell
     
-    //
-    
+    // Cells for ProfileVC
     case TCProfilePhotoCell
     case TCProfileNameCell
     case TCProfileDescriptionCell
-    
     case TCProfileEdittingPhotoCell
     case TCProfileEdittingNameCell
     case TCProfileEdittingDescriptionCell
-    
     case TCProfileHeaderCell
+    
 }

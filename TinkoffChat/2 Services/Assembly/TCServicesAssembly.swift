@@ -13,7 +13,6 @@ class TCServicesAssembly: ITCServicesAssembly {
     
     required init(coreAssembly: ITCCoreAssembly){
         self.coreAssembly = coreAssembly
-        print("--TCServicesAssembly has been initialized")
     }
     
     lazy var manager: ITCManager = TCManager(storage: coreAssembly.storage, communicator: coreAssembly.communicator)

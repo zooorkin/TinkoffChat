@@ -7,10 +7,6 @@
 //
 
 class TCCoreAssembly: ITCCoreAssembly {
-
-    init() {
-        print("--TCCoreAssembly has been initialized")
-    }
     
     lazy var coreDataStack: ITCCoreDataStack = TCCoreDataStack()
     lazy var storage: ITCStorage = TCStorage(coreDataStack: coreDataStack)

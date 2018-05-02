@@ -8,57 +8,30 @@
 
 import UIKit
 
-class TCConversationListViewController: UITableViewController, ITCManagerDelegate, ThemesViewControllerDelegate {
+class TCConversationListViewController: UITableViewController, ThemesViewControllerDelegate, ITCConversationListModelDelegate {
     
+    // MARK: - ITCConversationListModelDelegate
     
-    var users: [User] = []
+    func update(dataSource: [TCConversationListCellModel]) {
+        self.dataSource = dataSource
+        let index = IndexSet(integer: 0)
+        self.tableView.reloadSections(index, with: .automatic)
+    }
+    
+    //
     
     internal let presentationAssembly: ITCPresentationAssembly
-    internal var manager: ITCManager
+
+    internal let model: ITCConversationListModel
     
-    init(presentationAssembly: ITCPresentationAssembly, manager: ITCManager) {
-        self.presentationAssembly = presentationAssembly
-        self.manager = manager
-        super.init(nibName: TCNibName.TCConversationList.rawValue, bundle: nil)
-        self.manager.delegate = self
-        users = manager.getUsers()
-        print("----TCConversationListViewController has been initialized")
-        print("------Now TCConversationListViewController is delegate of TCManager")
-    }
-    
-    private func reloadData(){
-        users = manager.getUsers()
-        let index = IndexSet(integer: 0)
-        DispatchQueue.main.async {
-            self.tableView.reloadSections(index, with: .automatic)
-        }
-    }
-    
-    private func adjustNavigationBar(){
-        title = "Tinkoff Chat"
-        navigationController?.navigationBar.tintColor = UIColor.black
-        if #available(iOS 11.0, *) {
-            navigationController?.navigationBar.prefersLargeTitles = true
-        } else {
-            // Fallback on earlier versions
-        }
-        if let topItem = navigationController?.navigationBar.topItem {
-            let themesButton = UIBarButtonItem(title: "Темы", style: .plain, target: self, action: #selector(openThemesViewController))
-            let profileButton = UIBarButtonItem(title: "Мой профиль", style: .plain, target: self, action: #selector(openProfileViewController))
-            topItem.leftBarButtonItem = themesButton
-            topItem.rightBarButtonItem = profileButton
-        } else {
-            fatalError()
-        }
-    }
+    internal var dataSource: [TCConversationListCellModel] = []
     
     // MARK: - init
-
-    private func registerNibs() {
-        let nib1 = UINib(nibName: TCNibName.TCConversationCell.rawValue, bundle: nil)
-        let nib2 = UINib(nibName: TCNibName.TCInformationCell.rawValue, bundle: nil)
-        tableView.register(nib1, forCellReuseIdentifier: TCNibName.TCConversationCell.rawValue)
-        tableView.register(nib2, forCellReuseIdentifier: TCNibName.TCInformationCell.rawValue)
+    
+    init(presentationAssembly: ITCPresentationAssembly, model: ITCConversationListModel) {
+        self.presentationAssembly = presentationAssembly
+        self.model = model
+        super.init(nibName: TCNibName.TCConversationList.rawValue, bundle: nil)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -69,31 +42,6 @@ class TCConversationListViewController: UITableViewController, ITCManagerDelegat
         registerNibs()
         adjustNavigationBar()
         super.viewDidLoad()
-    }
-    
-    // MARK: - ITCManagerDelegate
-    
-    var childDelegate: ITCManagerDelegate?
-    
-    func userDidBecomeOnline(userId: String) {
-        childDelegate?.userDidBecomeOnline(userId: userId)
-        reloadData()
-    }
-    
-    func userDidBecomeOffine(userId: String) {
-        childDelegate?.userDidBecomeOffine(userId: userId)
-        reloadData()
-    }
-    
-    func didReceiveMessage(fromUserWithId: String) {
-        childDelegate?.didReceiveMessage(fromUserWithId: fromUserWithId)
-        reloadData()
-        
-    }
-    
-    func didSendMessage(toUserWithId: String) {
-        childDelegate?.didSendMessage(toUserWithId: toUserWithId)
-        reloadData()
     }
     
     // MARK: -
@@ -120,6 +68,33 @@ class TCConversationListViewController: UITableViewController, ITCManagerDelegat
     func themesViewController(_ controller: UIViewController!, didSelectTheme selectedTheme: UIColor!) {
         let barAppearance = UINavigationBar.appearance()
         barAppearance.barTintColor = selectedTheme
+    }
+    
+    // MARK: - PRIVATE
+
+    private func adjustNavigationBar(){
+        title = "Tinkoff Chat"
+        navigationController?.navigationBar.tintColor = UIColor.black
+        if #available(iOS 11.0, *) {
+            navigationController?.navigationBar.prefersLargeTitles = true
+        } else {
+            // Fallback on earlier versions
+        }
+        if let topItem = navigationController?.navigationBar.topItem {
+            let themesButton = UIBarButtonItem(title: "Темы", style: .plain, target: self, action: #selector(openThemesViewController))
+            let profileButton = UIBarButtonItem(title: "Мой профиль", style: .plain, target: self, action: #selector(openProfileViewController))
+            topItem.leftBarButtonItem = themesButton
+            topItem.rightBarButtonItem = profileButton
+        } else {
+            fatalError()
+        }
+    }
+    
+    private func registerNibs() {
+        let nib1 = UINib(nibName: TCNibName.TCConversationCell.rawValue, bundle: nil)
+        let nib2 = UINib(nibName: TCNibName.TCInformationCell.rawValue, bundle: nil)
+        tableView.register(nib1, forCellReuseIdentifier: TCNibName.TCConversationCell.rawValue)
+        tableView.register(nib2, forCellReuseIdentifier: TCNibName.TCInformationCell.rawValue)
     }
 
 }

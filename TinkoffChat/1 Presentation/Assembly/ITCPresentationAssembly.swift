@@ -7,14 +7,13 @@
 //
 
 protocol ITCPresentationAssembly {
-    
     var servicesAssembly: ITCServicesAssembly {get}
+    
     init(servicesAssembly: ITCServicesAssembly)
-
+    
     func navigationController(rootViewController: UIViewController) -> UINavigationController
     func conversationListViewController() -> TCConversationListViewController
-    func conversationViewController(user: User) -> TCConversationViewController
+    func conversationViewController(userId: String) -> TCConversationViewController
     func profileViewController() -> TCProfileViewController
     func themesViewController() -> TCThemesViewController
-    
 }
