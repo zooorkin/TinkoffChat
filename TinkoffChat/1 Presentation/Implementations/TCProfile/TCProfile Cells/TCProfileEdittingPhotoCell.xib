@@ -35,6 +35,9 @@
                         </constraints>
                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <state key="normal" title="Изменить"/>
+                        <connections>
+                            <action selector="changeProfileImage:" destination="7J4-Sz-y89" eventType="touchUpInside" id="7w8-LL-1JZ"/>
+                        </connections>
                     </button>
                 </subviews>
                 <constraints>

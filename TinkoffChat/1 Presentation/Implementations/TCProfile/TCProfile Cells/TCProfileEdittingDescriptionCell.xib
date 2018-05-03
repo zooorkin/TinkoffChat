@@ -23,6 +23,9 @@
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                        <connections>
+                            <outlet property="delegate" destination="Q5g-P2-8cl" id="AlW-h2-aFp"/>
+                        </connections>
                     </textView>
                 </subviews>
                 <constraints>

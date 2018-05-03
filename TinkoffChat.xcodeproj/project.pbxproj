@@ -30,8 +30,6 @@
 		884AF9362049FBB400A4A045 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884AF9352049FBB400A4A045 /* ProfileView.swift */; };
 		884AF9382049FC9C00A4A045 /* DesignConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884AF9372049FC9C00A4A045 /* DesignConstants.swift */; };
 		885B776B209712D600534DD7 /* TCProfileTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 885B776A209712D600534DD7 /* TCProfileTableView.swift */; };
-		885B776D2097130600534DD7 /* TCProfileDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 885B776C2097130600534DD7 /* TCProfileDataSource.swift */; };
-		885B776F2097131300534DD7 /* TCProfileEdittingDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 885B776E2097131300534DD7 /* TCProfileEdittingDataSource.swift */; };
 		885B77712097144500534DD7 /* TCProfilePhotoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 885B77702097144500534DD7 /* TCProfilePhotoCell.xib */; };
 		885B77732097144D00534DD7 /* TCProfileNameCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 885B77722097144D00534DD7 /* TCProfileNameCell.xib */; };
 		885B77752097145400534DD7 /* TCProfileDescriptionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 885B77742097145400534DD7 /* TCProfileDescriptionCell.xib */; };
@@ -49,6 +47,7 @@
 		8869D22E20792B2A0021ACEC /* EditTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8869D22D20792B2A0021ACEC /* EditTextView.swift */; };
 		887F2E5E209836A800DFCC08 /* TCConversationListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887F2E5D209836A800DFCC08 /* TCConversationListModel.swift */; };
 		887F2E6020983EEB00DFCC08 /* TCConversationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887F2E5F20983EEB00DFCC08 /* TCConversationModel.swift */; };
+		8880159C209B21C500EC17B1 /* TCProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8880159B209B21C500EC17B1 /* TCProfileModel.swift */; };
 		888DED592080249A00B95022 /* Storage.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 888DED572080249A00B95022 /* Storage.xcdatamodeld */; };
 		88A030D9207AB4C9008C297A /* ColorButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A030D8207AB4C9008C297A /* ColorButton.swift */; };
 		88A3EBE92054668800CC5FD7 /* ITCConversationCellConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A3EBE82054668800CC5FD7 /* ITCConversationCellConfiguration.swift */; };
@@ -120,8 +119,6 @@
 		884AF9352049FBB400A4A045 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		884AF9372049FC9C00A4A045 /* DesignConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignConstants.swift; sourceTree = "<group>"; };
 		885B776A209712D600534DD7 /* TCProfileTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TCProfileTableView.swift; sourceTree = "<group>"; };
-		885B776C2097130600534DD7 /* TCProfileDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TCProfileDataSource.swift; sourceTree = "<group>"; };
-		885B776E2097131300534DD7 /* TCProfileEdittingDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TCProfileEdittingDataSource.swift; sourceTree = "<group>"; };
 		885B77702097144500534DD7 /* TCProfilePhotoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TCProfilePhotoCell.xib; sourceTree = "<group>"; };
 		885B77722097144D00534DD7 /* TCProfileNameCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TCProfileNameCell.xib; sourceTree = "<group>"; };
 		885B77742097145400534DD7 /* TCProfileDescriptionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TCProfileDescriptionCell.xib; sourceTree = "<group>"; };
@@ -139,6 +136,7 @@
 		8869D22D20792B2A0021ACEC /* EditTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTextView.swift; sourceTree = "<group>"; };
 		887F2E5D209836A800DFCC08 /* TCConversationListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TCConversationListModel.swift; sourceTree = "<group>"; };
 		887F2E5F20983EEB00DFCC08 /* TCConversationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TCConversationModel.swift; sourceTree = "<group>"; };
+		8880159B209B21C500EC17B1 /* TCProfileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TCProfileModel.swift; sourceTree = "<group>"; };
 		888DED582080249A00B95022 /* TinkoffChat.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TinkoffChat.xcdatamodel; sourceTree = "<group>"; };
 		88A030D8207AB4C9008C297A /* ColorButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorButton.swift; sourceTree = "<group>"; };
 		88A3EBE82054668800CC5FD7 /* ITCConversationCellConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ITCConversationCellConfiguration.swift; sourceTree = "<group>"; };
@@ -323,16 +321,6 @@
 			path = ThemesViewController;
 			sourceTree = "<group>";
 		};
-		885B778A209723F500534DD7 /* Cells */ = {
-			isa = PBXGroup;
-			children = (
-				885B7790209725C600534DD7 /* TCConversationList Cells */,
-				885B77932097349700534DD7 /* TCConversation Cells */,
-				885B7792209726B400534DD7 /* TCProfile Cells */,
-			);
-			path = Cells;
-			sourceTree = "<group>";
-		};
 		885B778B2097240000534DD7 /* Buttons */ = {
 			isa = PBXGroup;
 			children = (
@@ -427,7 +415,6 @@
 				885B778E2097247400534DD7 /* ImageViews */,
 				885B778D2097246200534DD7 /* TextViews */,
 				885B778B2097240000534DD7 /* Buttons */,
-				885B778A209723F500534DD7 /* Cells */,
 			);
 			path = "Custom elements";
 			sourceTree = "<group>";
@@ -469,6 +456,7 @@
 		88FF788820964610005A3F45 /* TCConversationList */ = {
 			isa = PBXGroup;
 			children = (
+				885B7790209725C600534DD7 /* TCConversationList Cells */,
 				887F2E5D209836A800DFCC08 /* TCConversationListModel.swift */,
 				88FF785C2095D710005A3F45 /* TCConversationListViewController.swift */,
 				88FF787E20960A32005A3F45 /* TCConversationListDataSource.swift */,
@@ -480,6 +468,7 @@
 		88FF788920964626005A3F45 /* TCConversation */ = {
 			isa = PBXGroup;
 			children = (
+				885B77932097349700534DD7 /* TCConversation Cells */,
 				887F2E5F20983EEB00DFCC08 /* TCConversationModel.swift */,
 				88FF785E2095D73D005A3F45 /* TCConversationViewController.swift */,
 				88FF78662095D939005A3F45 /* TCConversation.xib */,
@@ -490,10 +479,10 @@
 		88FF788A20964654005A3F45 /* TCProfile */ = {
 			isa = PBXGroup;
 			children = (
+				885B7792209726B400534DD7 /* TCProfile Cells */,
+				8880159B209B21C500EC17B1 /* TCProfileModel.swift */,
 				88FF78602095D74C005A3F45 /* TCProfileViewController.swift */,
 				885B776A209712D600534DD7 /* TCProfileTableView.swift */,
-				885B776C2097130600534DD7 /* TCProfileDataSource.swift */,
-				885B776E2097131300534DD7 /* TCProfileEdittingDataSource.swift */,
 				88FF78682095D940005A3F45 /* TCProfile.xib */,
 			);
 			path = TCProfile;
@@ -686,8 +675,7 @@
 				88BF08382051322C00B08C69 /* RoundImage.swift in Sources */,
 				880C288220926B9F00BFD30D /* ITCCommunicator.swift in Sources */,
 				888DED592080249A00B95022 /* Storage.xcdatamodeld in Sources */,
-				885B776D2097130600534DD7 /* TCProfileDataSource.swift in Sources */,
-				885B776F2097131300534DD7 /* TCProfileEdittingDataSource.swift in Sources */,
+				8880159C209B21C500EC17B1 /* TCProfileModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

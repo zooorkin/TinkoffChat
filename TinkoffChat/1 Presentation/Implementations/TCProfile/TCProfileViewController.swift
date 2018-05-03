@@ -9,53 +9,25 @@
 import UIKit
 import CoreData
 
-class TCProfileViewController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextViewDelegate {
+class TCProfileViewController: UITableViewController, ITCProfileModelDelegate {
+    
+    func update(dataSource: [TCProfileCellModel]) {
+        self.dataSource = dataSource
+    }
    
     var editButton: UIBarButtonItem!
-    var isEdittingMode = false
-    
+   
     private let presentationAssembly: ITCPresentationAssembly
-    private var manager: ITCManager
     
-    var mainContext: NSManagedObjectContext {
-        return presentationAssembly.servicesAssembly.coreAssembly.coreDataStack.mainContext
-    }
+    internal var model: ITCProfileModel
     
-    init(presentationAssembly: ITCPresentationAssembly, manager: ITCManager) {
+    internal var dataSource: [TCProfileCellModel] = []
+    
+    init(presentationAssembly: ITCPresentationAssembly, model: ITCProfileModel) {
         self.presentationAssembly = presentationAssembly
-        self.manager = manager
+        self.model = model
         super.init(nibName: TCNibName.TCProfile.rawValue, bundle: nil)
-        print("----TCProfileViewController has been initialized")
-        print("------Now TCConversationListViewController is delegate of TCManager")
     }
-    
-    var profileImage: UIImage? {
-        get {
-            if let data = appUser.user!.photo {
-                return  UIImage(data: data)
-            } else {
-                return nil
-            }
-        }
-        set {
-            if let photo = newValue {
-                appUser.user!.photo = UIImageJPEGRepresentation(photo, 1)
-            } else {
-                appUser.user!.photo = nil
-            }
-        }
-    }
-    
-    var profileImageData: Data? {
-        get {
-            return appUser.user!.photo
-        }
-    }
-    
-    lazy var appUser: TCAppUser = {
-        return TCAppUser.findOrInsertAppUser(in: mainContext)
-    }()
-    
     
     // MARK: - init
     
@@ -75,7 +47,6 @@ class TCProfileViewController: UITableViewController, UIImagePickerControllerDel
         tableView.register(nib2, forCellReuseIdentifier: TCNibName.TCProfileNameCell.rawValue)
         tableView.register(nib3, forCellReuseIdentifier: TCNibName.TCProfileDescriptionCell.rawValue)
         tableView.register(nib4, forCellReuseIdentifier: TCNibName.TCProfileHeaderCell.rawValue)
-        
         tableView.register(nib5, forCellReuseIdentifier: TCNibName.TCProfileEdittingPhotoCell.rawValue)
         tableView.register(nib6, forCellReuseIdentifier: TCNibName.TCProfileEdittingNameCell.rawValue)
         tableView.register(nib7, forCellReuseIdentifier: TCNibName.TCProfileEdittingDescriptionCell.rawValue)
@@ -84,6 +55,7 @@ class TCProfileViewController: UITableViewController, UIImagePickerControllerDel
     override func viewDidLoad() {
         adjustNavigationBar()
         super.viewDidLoad()
+        model.fetchUpdate()
         registerNibs()
     }
     
@@ -104,83 +76,17 @@ class TCProfileViewController: UITableViewController, UIImagePickerControllerDel
     }
     
     @objc func edit(_ sender: Any) {
-        func end(title: String){
-            self.editButton.title = title
-            self.isEdittingMode = !self.isEdittingMode
-            let index = IndexSet(integer: 0)
-            self.tableView.reloadSections(index, with: .automatic)
-            
+        self.editButton.title = self.model.isEditting ? "Ред." : "Сохранить"
+        if self.model.isEditting {
+            self.model.saveProfileChanges()
+            self.model.fetchUpdate()
         }
-        isEdittingMode ?
-            save(completion: {end(title: "Ред.")}) :
-            end(title: "Сохранить")
-    }
-    
-    func save(completion: (() -> Void)?){
-        let index2 = IndexPath(row: 2, section: 0)
-        let cellName = self.tableView.cellForRow(at: index2) as! TCProfileEdittingNameCell
-        let index4 = IndexPath(row: 4, section: 0)
-        let cellDesc = self.tableView.cellForRow(at: index4) as! TCProfileEdittingDescriptionCell
-        mainContext.perform {
-            self.appUser.user?.fullName = cellName.profileName.text
-            self.appUser.user?.info = cellDesc.profileDescription.text
-            self.appUser.user?.photo = self.profileImageData
-            self.presentationAssembly.servicesAssembly.coreAssembly.coreDataStack.performSave(context: self.mainContext, completion: nil)
-            completion?()
-        }
+        self.model.isEditting = !self.model.isEditting
+        let index = IndexSet(integer: 0)
+        self.tableView.reloadSections(index, with: .automatic)
     }
     
     @objc private func close() {
         dismiss(animated: true, completion: nil)
     }
-    
-    @IBAction func changeProfileImage(_ sender: Any) {
-        print("Выберите изображение профиля")
-        let alertController = UIAlertController()
-        let select = UIAlertAction(title: "Установить из галереи", style: .default){ _ in
-            if UIImagePickerController.isSourceTypeAvailable(.photoLibrary){
-                let imagePickerController = UIImagePickerController()
-                imagePickerController.sourceType = .photoLibrary
-                imagePickerController.allowsEditing = false
-                imagePickerController.delegate = self
-                self.present(imagePickerController, animated: true, completion: nil)
-            }
-        }
-        alertController.addAction(select)
-        let shot = UIAlertAction(title: "Сделать фото", style: .default){ _ in
-            if UIImagePickerController.isSourceTypeAvailable(.camera){
-                let imagePickerController = UIImagePickerController()
-                imagePickerController.sourceType = .camera
-                imagePickerController.allowsEditing = false
-                imagePickerController.delegate = self
-                self.present(imagePickerController, animated: true, completion: nil)
-            }
-        }
-        
-        alertController.addAction(shot)
-        if profileImage != nil{
-            let destroy = UIAlertAction(title: "Удалить фотографию", style: .destructive){ _ in
-                // ВНИМАНИЕ! profileImage – вычисляемое свойство класса
-                self.profileImage = nil
-                let index = IndexPath(row: 0, section: 0)
-                self.tableView.reloadRows(at: [index], with: .none)
-            }
-            alertController.addAction(destroy)
-        }
-        let cancel = UIAlertAction(title: "Отмена", style: .cancel, handler: nil)
-        alertController.addAction(cancel)
-        self.present(alertController, animated: true, completion: nil)
-    }
-    
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
-            // ВНИМАНИЕ! profileImage – вычисляемое свойство класса
-            self.profileImage = pickedImage
-            //profileImage = pickedImage
-            let index = IndexPath(row: 0, section: 0)
-            tableView.reloadRows(at: [index], with: .none)
-        }
-        dismiss(animated: true, completion: nil)
-    }
-
 }

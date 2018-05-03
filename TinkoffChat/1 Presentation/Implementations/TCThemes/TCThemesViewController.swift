@@ -18,8 +18,6 @@ class TCThemesViewController: UIViewController {
         self.presentationAssembly = presentationAssembly
         self.manager = manager
         super.init(nibName: TCNibName.TCThemes.rawValue, bundle: nil)
-        print("----TCThemesViewController has been initialized")
-        print("------Now TCConversationListViewController is delegate of TCManager")
     }
     
     

@@ -34,7 +34,10 @@ class TCPresentationAssembly: ITCPresentationAssembly {
     }
     
     func profileViewController() -> TCProfileViewController {
-        return TCProfileViewController(presentationAssembly: self, manager: servicesAssembly.manager)
+        let model = TCProfileModel(manager: servicesAssembly.manager)
+        let profileVC = TCProfileViewController(presentationAssembly: self, model: model)
+        model.delegate = profileVC
+        return profileVC
     }
     
     func themesViewController() -> TCThemesViewController {
