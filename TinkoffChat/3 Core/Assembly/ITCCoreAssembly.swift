@@ -10,4 +10,6 @@ protocol ITCCoreAssembly {
     var coreDataStack: ITCCoreDataStack {get}
     var storage: ITCStorage {get}
     var communicator: ITCCommunicator {get}
+
+    var dataLoader: ITCDataLoader {get}
 }

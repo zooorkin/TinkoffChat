@@ -50,7 +50,7 @@ extension TCProfileViewController {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as? T else {
                 fatalError()
             }
-            cell.tableViewController = self
+            cell.profileViewController = self
             cell.profileImage = photo
             cell.model = model
             return cell

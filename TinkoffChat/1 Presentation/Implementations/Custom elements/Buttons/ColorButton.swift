@@ -13,7 +13,7 @@ import UIKit
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        layer.borderWidth = 2
+        layer.borderWidth = 1
         layer.borderColor = UIColor.darkGray.cgColor
         layer.cornerRadius = DesignConstants.bordedButtonRadius
         clipsToBounds = true

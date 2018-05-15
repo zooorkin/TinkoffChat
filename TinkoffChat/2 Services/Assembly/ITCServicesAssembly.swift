@@ -12,4 +12,5 @@ protocol ITCServicesAssembly {
     init(coreAssembly: ITCCoreAssembly)
     
     var manager: ITCManager {get}
+    var internetImagesManager: ITCInternetImagesManager {get}
 }

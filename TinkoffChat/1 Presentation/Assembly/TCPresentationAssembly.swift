@@ -41,7 +41,12 @@ class TCPresentationAssembly: ITCPresentationAssembly {
     }
     
     func themesViewController() -> TCThemesViewController {
-        return TCThemesViewController(presentationAssembly: self, manager: servicesAssembly.manager)
+        let colors = (UIColor.white, DesignConstants.pink, DesignConstants.blue)
+        return TCThemesViewController(presentationAssembly: self, manager: servicesAssembly.manager, colors: colors)
     }
     
+    func internetImagesViewController() -> TCInternetImagesViewController {
+        let model = TCInternetImagesModel(internetImagesManager: servicesAssembly.internetImagesManager)
+        return TCInternetImagesViewController(presentationAssembly: self, model: model)
+    }
 }

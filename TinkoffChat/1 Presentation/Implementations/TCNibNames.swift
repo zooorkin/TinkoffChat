@@ -15,6 +15,7 @@ enum TCNibName: String {
     case TCConversation
     case TCProfile
     case TCThemes
+    case TCInternetImages
     
     // Cells for ConversationListVC
     case TCConversationCell
@@ -34,5 +35,8 @@ enum TCNibName: String {
     case TCProfileEdittingNameCell
     case TCProfileEdittingDescriptionCell
     case TCProfileHeaderCell
+    
+    //
+    case TCInternetImagesCell
     
 }

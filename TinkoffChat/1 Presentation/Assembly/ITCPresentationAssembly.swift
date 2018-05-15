@@ -16,4 +16,5 @@ protocol ITCPresentationAssembly {
     func conversationViewController(userId: String) -> TCConversationViewController
     func profileViewController() -> TCProfileViewController
     func themesViewController() -> TCThemesViewController
+    func internetImagesViewController() -> TCInternetImagesViewController
 }

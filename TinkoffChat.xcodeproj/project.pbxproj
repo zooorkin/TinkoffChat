@@ -25,6 +25,15 @@
 		8835FA2A205D9A47002CFA21 /* ThemesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8835FA29205D9A47002CFA21 /* ThemesViewController.m */; };
 		8835FA2D205D9BED002CFA21 /* Themes.m in Sources */ = {isa = PBXBuildFile; fileRef = 8835FA2C205D9BED002CFA21 /* Themes.m */; };
 		8835FA32205DA86A002CFA21 /* ThemesViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8835FA31205DA86A002CFA21 /* ThemesViewController.storyboard */; };
+		884724F420A83608006144F2 /* TCThemesViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884724F320A83608006144F2 /* TCThemesViewControllerDelegate.swift */; };
+		884724F620AB2668006144F2 /* TCInternetImagesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884724F520AB2668006144F2 /* TCInternetImagesModel.swift */; };
+		884724F820AB3F17006144F2 /* ITCNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884724F720AB3F17006144F2 /* ITCNetwork.swift */; };
+		884724FA20AB4155006144F2 /* ITCInternetImagesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884724F920AB4155006144F2 /* ITCInternetImagesManager.swift */; };
+		884724FC20AB41A4006144F2 /* TCInternetImagesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884724FB20AB41A4006144F2 /* TCInternetImagesManager.swift */; };
+		8847250020AB42D3006144F2 /* ITCDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884724FF20AB42D3006144F2 /* ITCDataLoader.swift */; };
+		8847250420AB43E2006144F2 /* TCDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8847250320AB43E2006144F2 /* TCDataLoader.swift */; };
+		8847250620AB4799006144F2 /* ITCDataLoaderDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8847250520AB4799006144F2 /* ITCDataLoaderDelegate.swift */; };
+		8847250820AB496E006144F2 /* ITCInternetImagesManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8847250720AB496E006144F2 /* ITCInternetImagesManagerDelegate.swift */; };
 		884AF9322049EC2700A4A045 /* ChangeProfileImageButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884AF9312049EC2700A4A045 /* ChangeProfileImageButton.swift */; };
 		884AF9342049F71000A4A045 /* EditButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884AF9332049F71000A4A045 /* EditButton.swift */; };
 		884AF9362049FBB400A4A045 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884AF9352049FBB400A4A045 /* ProfileView.swift */; };
@@ -59,6 +68,10 @@
 		88DBB02F2041BB0C005EDA8B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DBB02E2041BB0C005EDA8B /* AppDelegate.swift */; };
 		88DBB0392041BB0C005EDA8B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 88DBB0382041BB0C005EDA8B /* Assets.xcassets */; };
 		88DBB03C2041BB0C005EDA8B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 88DBB03A2041BB0C005EDA8B /* LaunchScreen.storyboard */; };
+		88E20027209B54DA008DEEDF /* TCInternetImagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E20025209B54DA008DEEDF /* TCInternetImagesViewController.swift */; };
+		88E20028209B54DA008DEEDF /* TCInternetImages.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88E20026209B54DA008DEEDF /* TCInternetImages.xib */; };
+		88E2002C209B5A17008DEEDF /* TCInternetImagesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E2002B209B5A17008DEEDF /* TCInternetImagesCell.swift */; };
+		88E2002E209B5A25008DEEDF /* TCInternetImagesCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88E2002D209B5A25008DEEDF /* TCInternetImagesCell.xib */; };
 		88FF785D2095D710005A3F45 /* TCConversationListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88FF785C2095D710005A3F45 /* TCConversationListViewController.swift */; };
 		88FF785F2095D73D005A3F45 /* TCConversationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88FF785E2095D73D005A3F45 /* TCConversationViewController.swift */; };
 		88FF78612095D74C005A3F45 /* TCProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88FF78602095D74C005A3F45 /* TCProfileViewController.swift */; };
@@ -114,6 +127,15 @@
 		8835FA2B205D9BED002CFA21 /* Themes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Themes.h; sourceTree = "<group>"; };
 		8835FA2C205D9BED002CFA21 /* Themes.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Themes.m; sourceTree = "<group>"; };
 		8835FA31205DA86A002CFA21 /* ThemesViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ThemesViewController.storyboard; sourceTree = "<group>"; };
+		884724F320A83608006144F2 /* TCThemesViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TCThemesViewControllerDelegate.swift; sourceTree = "<group>"; };
+		884724F520AB2668006144F2 /* TCInternetImagesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TCInternetImagesModel.swift; sourceTree = "<group>"; };
+		884724F720AB3F17006144F2 /* ITCNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ITCNetwork.swift; sourceTree = "<group>"; };
+		884724F920AB4155006144F2 /* ITCInternetImagesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ITCInternetImagesManager.swift; sourceTree = "<group>"; };
+		884724FB20AB41A4006144F2 /* TCInternetImagesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TCInternetImagesManager.swift; sourceTree = "<group>"; };
+		884724FF20AB42D3006144F2 /* ITCDataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ITCDataLoader.swift; sourceTree = "<group>"; };
+		8847250320AB43E2006144F2 /* TCDataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TCDataLoader.swift; sourceTree = "<group>"; };
+		8847250520AB4799006144F2 /* ITCDataLoaderDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ITCDataLoaderDelegate.swift; sourceTree = "<group>"; };
+		8847250720AB496E006144F2 /* ITCInternetImagesManagerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ITCInternetImagesManagerDelegate.swift; sourceTree = "<group>"; };
 		884AF9312049EC2700A4A045 /* ChangeProfileImageButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeProfileImageButton.swift; sourceTree = "<group>"; };
 		884AF9332049F71000A4A045 /* EditButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditButton.swift; sourceTree = "<group>"; };
 		884AF9352049FBB400A4A045 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
@@ -150,6 +172,10 @@
 		88DBB0382041BB0C005EDA8B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		88DBB03B2041BB0C005EDA8B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		88DBB03D2041BB0C005EDA8B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		88E20025209B54DA008DEEDF /* TCInternetImagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TCInternetImagesViewController.swift; sourceTree = "<group>"; };
+		88E20026209B54DA008DEEDF /* TCInternetImages.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TCInternetImages.xib; sourceTree = "<group>"; };
+		88E2002B209B5A17008DEEDF /* TCInternetImagesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TCInternetImagesCell.swift; sourceTree = "<group>"; };
+		88E2002D209B5A25008DEEDF /* TCInternetImagesCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TCInternetImagesCell.xib; sourceTree = "<group>"; };
 		88FF785C2095D710005A3F45 /* TCConversationListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TCConversationListViewController.swift; sourceTree = "<group>"; };
 		88FF785E2095D73D005A3F45 /* TCConversationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TCConversationViewController.swift; sourceTree = "<group>"; };
 		88FF78602095D74C005A3F45 /* TCProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TCProfileViewController.swift; sourceTree = "<group>"; };
@@ -249,6 +275,7 @@
 			isa = PBXGroup;
 			children = (
 				880C28922092756900BFD30D /* TCManager.swift */,
+				884724FB20AB41A4006144F2 /* TCInternetImagesManager.swift */,
 			);
 			path = Implementations;
 			sourceTree = "<group>";
@@ -258,6 +285,8 @@
 			children = (
 				880C2890209274F200BFD30D /* ITCManager.swift */,
 				88616CA52092887500100F90 /* ITCManagerDelegate.swift */,
+				884724F920AB4155006144F2 /* ITCInternetImagesManager.swift */,
+				8847250720AB496E006144F2 /* ITCInternetImagesManagerDelegate.swift */,
 			);
 			path = Interfaces;
 			sourceTree = "<group>";
@@ -268,6 +297,9 @@
 				880C288120926B9F00BFD30D /* ITCCommunicator.swift */,
 				880C289A209280FB00BFD30D /* ITCCommunicatorDelegate.swift */,
 				880C288320926BCF00BFD30D /* ITCStorage.swift */,
+				884724F720AB3F17006144F2 /* ITCNetwork.swift */,
+				884724FF20AB42D3006144F2 /* ITCDataLoader.swift */,
+				8847250520AB4799006144F2 /* ITCDataLoaderDelegate.swift */,
 			);
 			path = Interfaces;
 			sourceTree = "<group>";
@@ -278,6 +310,7 @@
 				880C289C2092816C00BFD30D /* TCCommunicator.swift */,
 				880C289E2092817F00BFD30D /* TCStorage.swift */,
 				88FF789320966DD9005A3F45 /* TCCoreDataStack.swift */,
+				8847250320AB43E2006144F2 /* TCDataLoader.swift */,
 				888DED572080249A00B95022 /* Storage.xcdatamodeld */,
 				882CB4C8208F7CC500538AC0 /* EntitiesExtensions.swift */,
 			);
@@ -295,6 +328,7 @@
 				88FF788920964626005A3F45 /* TCConversation */,
 				88FF788A20964654005A3F45 /* TCProfile */,
 				88FF788B2096465E005A3F45 /* TCThemes */,
+				88E20024209B5420008DEEDF /* TCInternetImages */,
 			);
 			path = Implementations;
 			sourceTree = "<group>";
@@ -453,6 +487,18 @@
 			path = TinkoffChat;
 			sourceTree = "<group>";
 		};
+		88E20024209B5420008DEEDF /* TCInternetImages */ = {
+			isa = PBXGroup;
+			children = (
+				884724F520AB2668006144F2 /* TCInternetImagesModel.swift */,
+				88E20025209B54DA008DEEDF /* TCInternetImagesViewController.swift */,
+				88E2002B209B5A17008DEEDF /* TCInternetImagesCell.swift */,
+				88E2002D209B5A25008DEEDF /* TCInternetImagesCell.xib */,
+				88E20026209B54DA008DEEDF /* TCInternetImages.xib */,
+			);
+			path = TCInternetImages;
+			sourceTree = "<group>";
+		};
 		88FF788820964610005A3F45 /* TCConversationList */ = {
 			isa = PBXGroup;
 			children = (
@@ -492,6 +538,7 @@
 			isa = PBXGroup;
 			children = (
 				88FF78622095D754005A3F45 /* TCThemesViewController.swift */,
+				884724F320A83608006144F2 /* TCThemesViewControllerDelegate.swift */,
 				88FF786A2095D956005A3F45 /* TCThemes.xib */,
 			);
 			path = TCThemes;
@@ -588,6 +635,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				88E20028209B54DA008DEEDF /* TCInternetImages.xib in Resources */,
 				88DBB03C2041BB0C005EDA8B /* LaunchScreen.storyboard in Resources */,
 				885B777B2097146B00534DD7 /* TCProfileEdittingDescriptionCell.xib in Resources */,
 				88FF789A2096843E005A3F45 /* TCInputMessageCell.xib in Resources */,
@@ -601,6 +649,7 @@
 				88FF78652095D92D005A3F45 /* TCConversationList.xib in Resources */,
 				88DBB0392041BB0C005EDA8B /* Assets.xcassets in Resources */,
 				885B77772097145B00534DD7 /* TCProfileEdittingPhotoCell.xib in Resources */,
+				88E2002E209B5A25008DEEDF /* TCInternetImagesCell.xib in Resources */,
 				885B77752097145400534DD7 /* TCProfileDescriptionCell.xib in Resources */,
 				885B77792097146200534DD7 /* TCProfileEdittingNameCell.xib in Resources */,
 				88FF787D20960980005A3F45 /* TCConversationCell.xib in Resources */,
@@ -633,30 +682,39 @@
 				880C288C20926D8500BFD30D /* TCServicesAssembly.swift in Sources */,
 				885B776B209712D600534DD7 /* TCProfileTableView.swift in Sources */,
 				880C288E20926DCD00BFD30D /* TCPresentationAssembly.swift in Sources */,
+				884724F420A83608006144F2 /* TCThemesViewControllerDelegate.swift in Sources */,
 				8869D22C207921030021ACEC /* TCProfileCells.swift in Sources */,
 				88FF785D2095D710005A3F45 /* TCConversationListViewController.swift in Sources */,
+				8847250020AB42D3006144F2 /* ITCDataLoader.swift in Sources */,
 				884AF9382049FC9C00A4A045 /* DesignConstants.swift in Sources */,
 				880C288920926D4600BFD30D /* TCCoreAssembly.swift in Sources */,
+				88E2002C209B5A17008DEEDF /* TCInternetImagesCell.swift in Sources */,
 				884AF9362049FBB400A4A045 /* ProfileView.swift in Sources */,
 				8869D22E20792B2A0021ACEC /* EditTextView.swift in Sources */,
 				880C288620926D1600BFD30D /* TCRootAssembly.swift in Sources */,
 				882CB4C9208F7CC500538AC0 /* EntitiesExtensions.swift in Sources */,
 				880C289D2092816C00BFD30D /* TCCommunicator.swift in Sources */,
+				8847250820AB496E006144F2 /* ITCInternetImagesManagerDelegate.swift in Sources */,
 				887F2E6020983EEB00DFCC08 /* TCConversationModel.swift in Sources */,
 				885B778520971F6700534DD7 /* ITCCoreAssembly.swift in Sources */,
+				884724F620AB2668006144F2 /* TCInternetImagesModel.swift in Sources */,
 				88FF788120960B28005A3F45 /* TCConversationCell.swift in Sources */,
 				88FF787F20960A32005A3F45 /* TCConversationListDataSource.swift in Sources */,
 				88FF785F2095D73D005A3F45 /* TCConversationViewController.swift in Sources */,
 				88144CE0204329EA0035CB07 /* Log.swift in Sources */,
+				8847250620AB4799006144F2 /* ITCDataLoaderDelegate.swift in Sources */,
 				88FF78632095D754005A3F45 /* TCThemesViewController.swift in Sources */,
 				8835FA2A205D9A47002CFA21 /* ThemesViewController.m in Sources */,
 				88FF786D2095DB1B005A3F45 /* TCNibNames.swift in Sources */,
+				8847250420AB43E2006144F2 /* TCDataLoader.swift in Sources */,
 				88B96C032053307900C4961C /* DateFunctions.swift in Sources */,
 				8835FA2D205D9BED002CFA21 /* Themes.m in Sources */,
 				884AF9342049F71000A4A045 /* EditButton.swift in Sources */,
 				88A3EBEB205466B000CC5FD7 /* ITCMessageCellConfiguration.swift in Sources */,
+				88E20027209B54DA008DEEDF /* TCInternetImagesViewController.swift in Sources */,
 				884AF9322049EC2700A4A045 /* ChangeProfileImageButton.swift in Sources */,
 				88FF78612095D74C005A3F45 /* TCProfileViewController.swift in Sources */,
+				884724FA20AB4155006144F2 /* ITCInternetImagesManager.swift in Sources */,
 				88A3EBE92054668800CC5FD7 /* ITCConversationCellConfiguration.swift in Sources */,
 				88616CA62092887500100F90 /* ITCManagerDelegate.swift in Sources */,
 				88A030D9207AB4C9008C297A /* ColorButton.swift in Sources */,
@@ -671,11 +729,13 @@
 				880C288420926BCF00BFD30D /* ITCStorage.swift in Sources */,
 				88FF78A020968496005A3F45 /* TCMessageCell.swift in Sources */,
 				88CA58F2207A150B00D5646C /* UserCircle.swift in Sources */,
+				884724FC20AB41A4006144F2 /* TCInternetImagesManager.swift in Sources */,
 				885B778320971F4700534DD7 /* ITCServicesAssembly.swift in Sources */,
 				88BF08382051322C00B08C69 /* RoundImage.swift in Sources */,
 				880C288220926B9F00BFD30D /* ITCCommunicator.swift in Sources */,
 				888DED592080249A00B95022 /* Storage.xcdatamodeld in Sources */,
 				8880159C209B21C500EC17B1 /* TCProfileModel.swift in Sources */,
+				884724F820AB3F17006144F2 /* ITCNetwork.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

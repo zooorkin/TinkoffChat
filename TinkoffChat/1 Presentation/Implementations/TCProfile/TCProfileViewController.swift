@@ -9,17 +9,24 @@
 import UIKit
 import CoreData
 
-class TCProfileViewController: UITableViewController, ITCProfileModelDelegate {
+class TCProfileViewController: UITableViewController, ITCProfileModelDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, ITCInternetImagesDelegate {
+    
+    func setNew(photo: UIImage) {
+        model.setNew(photo: photo)
+        model.fetchUpdate()
+        let index = IndexPath(row: 0, section: 0)
+        self.tableView.reloadRows(at: [index], with: .none)
+    }
     
     func update(dataSource: [TCProfileCellModel]) {
         self.dataSource = dataSource
     }
-   
+    
     var editButton: UIBarButtonItem!
-   
+    
     private let presentationAssembly: ITCPresentationAssembly
     
-    internal var model: ITCProfileModel
+    public var model: ITCProfileModel
     
     internal var dataSource: [TCProfileCellModel] = []
     
@@ -60,6 +67,64 @@ class TCProfileViewController: UITableViewController, ITCProfileModelDelegate {
     }
     
     // MARK: -
+    
+    func changeProfileImage(withDelete: Bool) {
+        
+        let alertController = UIAlertController()
+        let select = UIAlertAction(title: "Установить из галереи", style: .default){ _ in
+            if UIImagePickerController.isSourceTypeAvailable(.photoLibrary){
+                let imagePickerController = UIImagePickerController()
+                imagePickerController.sourceType = .photoLibrary
+                imagePickerController.allowsEditing = false
+                imagePickerController.delegate = self
+                self.present(imagePickerController, animated: true, completion: nil)
+            }
+        }
+        alertController.addAction(select)
+        let shot = UIAlertAction(title: "Сделать фото", style: .default){ _ in
+            if UIImagePickerController.isSourceTypeAvailable(.camera){
+                let imagePickerController = UIImagePickerController()
+                imagePickerController.sourceType = .camera
+                imagePickerController.allowsEditing = false
+                imagePickerController.delegate = self
+                self.present(imagePickerController, animated: true, completion: nil)
+            }
+        }
+        
+        alertController.addAction(shot)
+        
+        let internetImages = UIAlertAction(title: "Загрузить", style: .default){ _ in
+            let internetImagesViewController = self.presentationAssembly.internetImagesViewController()
+            internetImagesViewController.delegate = self
+            let navigationController = self.presentationAssembly.navigationController(rootViewController: internetImagesViewController)
+            self.present(navigationController, animated: true, completion: nil)
+        }
+        alertController.addAction(internetImages)
+        if withDelete {
+            let destroy = UIAlertAction(title: "Удалить фотографию", style: .destructive){ _ in
+                // ВНИМАНИЕ! profileImage – вычисляемое свойство класса
+                self.model.setNew(photo: UIImage(named: "placeholder-user")!)
+                self.model.fetchUpdate()
+                let index = IndexPath(row: 0, section: 0)
+                self.tableView.reloadRows(at: [index], with: .none)
+            }
+            alertController.addAction(destroy)
+        }
+        let cancel = UIAlertAction(title: "Отмена", style: .cancel, handler: nil)
+        alertController.addAction(cancel)
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            // ВНИМАНИЕ! profileImage – вычисляемое свойство класса
+            model.setNew(photo: pickedImage)
+            model.fetchUpdate()
+            let index = IndexPath(row: 0, section: 0)
+            self.tableView.reloadRows(at: [index], with: .none)
+        }
+        self.dismiss(animated: true, completion: nil)
+    }
     
     private func adjustNavigationBar(){
         title = "Мой профиль"

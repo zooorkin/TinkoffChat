@@ -7,7 +7,6 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -28,7 +27,7 @@
                         </constraints>
                     </imageView>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hvM-Um-Y1Y" customClass="ChangeProfileImageButton" customModule="TinkoffChat" customModuleProvider="target">
-                        <rect key="frame" x="90" y="19" width="195.5" height="195"/>
+                        <rect key="frame" x="88" y="16" width="200.5" height="200.5"/>
                         <color key="backgroundColor" white="0.0" alpha="0.24591401460000001" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="hvM-Um-Y1Y" secondAttribute="height" multiplier="1:1" id="15Z-ln-Xf5"/>
@@ -42,10 +41,10 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="X7o-Jg-Ub0" firstAttribute="top" secondItem="cAf-xn-AsX" secondAttribute="top" constant="16" id="Gk6-cG-vXF"/>
+                    <constraint firstAttribute="bottom" secondItem="hvM-Um-Y1Y" secondAttribute="bottom" constant="16" id="KdA-2w-4MX"/>
                     <constraint firstItem="X7o-Jg-Ub0" firstAttribute="centerX" secondItem="cAf-xn-AsX" secondAttribute="centerX" id="a5z-hG-Xby"/>
                     <constraint firstItem="hvM-Um-Y1Y" firstAttribute="centerX" secondItem="cAf-xn-AsX" secondAttribute="centerX" id="fBV-pn-viR"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="hvM-Um-Y1Y" secondAttribute="bottom" constant="8" id="q21-uH-v9t"/>
-                    <constraint firstItem="hvM-Um-Y1Y" firstAttribute="top" secondItem="cAf-xn-AsX" secondAttribute="topMargin" constant="8" id="rUH-mO-UCY"/>
+                    <constraint firstItem="hvM-Um-Y1Y" firstAttribute="top" secondItem="cAf-xn-AsX" secondAttribute="top" constant="16" id="t8a-P2-Tfk"/>
                     <constraint firstAttribute="bottom" secondItem="X7o-Jg-Ub0" secondAttribute="bottom" constant="16" id="x2f-Sj-zLz"/>
                 </constraints>
             </tableViewCellContentView>
@@ -53,6 +52,7 @@
             <connections>
                 <outlet property="profilePhoto" destination="X7o-Jg-Ub0" id="k0C-7N-nE5"/>
             </connections>
+            <point key="canvasLocation" x="41.5" y="66.5"/>
         </tableViewCell>
     </objects>
     <resources>

@@ -8,7 +8,6 @@
 
 class TCServicesAssembly: ITCServicesAssembly {
     
-    
     internal let coreAssembly: ITCCoreAssembly
     
     required init(coreAssembly: ITCCoreAssembly){
@@ -16,5 +15,7 @@ class TCServicesAssembly: ITCServicesAssembly {
     }
     
     lazy var manager: ITCManager = TCManager(storage: coreAssembly.storage, communicator: coreAssembly.communicator)
+    
+    lazy var internetImagesManager: ITCInternetImagesManager = TCInternetImagesManager(dataLoader: coreAssembly.dataLoader)
     
 }

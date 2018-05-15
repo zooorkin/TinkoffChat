@@ -32,9 +32,9 @@ class TCProfilePhotoCell: UITableViewCell {
     @IBOutlet private var profilePhoto: UIImageView!
 }
 
-class TCProfileEdittingPhotoCell: UITableViewCell, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+class TCProfileEdittingPhotoCell: UITableViewCell {
     
-    public weak var tableViewController: UITableViewController?
+    public weak var profileViewController: TCProfileViewController?
     public var model: ITCProfileModel?
     
     @IBOutlet private var profilePhoto: UIImageView!
@@ -58,54 +58,10 @@ class TCProfileEdittingPhotoCell: UITableViewCell, UINavigationControllerDelegat
         }
     }
     @IBAction func changeProfileImage(_ sender: Any) {
-        print("Выберите изображение профиля")
-        let alertController = UIAlertController()
-        let select = UIAlertAction(title: "Установить из галереи", style: .default){ _ in
-            if UIImagePickerController.isSourceTypeAvailable(.photoLibrary){
-                let imagePickerController = UIImagePickerController()
-                imagePickerController.sourceType = .photoLibrary
-                imagePickerController.allowsEditing = false
-                imagePickerController.delegate = self
-                self.tableViewController?.present(imagePickerController, animated: true, completion: nil)
-            }
-        }
-        alertController.addAction(select)
-        let shot = UIAlertAction(title: "Сделать фото", style: .default){ _ in
-            if UIImagePickerController.isSourceTypeAvailable(.camera){
-                let imagePickerController = UIImagePickerController()
-                imagePickerController.sourceType = .camera
-                imagePickerController.allowsEditing = false
-                imagePickerController.delegate = self
-                self.tableViewController?.present(imagePickerController, animated: true, completion: nil)
-            }
-        }
-        
-        alertController.addAction(shot)
-        if profileImage != nil{
-            let destroy = UIAlertAction(title: "Удалить фотографию", style: .destructive){ _ in
-                // ВНИМАНИЕ! profileImage – вычисляемое свойство класса
-                self.model?.setNew(photo: self.defaultProfileImage)
-                self.model?.fetchUpdate()
-                let index = IndexPath(row: 0, section: 0)
-                self.tableViewController?.tableView.reloadRows(at: [index], with: .none)
-            }
-            alertController.addAction(destroy)
-        }
-        let cancel = UIAlertAction(title: "Отмена", style: .cancel, handler: nil)
-        alertController.addAction(cancel)
-        tableViewController?.present(alertController, animated: true, completion: nil)
+        profileViewController?.changeProfileImage(withDelete: profileImage != nil)
     }
     
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
-            // ВНИМАНИЕ! profileImage – вычисляемое свойство класса
-            model?.setNew(photo: pickedImage)
-            model?.fetchUpdate()
-            let index = IndexPath(row: 0, section: 0)
-            self.tableViewController?.tableView.reloadRows(at: [index], with: .none)
-        }
-        tableViewController?.dismiss(animated: true, completion: nil)
-    }
+
 }
 
 class TCProfileNameCell: UITableViewCell {

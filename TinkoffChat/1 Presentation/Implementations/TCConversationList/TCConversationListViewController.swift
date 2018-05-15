@@ -8,7 +8,15 @@
 
 import UIKit
 
-class TCConversationListViewController: UITableViewController, ThemesViewControllerDelegate, ITCConversationListModelDelegate {
+class TCConversationListViewController: UITableViewController, ITCThemesViewControllerDelegate, ITCConversationListModelDelegate {
+    
+    
+    // MARK: - ITCThemesViewControllerDelegate
+    
+    func didSelectThemeWith(color: UIColor) {
+        let barAppearance = UINavigationBar.appearance()
+        barAppearance.barTintColor = color
+    }
     
     // MARK: - ITCConversationListModelDelegate
     
@@ -53,22 +61,17 @@ class TCConversationListViewController: UITableViewController, ThemesViewControl
     }
     @objc private func openThemesViewController() {
         let themesViewController = presentationAssembly.themesViewController()
-        //themesViewController.delegate = self
-//        let theme1 = UIColor.white
-//        let theme2 = DesignConstants.mediumYellow
-//        let theme3 = DesignConstants.salatGreen
-//        let themes = Themes.init(theme1, theme2: theme2, theme3: theme3)
-//        themesViewController.model = themes
+        themesViewController.delegate = self
         let navigationController = presentationAssembly.navigationController(rootViewController: themesViewController)
         self.navigationController?.present(navigationController, animated: true)
     }
     
     // MARK: - ThemesViewControllerDelegate
     
-    func themesViewController(_ controller: UIViewController!, didSelectTheme selectedTheme: UIColor!) {
-        let barAppearance = UINavigationBar.appearance()
-        barAppearance.barTintColor = selectedTheme
-    }
+//    func themesViewController(_ controller: UIViewController!, didSelectTheme selectedTheme: UIColor!) {
+//        let barAppearance = UINavigationBar.appearance()
+//        barAppearance.barTintColor = selectedTheme
+//    }
     
     // MARK: - PRIVATE
 

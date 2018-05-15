@@ -11,4 +11,6 @@ class TCCoreAssembly: ITCCoreAssembly {
     lazy var coreDataStack: ITCCoreDataStack = TCCoreDataStack()
     lazy var storage: ITCStorage = TCStorage(coreDataStack: coreDataStack)
     lazy var communicator: ITCCommunicator  = TCCommunicator(userName: "zooorkin")
+    lazy var dataLoader: ITCDataLoader = TCDataLoader()
+    
 }

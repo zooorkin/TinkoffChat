@@ -10,13 +10,20 @@ import UIKit
 
 class TCThemesViewController: UIViewController {
 
+    @IBOutlet var colorButton1: ColorButton!
+    @IBOutlet var colorButton2: ColorButton!
+    @IBOutlet var colorButton3: ColorButton!
     
     private let presentationAssembly: ITCPresentationAssembly
     private var manager: ITCManager
+    private let colors: (UIColor, UIColor, UIColor)
     
-    init(presentationAssembly: ITCPresentationAssembly, manager: ITCManager) {
+    public var delegate: ITCThemesViewControllerDelegate?
+    
+    init(presentationAssembly: ITCPresentationAssembly, manager: ITCManager, colors: (UIColor, UIColor, UIColor)) {
         self.presentationAssembly = presentationAssembly
         self.manager = manager
+        self.colors = colors
         super.init(nibName: TCNibName.TCThemes.rawValue, bundle: nil)
     }
     
@@ -30,7 +37,9 @@ class TCThemesViewController: UIViewController {
     override func viewDidLoad() {
         adjustNavigationBar()
         super.viewDidLoad()
-
+        colorButton1.backgroundColor = colors.0
+        colorButton2.backgroundColor = colors.1
+        colorButton3.backgroundColor = colors.2
         // Do any additional setup after loading the view.
     }
 
@@ -47,6 +56,19 @@ class TCThemesViewController: UIViewController {
             topItem.rightBarButtonItem = rightButton
         } else {
             fatalError()
+        }
+    }
+    
+    @IBAction func changeColor(_ sender: UIButton) {
+        switch sender.tag {
+        case 0: delegate?.didSelectThemeWith(color: colors.0)
+            self.view.backgroundColor = colors.0
+        case 1: delegate?.didSelectThemeWith(color: colors.1)
+            self.view.backgroundColor = colors.1
+        case 2: delegate?.didSelectThemeWith(color: colors.2)
+            self.view.backgroundColor = colors.2
+        default: fatalError()
+            
         }
     }
     
