@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TCConversationViewController" customModule="TinkoffChat" customModuleProvider="target">
             <connections>
                 <outlet property="gestureTap" destination="v3T-Dr-Qjm" id="DkJ-7N-v9W"/>
                 <outlet property="inputTextField" destination="LV2-hO-vYe" id="qfU-iq-q2Q"/>

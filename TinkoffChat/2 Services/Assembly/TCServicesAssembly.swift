@@ -17,5 +17,6 @@ class TCServicesAssembly: ITCServicesAssembly {
     lazy var manager: ITCManager = TCManager(storage: coreAssembly.storage, communicator: coreAssembly.communicator)
     
     lazy var internetImagesManager: ITCInternetImagesManager = TCInternetImagesManager(dataLoader: coreAssembly.dataLoader)
+    lazy var tinkoffAnimation = TCTinkoffAnimation()
     
 }

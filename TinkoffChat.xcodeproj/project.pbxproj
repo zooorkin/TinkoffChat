@@ -59,6 +59,7 @@
 		8880159C209B21C500EC17B1 /* TCProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8880159B209B21C500EC17B1 /* TCProfileModel.swift */; };
 		888DED592080249A00B95022 /* Storage.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 888DED572080249A00B95022 /* Storage.xcdatamodeld */; };
 		88A030D9207AB4C9008C297A /* ColorButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A030D8207AB4C9008C297A /* ColorButton.swift */; };
+		88A3B22020B741EA0069F42E /* TCTinkoffAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A3B21F20B741EA0069F42E /* TCTinkoffAnimation.swift */; };
 		88A3EBE92054668800CC5FD7 /* ITCConversationCellConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A3EBE82054668800CC5FD7 /* ITCConversationCellConfiguration.swift */; };
 		88A3EBEB205466B000CC5FD7 /* ITCMessageCellConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A3EBEA205466B000CC5FD7 /* ITCMessageCellConfiguration.swift */; };
 		88B96C032053307900C4961C /* DateFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B96C022053307900C4961C /* DateFunctions.swift */; };
@@ -161,6 +162,7 @@
 		8880159B209B21C500EC17B1 /* TCProfileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TCProfileModel.swift; sourceTree = "<group>"; };
 		888DED582080249A00B95022 /* TinkoffChat.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TinkoffChat.xcdatamodel; sourceTree = "<group>"; };
 		88A030D8207AB4C9008C297A /* ColorButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorButton.swift; sourceTree = "<group>"; };
+		88A3B21F20B741EA0069F42E /* TCTinkoffAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TCTinkoffAnimation.swift; sourceTree = "<group>"; };
 		88A3EBE82054668800CC5FD7 /* ITCConversationCellConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ITCConversationCellConfiguration.swift; sourceTree = "<group>"; };
 		88A3EBEA205466B000CC5FD7 /* ITCMessageCellConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ITCMessageCellConfiguration.swift; sourceTree = "<group>"; };
 		88B96C022053307900C4961C /* DateFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFunctions.swift; sourceTree = "<group>"; };
@@ -275,6 +277,7 @@
 			isa = PBXGroup;
 			children = (
 				880C28922092756900BFD30D /* TCManager.swift */,
+				88A3B21F20B741EA0069F42E /* TCTinkoffAnimation.swift */,
 				884724FB20AB41A4006144F2 /* TCInternetImagesManager.swift */,
 			);
 			path = Implementations;
@@ -723,6 +726,7 @@
 				880C28932092756900BFD30D /* TCManager.swift in Sources */,
 				880C2891209274F200BFD30D /* ITCManager.swift in Sources */,
 				880C289F2092817F00BFD30D /* TCStorage.swift in Sources */,
+				88A3B22020B741EA0069F42E /* TCTinkoffAnimation.swift in Sources */,
 				8869151E20517ED40045D3F0 /* MessageView.swift in Sources */,
 				887F2E5E209836A800DFCC08 /* TCConversationListModel.swift in Sources */,
 				88FF78A220968DD0005A3F45 /* TCInformationCell.swift in Sources */,

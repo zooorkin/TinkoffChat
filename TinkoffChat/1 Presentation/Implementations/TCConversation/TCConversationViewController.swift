@@ -23,23 +23,72 @@ class TCConversationViewController: UIViewController, UITableViewDelegate, UITab
     internal var dataSource: [TCConversationCellModel] = []
     
     private var isUserOnlineValue: Bool = false
-    var isUserOnline: Bool{
-        get{
-            return isUserOnlineValue
-        }
-        set{
-            isUserOnlineValue = newValue
-            
-            DispatchQueue.main.async {
-                if !self.isUserOnlineValue{
+    
+    public func getIsUserOnline() -> Bool {
+        return isUserOnlineValue
+    }
+    public func setIsUser(online newValue: Bool, animating: Bool = true){
+        isUserOnlineValue = newValue
+        
+        DispatchQueue.main.async {
+            if newValue {
+                self.titleBecomesIn(online: true, animating: animating)
+            } else {
+                self.titleBecomesIn(online: false, animating: animating)
+            }
+            if !self.isUserOnlineValue{
+                // При первоначальной настройке sendButton ещё nil
+                self.sendButtonBecomes(enabled: false, animating: animating)
+                // При первоначальной настройке inputTextField ещё nil
+            }else if let text = self.inputTextField?.text{
+                if text != ""{
                     // При первоначальной настройке sendButton ещё nil
-                    self.sendButton?.isEnabled = false
-                    // При первоначальной настройке inputTextField ещё nil
-                }else if let text = self.inputTextField?.text{
-                    if text != ""{
-                        // При первоначальной настройке sendButton ещё nil
-                        self.sendButton?.isEnabled = true
+                    self.sendButtonBecomes(enabled: true, animating: animating)
+                }
+            }
+        }
+    }
+    
+    private func sendButtonBecomes(enabled: Bool, animating: Bool = true){
+        if enabled != sendButton.isEnabled {
+            if animating {
+                UIView.animate(withDuration: 0.25, animations: {
+                    self.sendButton?.isEnabled = enabled
+                    self.sendButton?.transform = CGAffineTransform(scaleX: 1.15, y: 1.15)
+                }) { (completed) in
+                    UIView.animate(withDuration: 0.25){
+                        self.sendButton?.transform = CGAffineTransform(scaleX: 1, y: 1)
                     }
+                }
+            } else {
+                self.sendButton?.isEnabled = enabled
+            }
+        }
+    }
+    
+    private func titleBecomesIn(online: Bool, animating: Bool = true){
+        if online {
+            if let label = titleLabel {
+                if animating {
+                    UIView.animate(withDuration: 1) {
+                        label.textColor = UIColor.green
+                        label.transform = CGAffineTransform(scaleX: 1.1, y: 1.1)
+                    }
+                } else {
+                    label.textColor = UIColor.green
+                    label.transform = CGAffineTransform(scaleX: 1.1, y: 1.1)
+                }
+            }
+        } else {
+            if let label = titleLabel{
+                if animating {
+                    UIView.animate(withDuration: 1) {
+                        label.textColor = UIColor.black
+                        label.transform = CGAffineTransform(scaleX: 1, y: 1)
+                    }
+                } else {
+                    label.textColor = UIColor.black
+                    label.transform = CGAffineTransform(scaleX: 1, y: 1)
                 }
             }
         }
@@ -57,9 +106,19 @@ class TCConversationViewController: UIViewController, UITableViewDelegate, UITab
         fatalError("init(coder:) has not been implemented")
     }
     
+    private var titleLabel: UILabel?
+    
     override func viewDidLoad() {
-        title = "Conversation"
         super.viewDidLoad()
+        titleLabel = UILabel()
+        if let label = titleLabel {
+            label.backgroundColor = UIColor.clear
+            label.textColor = UIColor.red
+            label.font = UIFont.boldSystemFont(ofSize: 17)
+            label.text = title
+            label.sizeToFit()
+            self.navigationItem.titleView = label
+        }
         model.fetchUpdate()
         tableView.reloadData()
         registerNibs()
@@ -77,6 +136,7 @@ class TCConversationViewController: UIViewController, UITableViewDelegate, UITab
             // Fallback on earlier versions
         }
         inputTextField.delegate = self
+        tinkoffAnimation.setView(view: view)
     }
 
     override func didReceiveMemoryWarning() {
@@ -142,16 +202,15 @@ class TCConversationViewController: UIViewController, UITableViewDelegate, UITab
     
     @IBAction func send(_ sender: UIButton) {
         DispatchQueue.main.async {
-            self.sendButton.isEnabled = false
+            self.sendButtonBecomes(enabled: false)
             if let text = self.inputTextField.text {
                 self.inputTextField.text = nil
-            if text == "" {
-                return
-            } else {
-                self.model.send(text: text)
-                
+                if text == "" {
+                    return
+                } else {
+                    self.model.send(text: text)
+                }
             }
-        }
         }
     }
     
@@ -164,13 +223,22 @@ class TCConversationViewController: UIViewController, UITableViewDelegate, UITab
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         if let message = textField.text, let stringRange = Range(range, in: message) {
             let newMessage = message.replacingCharacters(in: stringRange, with: string)
-            sendButton.isEnabled = isUserOnline && newMessage != "" ? true : false
+            
+            if getIsUserOnline() {
+                if newMessage == "" {
+                    sendButtonBecomes(enabled: false)
+                } else {
+                    sendButtonBecomes(enabled: true)
+                }
+            } else {
+                sendButtonBecomes(enabled: false)
+            }
         }
         return true
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if isUserOnline{
+        if getIsUserOnline(){
             send(UIButton())
         }
         return false
@@ -246,7 +314,8 @@ class TCConversationViewController: UIViewController, UITableViewDelegate, UITab
     }
     
     func userBecome(online: Bool) {
-        isUserOnline = online
+        print("func userBecome(online: Bool) { \(online)")
+        setIsUser(online: online)
     }
     
     func showAlertMessage(text: String) {
@@ -267,6 +336,22 @@ class TCConversationViewController: UIViewController, UITableViewDelegate, UITab
         tableView.register(nib2, forCellReuseIdentifier: TCNibName.TCNewMessagesCell.rawValue)
         tableView.register(nib3, forCellReuseIdentifier: TCNibName.TCInputMessageCell.rawValue)
         tableView.register(nib4, forCellReuseIdentifier: TCNibName.TCOutputMessageCell.rawValue)
+    }
+    
+    //
+    
+    let tinkoffAnimation = TCTinkoffAnimation()
+    
+    //
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        tinkoffAnimation.touchesBegan(touches, with: event)
+    }
+    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+        tinkoffAnimation.touchesMoved(touches, with: event)
+    }
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        tinkoffAnimation.touchesEnded(touches, with: event)
     }
     
 }

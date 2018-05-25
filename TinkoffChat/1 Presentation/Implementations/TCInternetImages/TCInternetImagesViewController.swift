@@ -76,6 +76,7 @@ class TCInternetImagesViewController: UICollectionViewController, ITCInternetIma
         activityIndicator.hidesWhenStopped = true
         activityIndicator.startAnimating()
         view.addSubview(activityIndicator)
+        tinkoffAnimation.setView(view: view)
     }
     
     override func didReceiveMemoryWarning() {
@@ -149,6 +150,22 @@ class TCInternetImagesViewController: UICollectionViewController, ITCInternetIma
     
     fileprivate let sectionInsets = UIEdgeInsets(top: 4, left: 4, bottom: 4, right: 4)
     fileprivate let itemsPerRow: CGFloat = 3
+    
+    //
+    
+    let tinkoffAnimation = TCTinkoffAnimation()
+    
+    //
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        tinkoffAnimation.touchesBegan(touches, with: event)
+    }
+    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+        tinkoffAnimation.touchesMoved(touches, with: event)
+    }
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        tinkoffAnimation.touchesEnded(touches, with: event)
+    }
     
 }
 

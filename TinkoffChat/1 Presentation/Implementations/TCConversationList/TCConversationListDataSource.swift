@@ -69,7 +69,7 @@ extension TCConversationListViewController {
         let conversationController = presentationAssembly.conversationViewController(userId: user.id)
 
         conversationController.title = user.name
-        conversationController.isUserOnline = user.online
+        conversationController.setIsUser(online: user.online, animating: false)
         self.navigationController?.pushViewController(conversationController, animated: true)
     }
 }

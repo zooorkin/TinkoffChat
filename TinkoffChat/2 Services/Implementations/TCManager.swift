@@ -71,7 +71,7 @@ class TCManager: ITCManager, ITCCommunicatorDelegate {
         print(#function)
         self.storage.userDidBecomeOffine(userId: userId)
         self.firstDelegate?.userDidBecomeOffine(userId: userId)
-        self.secondDelegate?.userDidBecomeOnline(userId: userId)
+        self.secondDelegate?.userDidBecomeOffine(userId: userId)
     }
     
     func didReceive(message: String, fromUserWithId: String) {

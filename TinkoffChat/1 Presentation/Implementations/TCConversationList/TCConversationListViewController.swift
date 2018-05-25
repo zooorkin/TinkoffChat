@@ -77,6 +77,7 @@ class TCConversationListViewController: UITableViewController, ITCThemesViewCont
 
     private func adjustNavigationBar(){
         title = "Tinkoff Chat"
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "Чаты", style: .plain, target: nil, action: nil)
         navigationController?.navigationBar.tintColor = UIColor.black
         if #available(iOS 11.0, *) {
             navigationController?.navigationBar.prefersLargeTitles = true

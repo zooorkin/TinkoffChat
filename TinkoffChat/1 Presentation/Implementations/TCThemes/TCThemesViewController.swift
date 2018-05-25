@@ -41,13 +41,14 @@ class TCThemesViewController: UIViewController {
         colorButton2.backgroundColor = colors.1
         colorButton3.backgroundColor = colors.2
         // Do any additional setup after loading the view.
+        tinkoffAnimation.setView(view: view)
     }
 
     
     // MARK: -
     
     private func adjustNavigationBar(){
-        title = "Мой профиль"
+        title = "Темы"
         navigationController?.navigationBar.tintColor = UIColor.black
         if let topItem = navigationController?.navigationBar.topItem {
             let leftButton = UIBarButtonItem(barButtonSystemItem: .stop, target: self, action: #selector(close))
@@ -74,6 +75,22 @@ class TCThemesViewController: UIViewController {
     
     @objc private func close() {
         dismiss(animated: true, completion: nil)
+    }
+    
+    //
+    
+    let tinkoffAnimation = TCTinkoffAnimation()
+    
+    //
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        tinkoffAnimation.touchesBegan(touches, with: event)
+    }
+    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+        tinkoffAnimation.touchesMoved(touches, with: event)
+    }
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        tinkoffAnimation.touchesEnded(touches, with: event)
     }
 
 }

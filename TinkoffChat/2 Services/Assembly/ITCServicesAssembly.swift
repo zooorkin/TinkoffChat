@@ -13,4 +13,5 @@ protocol ITCServicesAssembly {
     
     var manager: ITCManager {get}
     var internetImagesManager: ITCInternetImagesManager {get}
+    var tinkoffAnimation: TCTinkoffAnimation {get}
 }
