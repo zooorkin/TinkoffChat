@@ -4,10 +4,10 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>CoreDataTests.xcscheme</key>
+		<key>TCManagerTests.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>1</integer>
+			<integer>2</integer>
 		</dict>
 		<key>TinkoffChat.xcscheme</key>
 		<dict>
@@ -18,6 +18,11 @@
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
 		<key>882CB4EB208F913C00538AC0</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>8850579F20BDE09C000A8F6B</key>
 		<dict>
 			<key>primary</key>
 			<true/>

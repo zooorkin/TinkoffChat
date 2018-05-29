@@ -21,7 +21,6 @@
 		88144CE0204329EA0035CB07 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88144CDF204329EA0035CB07 /* Log.swift */; };
 		881AD48E20515690002503BF /* CircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881AD48D20515690002503BF /* CircleView.swift */; };
 		882CB4C9208F7CC500538AC0 /* EntitiesExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 882CB4C8208F7CC500538AC0 /* EntitiesExtensions.swift */; };
-		882CB4EF208F913C00538AC0 /* CoreDataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 882CB4EE208F913C00538AC0 /* CoreDataTests.swift */; };
 		8835FA2A205D9A47002CFA21 /* ThemesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8835FA29205D9A47002CFA21 /* ThemesViewController.m */; };
 		8835FA2D205D9BED002CFA21 /* Themes.m in Sources */ = {isa = PBXBuildFile; fileRef = 8835FA2C205D9BED002CFA21 /* Themes.m */; };
 		8835FA32205DA86A002CFA21 /* ThemesViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8835FA31205DA86A002CFA21 /* ThemesViewController.storyboard */; };
@@ -38,6 +37,7 @@
 		884AF9342049F71000A4A045 /* EditButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884AF9332049F71000A4A045 /* EditButton.swift */; };
 		884AF9362049FBB400A4A045 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884AF9352049FBB400A4A045 /* ProfileView.swift */; };
 		884AF9382049FC9C00A4A045 /* DesignConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884AF9372049FC9C00A4A045 /* DesignConstants.swift */; };
+		885057A320BDE09C000A8F6B /* TCManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 885057A220BDE09C000A8F6B /* TCManagerTests.swift */; };
 		885B776B209712D600534DD7 /* TCProfileTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 885B776A209712D600534DD7 /* TCProfileTableView.swift */; };
 		885B77712097144500534DD7 /* TCProfilePhotoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 885B77702097144500534DD7 /* TCProfilePhotoCell.xib */; };
 		885B77732097144D00534DD7 /* TCProfileNameCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 885B77722097144D00534DD7 /* TCProfileNameCell.xib */; };
@@ -95,7 +95,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		882CB4F1208F913C00538AC0 /* PBXContainerItemProxy */ = {
+		885057A520BDE09C000A8F6B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 88DBB0232041BB0C005EDA8B /* Project object */;
 			proxyType = 1;
@@ -119,9 +119,6 @@
 		88144CDF204329EA0035CB07 /* Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
 		881AD48D20515690002503BF /* CircleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleView.swift; sourceTree = "<group>"; };
 		882CB4C8208F7CC500538AC0 /* EntitiesExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntitiesExtensions.swift; sourceTree = "<group>"; };
-		882CB4EC208F913C00538AC0 /* CoreDataTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CoreDataTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		882CB4EE208F913C00538AC0 /* CoreDataTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataTests.swift; sourceTree = "<group>"; };
-		882CB4F0208F913C00538AC0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8835FA27205D9A47002CFA21 /* TinkoffChat-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TinkoffChat-Bridging-Header.h"; sourceTree = "<group>"; };
 		8835FA28205D9A47002CFA21 /* ThemesViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ThemesViewController.h; sourceTree = "<group>"; };
 		8835FA29205D9A47002CFA21 /* ThemesViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ThemesViewController.m; sourceTree = "<group>"; };
@@ -141,6 +138,9 @@
 		884AF9332049F71000A4A045 /* EditButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditButton.swift; sourceTree = "<group>"; };
 		884AF9352049FBB400A4A045 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		884AF9372049FC9C00A4A045 /* DesignConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignConstants.swift; sourceTree = "<group>"; };
+		885057A020BDE09C000A8F6B /* TCManagerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TCManagerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		885057A220BDE09C000A8F6B /* TCManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TCManagerTests.swift; sourceTree = "<group>"; };
+		885057A420BDE09C000A8F6B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		885B776A209712D600534DD7 /* TCProfileTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TCProfileTableView.swift; sourceTree = "<group>"; };
 		885B77702097144500534DD7 /* TCProfilePhotoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TCProfilePhotoCell.xib; sourceTree = "<group>"; };
 		885B77722097144D00534DD7 /* TCProfileNameCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TCProfileNameCell.xib; sourceTree = "<group>"; };
@@ -200,7 +200,7 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		882CB4E9208F913C00538AC0 /* Frameworks */ = {
+		8850579D20BDE09C000A8F6B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -336,15 +336,6 @@
 			path = Implementations;
 			sourceTree = "<group>";
 		};
-		882CB4ED208F913C00538AC0 /* CoreDataTests */ = {
-			isa = PBXGroup;
-			children = (
-				882CB4EE208F913C00538AC0 /* CoreDataTests.swift */,
-				882CB4F0208F913C00538AC0 /* Info.plist */,
-			);
-			path = CoreDataTests;
-			sourceTree = "<group>";
-		};
 		8835FA26205D9785002CFA21 /* ThemesViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -356,6 +347,15 @@
 				8835FA31205DA86A002CFA21 /* ThemesViewController.storyboard */,
 			);
 			path = ThemesViewController;
+			sourceTree = "<group>";
+		};
+		885057A120BDE09C000A8F6B /* TCManagerTests */ = {
+			isa = PBXGroup;
+			children = (
+				885057A220BDE09C000A8F6B /* TCManagerTests.swift */,
+				885057A420BDE09C000A8F6B /* Info.plist */,
+			);
+			path = TCManagerTests;
 			sourceTree = "<group>";
 		};
 		885B778B2097240000534DD7 /* Buttons */ = {
@@ -460,7 +460,7 @@
 			isa = PBXGroup;
 			children = (
 				88DBB02D2041BB0C005EDA8B /* TinkoffChat */,
-				882CB4ED208F913C00538AC0 /* CoreDataTests */,
+				885057A120BDE09C000A8F6B /* TCManagerTests */,
 				88DBB02C2041BB0C005EDA8B /* Products */,
 			);
 			sourceTree = "<group>";
@@ -469,7 +469,7 @@
 			isa = PBXGroup;
 			children = (
 				88DBB02B2041BB0C005EDA8B /* TinkoffChat.app */,
-				882CB4EC208F913C00538AC0 /* CoreDataTests.xctest */,
+				885057A020BDE09C000A8F6B /* TCManagerTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -550,22 +550,22 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		882CB4EB208F913C00538AC0 /* CoreDataTests */ = {
+		8850579F20BDE09C000A8F6B /* TCManagerTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 882CB4F3208F913C00538AC0 /* Build configuration list for PBXNativeTarget "CoreDataTests" */;
+			buildConfigurationList = 885057A920BDE09C000A8F6B /* Build configuration list for PBXNativeTarget "TCManagerTests" */;
 			buildPhases = (
-				882CB4E8208F913C00538AC0 /* Sources */,
-				882CB4E9208F913C00538AC0 /* Frameworks */,
-				882CB4EA208F913C00538AC0 /* Resources */,
+				8850579C20BDE09C000A8F6B /* Sources */,
+				8850579D20BDE09C000A8F6B /* Frameworks */,
+				8850579E20BDE09C000A8F6B /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				882CB4F2208F913C00538AC0 /* PBXTargetDependency */,
+				885057A620BDE09C000A8F6B /* PBXTargetDependency */,
 			);
-			name = CoreDataTests;
-			productName = CoreDataTests;
-			productReference = 882CB4EC208F913C00538AC0 /* CoreDataTests.xctest */;
+			name = TCManagerTests;
+			productName = TCManagerTests;
+			productReference = 885057A020BDE09C000A8F6B /* TCManagerTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		88DBB02A2041BB0C005EDA8B /* TinkoffChat */ = {
@@ -595,7 +595,7 @@
 				LastUpgradeCheck = 0920;
 				ORGANIZATIONNAME = "Андрей Зорькин";
 				TargetAttributes = {
-					882CB4EB208F913C00538AC0 = {
+					8850579F20BDE09C000A8F6B = {
 						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 88DBB02A2041BB0C005EDA8B;
@@ -621,13 +621,13 @@
 			projectRoot = "";
 			targets = (
 				88DBB02A2041BB0C005EDA8B /* TinkoffChat */,
-				882CB4EB208F913C00538AC0 /* CoreDataTests */,
+				8850579F20BDE09C000A8F6B /* TCManagerTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		882CB4EA208F913C00538AC0 /* Resources */ = {
+		8850579E20BDE09C000A8F6B /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -667,11 +667,11 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		882CB4E8208F913C00538AC0 /* Sources */ = {
+		8850579C20BDE09C000A8F6B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				882CB4EF208F913C00538AC0 /* CoreDataTests.swift in Sources */,
+				885057A320BDE09C000A8F6B /* TCManagerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -746,10 +746,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		882CB4F2208F913C00538AC0 /* PBXTargetDependency */ = {
+		885057A620BDE09C000A8F6B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 88DBB02A2041BB0C005EDA8B /* TinkoffChat */;
-			targetProxy = 882CB4F1208F913C00538AC0 /* PBXContainerItemProxy */;
+			targetProxy = 885057A520BDE09C000A8F6B /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -765,17 +765,17 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		882CB4F4208F913C00538AC0 /* Debug */ = {
+		885057A720BDE09C000A8F6B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 68427LK7H9;
-				INFOPLIST_FILE = CoreDataTests/Info.plist;
+				INFOPLIST_FILE = TCManagerTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = zooorkin.CoreDataTests;
+				PRODUCT_BUNDLE_IDENTIFIER = zooorkin.TCManagerTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -783,17 +783,17 @@
 			};
 			name = Debug;
 		};
-		882CB4F5208F913C00538AC0 /* Release */ = {
+		885057A820BDE09C000A8F6B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 68427LK7H9;
-				INFOPLIST_FILE = CoreDataTests/Info.plist;
+				INFOPLIST_FILE = TCManagerTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = zooorkin.CoreDataTests;
+				PRODUCT_BUNDLE_IDENTIFIER = zooorkin.TCManagerTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -954,11 +954,11 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		882CB4F3208F913C00538AC0 /* Build configuration list for PBXNativeTarget "CoreDataTests" */ = {
+		885057A920BDE09C000A8F6B /* Build configuration list for PBXNativeTarget "TCManagerTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				882CB4F4208F913C00538AC0 /* Debug */,
-				882CB4F5208F913C00538AC0 /* Release */,
+				885057A720BDE09C000A8F6B /* Debug */,
+				885057A820BDE09C000A8F6B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
