@@ -62,7 +62,7 @@ class TCInternetImagesViewController: UICollectionViewController, ITCInternetIma
         fatalError("init(coder:) has not been implemented")
     }
     
-    let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.whiteLarge)
+    let activityIndicator = UIActivityIndicatorView(style: UIActivityIndicatorView.Style.whiteLarge)
     
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -115,8 +115,8 @@ class TCProfileViewController: UITableViewController, ITCProfileModelDelegate, U
         self.present(alertController, animated: true, completion: nil)
     }
     
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
+    internal func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        if let pickedImage = info[.originalImage] as? UIImage {
             // ВНИМАНИЕ! profileImage – вычисляемое свойство класса
             model.setNew(photo: pickedImage)
             model.fetchUpdate()

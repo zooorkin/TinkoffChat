@@ -2,6 +2,11 @@
 
 # TinkoffChat
 
+## Приложение для общения с друзьями
+<p align="left">
+<img width="600" src="https://github.com/zooorkin/TinkoffChat/blob/master/TinkoffChat/Assets.xcassets/screenshots.imageset/screenshots.png">
+</p>
+
 ## Сервис-ориентированная архитектура
 <p align="left">
   <img width="600" src="https://github.com/zooorkin/TinkoffChat/blob/master/TinkoffChat/Assets.xcassets/soamodel.imageset/soamodel.png">

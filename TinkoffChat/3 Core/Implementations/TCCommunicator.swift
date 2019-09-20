@@ -99,12 +99,16 @@ class TCCommunicator: NSObject, ITCCommunicator, MCNearbyServiceAdvertiserDelega
         case .connecting: break
         case .connected: break
         case .notConnected: break
+        @unknown default:
+            fatalError()
         }
         
         switch state {
         case .connecting: print("ПИР \(peerID.displayName) ПОДКЛЮЧАЕТСЯ")
         case .connected: print("ПИР \(peerID.displayName) ПОДКЛЮЧИЛСЯ")
         case .notConnected: print("ПИР \(peerID.displayName) ОТКЛЮЧИЛСЯ")
+        @unknown default:
+            fatalError()
         }
         
     }

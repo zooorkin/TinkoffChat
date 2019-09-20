@@ -29,7 +29,7 @@ class Log{
     
     var time: Double = 0
     var hideLogs: Bool = false
-
+    
     init(hideLogs: Bool) {
         time = NSDate().timeIntervalSince1970;
         self.hideLogs = hideLogs
@@ -39,12 +39,12 @@ class Log{
     
     func print(_ text: String){
         if !hideLogs{
-        Swift.print(text)
+            Swift.print(text)
         }
     }
     func print2(_ text: String){
         if !hideLogs{
-        Swift.print(text, terminator: "")
+            Swift.print(text, terminator: "")
         }
     }
     
@@ -61,15 +61,16 @@ class Log{
         print2("\(String(format: "%06d", ms))" + "ms  ")
     }
     func appState(from previousState: AppState,
-                       now currentState: UIApplicationState,
-                       to nextState: AppState,
-                       method: String){
+                  now currentState: UIApplication.State,
+                  to nextState: AppState,
+                  method: String){
         let currentStateString: String
         switch currentState {
-            
         case .active: currentStateString = AppState.Active.rawValue
         case .inactive: currentStateString = AppState.Inactive.rawValue
         case .background: currentStateString = AppState.Background.rawValue
+        @unknown default:
+            fatalError()
         }
         printTime()
         print("APP     \(previousState.rawValue)  \(currentStateString)  \(nextState.rawValue)  \(method)")
@@ -111,5 +112,5 @@ class Log{
 
                 """)
     }
-
+    
 }

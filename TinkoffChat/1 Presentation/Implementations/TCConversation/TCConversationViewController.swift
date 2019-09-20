@@ -129,7 +129,7 @@ class TCConversationViewController: UIViewController, UITableViewDelegate, UITab
         self.tabBarController?.tabBar.isHidden = true
         self.tableView.dataSource = self
         self.tableView.delegate = self
-        self.tableView.rowHeight = UITableViewAutomaticDimension
+        self.tableView.rowHeight = UITableView.automaticDimension
         if #available(iOS 11.0, *) {
             navigationController?.navigationBar.prefersLargeTitles = false
         } else {
@@ -146,8 +146,8 @@ class TCConversationViewController: UIViewController, UITableViewDelegate, UITab
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillDisappear), name: Notification.Name.UIKeyboardWillHide, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillAppear), name: Notification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillDisappear), name: UIResponder.keyboardWillHideNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillAppear), name: UIResponder.keyboardWillShowNotification, object: nil)
         if let index = tableView.indexPathForSelectedRow{
             tableView.deselectRow(at: index, animated: animated)
         }
@@ -166,8 +166,8 @@ class TCConversationViewController: UIViewController, UITableViewDelegate, UITab
         }
     }
     
-    override func willMove(toParentViewController parent: UIViewController?) {
-        super.willMove(toParentViewController: parent)
+    override func willMove(toParent parent: UIViewController?) {
+        super.willMove(toParent: parent)
         if #available(iOS 11.0, *) {
             navigationController?.navigationBar.prefersLargeTitles = true
         } else {
@@ -180,7 +180,7 @@ class TCConversationViewController: UIViewController, UITableViewDelegate, UITab
     var isKeyboardShown = false
     
     @objc func keyboardWillAppear(_ notification: NSNotification) {
-        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
             if !isKeyboardShown{
                 self.view.frame.size.height -= keyboardSize.height
             }
@@ -189,7 +189,7 @@ class TCConversationViewController: UIViewController, UITableViewDelegate, UITab
     }
     
     @objc func keyboardWillDisappear(_ notification: NSNotification) {
-        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
             if isKeyboardShown {
                 self.view
                     .frame.size.height += keyboardSize.height

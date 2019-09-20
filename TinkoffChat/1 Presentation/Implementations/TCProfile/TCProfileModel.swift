@@ -140,7 +140,7 @@ class TCProfileModel: ITCProfileModel {
                 currentUser.photo = nil
                 newPhoto = nil
             } else {
-                currentUser.photo = UIImagePNGRepresentation(photo)
+                currentUser.photo = photo.pngData()
                 newPhoto = nil
             }
         }
